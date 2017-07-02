@@ -1,0 +1,132 @@
+table {
+	width: 100%;
+	font-size: 14px;
+	font-family: 'MullerMedium';
+	color: #a2b2c2;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+/************ thead ************/
+.row-head {
+	height: 52px;
+	background-color: #e0e7ed;
+	box-shadow: 1.176px 1.618px 2px 0px rgb( 196, 201, 206 );
+}
+.row-head>th {
+	font-family: 'MullerExtraBold';
+	font-weight: lighter;
+	cursor: pointer;
+}
+.row-head>th:hover {
+	color: #466481;
+}
+.row-head_space-bottom {
+	height: 9px;
+}
+
+
+/************ tbody ************/
+.row-body {
+	height: 110px;
+	/*width: 10px;*/
+	background-color: white;
+	border: 1px solid rgb(231, 231, 231);
+}
+.row-body_data {
+	height: inherit;
+	padding: 0;
+}
+td.row-body_dadta:first-child {
+	max-width: 100px;
+}
+.row-body_space-bottom {
+	height: 6px;
+}
+.row-body_data_img {
+	height: inherit;
+	width: auto;
+}
+
+/************ tbody: td-content ************/
+.row-body_data p {
+	text-align: center;
+	margin: 10px 10px;
+	line-height: 20px;
+	/*letter-spacing: 1px;*/
+}
+.row-body_data a {
+	color: #2b7bbd;;
+	text-decoration: none;
+}
+.row-body_data a:hover {
+	text-decoration: underline;
+}
+.row-body_data .data_p-lot {
+	vertical-align: top;
+}
+.data_p-lot {
+	width: 40px;
+	color: #7B858F;
+	border: 1px solid #DEE1E3;
+	margin-top: 5px !important;
+	/*text-align: center !important;*/
+}
+.data_p-date {
+	color: #4a4a4a;
+	font-size: 16px;
+}
+.data_p-location {
+	color: #aeaeae;
+	font-size: 14px;
+}
+.data_p-model {
+	color: #2b7bbd;
+	font-size: 18px;
+}
+
+.data_p-startprice {
+	font-size: 18px;
+	color: #3a3a3a;
+	text-align: right !important;
+}
+.data_p-startprice::after {
+	content: "\00A5";
+}
+.data_p-sellprice {
+	font-size: 18px;
+	color: #3a3a3a;
+}
+.data_p-sellprice::after {
+	content: "\00A5";
+}
+.data_p-ball {
+	width: 20px;
+	border-radius: 20px;
+	border: 1px solid #d6dadd;
+	box-shadow: 1.176px 1.618px 2px 0px rgb( 196, 201, 206 );
+	font-weight: bold;
+	color: #606C79;
+}
+
+/************ modificators *************/
+
+/* align-left */
+.a-l {
+	text-align: left !important;
+}
+
+/* p-empty */
+.p-e {
+	font-size: 0px;
+}
+
+/* display: inline-block*/
+.d-ib {
+	display: inline-block;
+}
+
+/* display: block */
+.d-b {
+	display: block;
+}

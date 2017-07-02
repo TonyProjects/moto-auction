@@ -1,0 +1,319 @@
+.page-title {
+	font-family: MullerHeavy;
+	font-size: 18px;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 3px;
+	color: #1F334D;
+}
+
+/* Common filter settings */
+/* Общие настройки фильтра */
+.filter {
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	background-color: white;
+	box-shadow: 1.176px 1.618px 2px 0px rgb( 196, 201, 206 );
+}
+.filter__content {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	margin: 0 auto;
+}
+.filter__content--border-top {
+	border-top: 1px solid #EBEFF3;
+}
+.filter__content__border-bottom {
+	border-bottom: 1px solid #EBEFF3;
+}
+.filter-content__tab {
+	width: 100%;
+}
+.filter-content__tab--before {
+	background-color: #1A2C42;
+}
+.filter-content__body {
+}
+.filter-content__segment {
+	min-width: 1170px;
+	display: flex;
+	flex-direction: row;
+	height: 75px;
+}
+.filter-content-body__burger {
+	width: 75px;
+	box-sizing: border-box;
+	padding: 20px;	
+}
+
+/* Auctions block */
+/* Блок аукционов */
+.filter-content-body__burger--dark-blue {
+	background-color: #1A2C42;
+}
+.filter-content-body__data {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	box-sizing: border-box;	
+	padding: 0 0 0 30px;
+	font-family: 'MullerBold'
+}
+
+/* Params block */
+/* Блок парметров */
+
+/* Labels block */
+/* Блок меток*/
+
+
+/* Button with angle at left */
+.mbtn-with-langle:hover .btn,
+.mbtn-with-langle:focus .btn {
+
+}
+.mbtn-with-langle {
+	display: flex;
+	cursor: pointer;
+}
+.btn {
+	width: 140px;
+	height: 24px;
+	border: 1px solid #C5C8CA;
+	border-right: none;
+	text-transform: uppercase;
+	text-align:  center;
+	font-size: 14px;
+	color: #2F4157;
+
+}
+.title {
+	line-height: 20px;
+	margin-top: 4px;
+}
+.angle {
+	border: 13px solid transparent;
+	border-left: 10px solid #C5C8CA;
+	position: relative;
+}
+.angle::before {
+	content: '';
+	border: 13px solid transparent;
+	border-left: 10px solid white;
+	border-radius: 3px;
+	position: absolute;
+	left: -11px;
+	top: -13px;
+}
+
+.angle-dark-blue {
+	border: 13px solid transparent;
+	border-left: 10px solid #C5C8CA;
+	position: relative;
+}
+.angle-dark-blue::before {
+	content: '';
+	border: 13px solid transparent;
+	border-left: 10px solid #1F334C;
+	border-radius: 3px;
+	position: absolute;
+	left: -11px;
+	top: -13px;
+}
+
+.btn-left-angle {
+	width: 134px;
+	height: 24px;
+	border: 1px solid #C5C8CA;
+	border-right: none;
+	text-transform: uppercase;
+	text-align:  center;
+	font-size: 14px;
+	color: #2F4157;
+}
+.btn-left-angle__title {
+	line-height: 20px;
+	margin-top: 4px;
+}
+
+/* Label of imput*/
+.filter__label {
+	margin: 0 15px 0 30px;
+	line-height: 25px;
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #5A728B;
+}
+.filter__label--auction {
+	margin-right: 30px;
+}
+
+/* My select*/
+.filter__mselect {
+	min-height: 25px;
+	max-height: 25px;
+	max-width: 144px;
+	min-width: 144px;
+	border: 1px solid #E8EAEC;
+	/*border: 1px solid #C5C8CA;*/
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	cursor: pointer;
+	position: relative;
+	z-index: 3;
+	overflow: hidden;
+}
+.filter__mselect:active {
+	/*background-color: black;*/
+}
+.select-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 14px;
+	height: 14px;
+	border: 1px solid #A6B5C4;
+	border-radius: 50%;
+	margin-right: 8px;
+}
+.filter__mselect:focus .select-button,
+.filter__mselect:hover  .select-button{
+	background-color: #A2B3C2;
+}
+.filter__mselect:focus .arrow,
+.filter__mselect:hover  .arrow {
+	border-top: 5px solid #fff;
+
+	/*border-bottom: 5px solid #fff;*/
+}
+.arrow {
+	border: 4px solid transparent;
+	border-top: 5px solid #AFBDCA;	
+	margin-top: 7px;
+/*
+	border: 4px solid transparent;
+	border-bottom: 5px solid #AFBDCA;
+	margin-bottom: 5px;*/
+}
+.values {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	height: auto;
+	min-width: 144px;
+	background-color: white;
+	margin: 0;
+	font-family: MullerMedium;
+	font-size: 14px;
+	color: #666666;
+	background-color: rgb( 255, 255, 255 );
+	box-shadow: 1.176px 1.618px 18px 0px rgb( 196, 201, 206 );
+}
+.item {
+	box-sizing: border-box;
+	height: 25px;
+	padding-top: 7px;
+	padding-left: 10px;
+}
+.item:focus,
+.item:hover {
+	background: #e2e2e2;
+}
+
+/* Range slider */
+input[type="text"].slider-value {
+	position: relative;
+	top: -25px;
+	left: 0;
+	width: 40px;
+	display: inline;
+	border: none;
+}
+
+/* Search */
+.filter__search {
+	position: relative;
+	height: 25px; 
+	width: 100px; 
+	border: 1px solid #E8EAEC;
+	/*border-right: none;*/
+	margin-left: 30px;
+	display: flex;
+
+}
+.filter__search-title {
+	width: 100px;
+	position: absolute;
+	top: -20px;
+	/*left: 30px;*/
+	text-transform: lowercase;
+	font-size: 13px;
+	color: #A8B8C6;
+}
+input[type="text"].filter__search-value {
+	width: 75px;
+	height: 25px;
+	border: none;
+	box-sizing: border-box;
+	padding-top: 4px;
+	padding-left: 10px;
+	font-family: MullerMedium;
+	font-size: 14px;
+	color: #4E4E4E;
+}
+input[type="submit"].filter__search-send {
+	box-sizing: border-box;
+	width: 25px;
+	height: 25px;
+	padding-top: 4px;
+	/*border: 1px solid #E8EAEC;*/
+	/*border-left: none;*/
+	border: none;
+	font-family: MullerMedium;
+	font-size: 14px;
+	color: #4E4E4E;
+	cursor: pointer;
+}
+
+.m-option {
+	height: 24px;
+	/*width: 100px;*/
+	display: flex;
+
+}
+.m-option__value {
+	height: 26px;
+	width: 74px;
+	border: 1px solid #F78C89;
+	border-left: none;
+	border-right: none;
+	color: #D64843;
+	line-height: 20px;
+	padding: 3px;
+	box-sizing: border-box;
+}
+.m-option__close {
+	height: 26px;
+	width: 26px;
+	border: 1px solid #F78C89;
+	border-left: none;
+	box-sizing: border-box;
+}
+.m-option__angle {
+	position: relative;
+	border: 13px solid transparent;
+	border-right: 11px solid #F78C89;
+}
+.m-option__angle::before {
+	content: '';
+	display: block;
+	position: absolute;
+	border: 12px solid transparent;
+	border-right: 10px solid white;
+	top: -12px;
+	left: -11px;
+}

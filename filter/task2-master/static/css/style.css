@@ -1,0 +1,85 @@
+/*
+	ideal size:
+	display width: 100% = 1920px;
+	container width: 100% = 1170px; 60.9375 %
+	container margin: 375px; 19.53125 %
+*/
+/*
+font-face
+---------------------------------------------------------------------------------*/
+@font-face{
+  font-family:'MullerHeavy';
+  src: url('../font/MullerHeavy.otf');
+}
+
+@font-face{
+  font-family:'MullerHeavyItalic';
+  src: url('../font/MullerHeavyItalic.otf');
+}
+
+@font-face{
+  font-family:'MullerExtraBold';
+  src: url('../font/MullerExtraBold.otf');
+}
+@font-face{
+  font-family:'MullerMedium';
+  src: url('../font/MullerMedium.otf');
+}
+
+/*SVG
+---------------------------------------------------------------------------------*/
+@font-face {
+font-family: GabbaGrabba; url('static/img/nav-right.otf’) format('opentype’),
+url('static/img/nav-right.svg#gabba’) format('svg’);
+}
+
+/*main
+---------------------------------------------------------------------------------*/
+html, body{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	background: #f2f2f2;
+}
+ul{
+	padding: 0;
+}
+.container{
+	width: 60.9375%;
+	min-width: 1170px;
+	height: 800px;
+	margin: 0 auto;
+	background: white;
+}
+.logo {
+  font-size: 35px;
+  font-family: "MullerHeavyItalic";
+  color: rgb( 36, 48, 82 );
+}
+
+/*nav-flex
+---------------------------------------------------------------------------------*/
+.nav-flex-container{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	list-style-type: none;
+}
+.nav-flex-element{
+	
+}
+
+.nav-flex-element a{
+  font-size: 16px;
+  font-family: "MullerExtraBold";
+  color: rgb( 31, 51, 76 );
+  text-decoration: none;
+}
+
+.nav-flex-element a:hover, 
+.nav-flex-element a:hover img{
+  color: rgba( 31, 51, 76, 0.6 );
+}
+
+}

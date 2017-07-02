@@ -1,0 +1,24 @@
+.ftable {
+	/*width: 100%;*/
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-family: 'MullerMedium';
+}
+
+
+/* thead */
+.fthead {
+	height: 52px;
+	background-color: #E0E7ED;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.title {
+	font-family: 'MullerExtraBold';
+	font-weight: lighter;
+	font-size: 14px	;
+	color: #a2b2c2;
+}
