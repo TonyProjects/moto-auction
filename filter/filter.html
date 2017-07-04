@@ -15,8 +15,10 @@
 
 	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script src="js/range-slider.js"></script>
 	<script type="text/javascript" src="js/mselect.js"></script>
 	<script type="text/javascript" src="js/mbtn-langl.js"></script>
+	<script type="text/javascript" src="js/options.js"></script>
 </head>
 <body>
 
@@ -24,13 +26,13 @@
 		<h1 class="page-title">статистика торгов</h1>
 	</div>
 
-	<form class="filter">
+	<form class="filter" action="javascript:void(null);" onsubmit="call();">
 
 		<div class="filter__content">
 			<div class="filter-content__tab filter-content__tab--before"></div>
 			<div class="filter-content__body filter-content__segment">
 				<div class="filter-content-body__burger filter-content-body__burger--dark-blue"></div>
-				<div class="filter-content-body__data">
+				<div class="filter-content-body__data filter-content__inputs--btn">
 					<p class="filter__label filter__label--auction">
 						аукцион<span class="custom-colon">:</span>
 					</p>
@@ -74,50 +76,53 @@
 			<div class="filter-content__tab"></div>
 			<div class="filter-content__body filter-content__segment">
 				<div class="filter-content-body__burger"></div>
-				<div class="filter-content-body__data">
+				<div class="filter-content-body__data filter-content__inputs--select">
 
 					<!-- mselect -->
 					<lable for="provider" class="filter__label">производитель<span class="custom-colon">:</span></lable>
-					<div id="provider" class="filter__mselect" onclick="selectElement(this);">
+					<div id="provider" class="filter__mselect" data-current="0" onclick="selectElement(this);">
 						<div class="values">
-							<div class="item" data="1"> YAMAHA </div>
-							<div class="item" data="2"> MINSK  </div>
-							<div class="item" data="3"> YAWA </div>
+							<div class="item" data-index="0"> Выбрать </div>
+							<div class="item" data-index="1"> YAMAHA </div>
+							<div class="item" data-index="2"> MINSK  </div>
+							<div class="item" data-index="3"> YAWA </div>
 						</div>
 						<div class="select-button">
 							<div class="arrow"></div>
 						</div>
-						<input type="hidden" name="provider-item" value="1">
+						<input type="hidden" name="provider-item" value="0">
 					</div> <!-- mselect -->
 
 					<lable class="filter__label">Объем см^3<span class="custom-colon">:</span></lable>
-					<div class="filter__mselect" onclick="selectElement(this);">
+					<div class="filter__mselect" data-current="0" onclick="selectElement(this);">
 						<div class="values">
-							<div class="item" data="1"> 3000 </div>
-							<div class="item" data="2"> 6000  </div>
-							<div class="item" data="3"> 10000 </div>
-							<div class="item" data="4"> 20000 </div>
+							<div class="item" data-index="0"> Выбрать </div>
+							<div class="item" data-index="1"> 3000 </div>
+							<div class="item" data-index="2"> 6000  </div>
+							<div class="item" data-index="3"> 10000 </div>
+							<div class="item" data-index="4"> 20000 </div>
 						</div>
 						<div class="select-button">
 							<div class="arrow"></div>
 						</div>
-						<input type="hidden" name="capacity-item" value="1">
+						<input type="hidden" name="capacity-item" value="0">
 					</div>
 
 					<lable class="filter__label">Модель <span class="custom-colon">:</span></lable>
-					<div class="filter__mselect" onclick="selectElement(this);">
+					<div class="filter__mselect" data-current="0" onclick="selectElement(this);">
 						<div class="values">
-							<div class="item" data="1"> YAMAHA </div>
-							<div class="item" data="2"> LOTUS  </div>
-							<div class="item" data="3"> HONDA </div>
-							<div class="item" data="4"> KAWASAKI </div>
-							<div class="item" data="5"> SUZUKI </div>
-							<div class="item" data="6"> DUCATTI </div>
+							<div class="item" data-index="0"> Выбрать </div>
+							<div class="item" data-index="1"> YAMAHA </div>
+							<div class="item" data-index="2"> LOTUS  </div>
+							<div class="item" data-index="3"> HONDA </div>
+							<div class="item" data-index="4"> KAWASAKI </div>
+							<div class="item" data-index="5"> SUZUKI </div>
+							<div class="item" data-index="6"> DUCATTI </div>
 						</div>
 						<div class="select-button">
 							<div class="arrow"></div>
 						</div>
-						<input type="hidden" name="model-item" value="1">
+						<input type="hidden" name="model-item" value="0">
 					</div>
 
 					<div class="filter__search">
@@ -133,24 +138,24 @@
 			<div class="filter-content__tab"></div>
 			<div class="filter-content__body filter-content__segment">
 				<div class="filter-content-body__burger"></div>
-				<div class="filter-content-body__data">
+				<div class="filter-content-body__data filter-content__inputs--slider">
 
 					<lable class="filter__label">Оценка<span class="custom-colon">:</span></lable>
 					<div class="slider" id="range-slider--ball" style="width: 150px; height: 5px;"> 
-						<input class="slider-value" id="range--ball-from" type="hidden" value="0" name="">
-						<input class="slider-value" id="range--ball-to" type="hidden" value="100" name="">
+						<input class="slider-value" id="range--ball-from" type="text" value="" name="">
+						<input class="slider-value" id="range--ball-to" type="text" value="" name="">
 					</div>
 
 					<label class="filter__label filter__label--range-slider">год выпуска<span class="custom-colon">:</span></label>
 					<div class="slider" id="range-slider--year" style="width: 150px; height: 5px;">
-						<input readonly class="slider-value" id="range--year-from" type="text" value="0" name="">
-						<input readonly class="slider-value" id="range--year-to" type="text" value="100" name="">
+						<input readonly class="slider-value" id="range--year-from" type="text" value="" name="">
+						<input readonly class="slider-value" id="range--year-to" type="text" value="" name="">
 					</div>	
 
 					<label class="filter__label filter__label--range-slider">что-то еще<span class="custom-colon">:</span></label>
 					<div class="slider" id="range-slider--some" style="width: 150px; height: 5px;">
-						<input class="slider-value" id="range--some-from" type="hidden" value="0" name="">
-						<input class="slider-value" id="range--some-to" type="hidden" value="100" name="">
+						<input class="slider-value" id="range--some-from" type="text" value="" name="">
+						<input class="slider-value" id="range--some-to" type="text" value="" name="">
 					</div>	
 
 				</div>
@@ -161,12 +166,9 @@
 		<div class="filter__content">
 			<div class="filter-content__tab"></div>
 			<div class="filter-content__body filter-content__segment">
-			<div class="filter-content-body__data">
-				<div class="m-option">
-					<div class="m-option__angle"></div>
-					<div class="m-option__value"> auchnet </div>
-					<div class="m-option__close">X</div>
-				</div>
+			<div class="filter-content-body__data filter-contetn-body__data--non-padding">
+				<p class="filter-content__options-remove">Сбросить все</p>
+				<div class="filter-content__options"></div>
 			</div>
 			</div>
 			<div class="filter-content__tab"></div>
@@ -248,73 +250,3 @@
 	</div> <!-- .container -->
 </body>
 </html>
-
-<style type="text/css">
-	.filter__label--range-slider {
-		margin-left: 100px;
-	}
-	.slider {
-		width: 155px;
-		height: 5px;
-	}
-	.ui-slider {
-		background-color: #E0E7ED;
-		border-radius: 1px;
-		border: none !important;
-	}
-	.ui-slider .ui-slider-handle {
-		width: .72em;
-		height: .72em;
-		border-radius: 50%;
-		background-color: white;
-		border: 1px solid rgb( 224, 231, 237 );
-		box-shadow: 1.176px 1.618px 2px 0px rgb( 196, 201, 206 );
-	}
-	.ui-slider .ui-slider-range {
-		background-color: #98AABB;
-	}
-
-	/* custom-colon */
-	.custom-colon {
-		font-size: 18px;
-		font-family: MullerExtraBold; 
-		/*font-weight: bold;*/
-	}
-</style>
-
-
-<script type="text/javascript">
-	$('#range-slider--ball').slider({
-		range: true,
-		min: 0,
-		max: 100,
-		values: [35, 65],
-		slide: function (event, ui) {
-			$('#range-slider--ball').children('.slider-value').first().val(ui.values[0]).next().val(ui.values[1]);
-		}
-	});
-
-	$('#range-slider--year').slider({
-		range: true,
-		min: 1900,
-		max: 2017,
-		values: [1940, 1980],
-		slide: function (event, ui) {
-			var value = $('#range-slider--year').children('.slider-value');
-			var left = $('#range-slider--year').children('span');
-			value.first().val(ui.values[0]).next().val(ui.values[1]);
-			// value
-				// .first().css("left", left.first().css("left"))
-				// .next().css("left", left.last().css("left"));
-		}
-	});
-	$('#range-slider--some').slider({
-		range: true,
-		min: 0,
-		max: 100,
-		values: [35, 65],
-		slide: function (event, ui) {
-			$('#range-slider--some').children('.slider-value').first().val(ui.values[0]).next().val(ui.values[1]);
-		}
-	});
-</script>

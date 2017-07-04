@@ -2,10 +2,12 @@ jQuery(document).ready( function() {
 	$(".item").click( function(el) {
 		var item = $(el.currentTarget);
 		var mselect = item.parent().parent();
-		mselect.children("input[type=hidden]").attr("value", item.attr("data"));
-		mselect.children(".values").css("top", ( item.attr("data") * (-25) + 25 ) + "px");
-	});
+		var value = mselect.children("input[type=hidden]");
 
+		value.attr("value", item.attr("data-index"));
+		mselect.attr("data-current", item.attr("data-index"));
+		mselect.children(".values").css("top", ( item.attr("data-index") * (-25)) + "px");
+	});
 });
 
 function selectElement(el) {
