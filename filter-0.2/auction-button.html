@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Auction-button </title>
+
+<!-- common -->
+	<link rel="stylesheet" type="text/css" href="css/form-normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts.css">
+
+	<!-- auction-button -->
+	<link rel="stylesheet" type="text/css" href="css/auction-button.css">
+
+	<!-- label -->
+	<link rel="stylesheet" type="text/css" href="css/filter-label.css">
+
+<!-- JavaScript -->
+	<!-- common -->
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+
+	<!-- select -->
+	<script type="text/javascript" src="js/auction-button.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		
+		<!-- label -->
+		<label class="filter-label">аукцион<span class="custom-colon">:</span></label>
+
+		<!-- auction-button -->
+		<div class="auction-button auction-button--item" data-state="ina" data-value="bds">
+			<div class="angle angle--right"></div>
+			<div class="btn btn--inactive"><p class="btn__title">bds</p></div>
+			<div class="angle angle--left" style="display: none;"></div>
+			<input type="hidden" id="bds-auction" name="bds-auction" value="">
+		</div> 
+		<!-- auction-button -->
+
+		<div class="auction-button auction-button--item" data-state="ina" data-value="jba">
+			<div class="angle angle--right"></div>
+			<div class="btn btn--inactive"><p class="btn__title">JBA</p></div>
+			<div class="angle angle--left" style="display: none;"></div>
+			<input type="hidden" id="bds-auction" name="jba-auction" value="">
+		</div> 
+
+		<div class="auction-button auction-button--item" data-state="ina" data-value="jba">
+			<div class="angle angle--right"></div>
+			<div class="btn btn--inactive"><p class="btn__title">JBA</p></div>
+			<div class="angle angle--left" style="display: none;"></div>
+			<input type="hidden" id="bds-auction" name="jba-auction" value="">
+		</div> 
+		
+		<div class="auction-button auction-button--item" data-state="ina" data-value="jba">
+			<div class="angle angle--right"></div>
+			<div class="btn btn--inactive"><p class="btn__title">JBA</p></div>
+			<div class="angle angle--left" style="display: none;"></div>
+			<input type="hidden" id="bds-auction" name="jba-auction" value="">
+		</div> 
+
+		<div class="auction-button auction-button--all" data-state="ina" data-value="all">
+			<div class="angle angle--right"></div>
+			<div class="btn btn--inactive"><p class="btn__title">Выбрать все</p></div>
+			<div class="angle angle--left" style="display: none;"></div>
+			<input type="hidden" id="bds-auction" name="all-auction" value="">
+		</div> 
+	</div>
+</body>
+</html>

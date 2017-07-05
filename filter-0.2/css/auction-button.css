@@ -1,0 +1,59 @@
+/* Button with angle at left */
+.auction-button {
+	display: flex;
+	cursor: pointer;
+	margin-bottom: 15px;
+}
+.btn {
+	width: 140px;
+	height: 24px;
+	border: 1px solid #C5C8CA;
+	text-transform: uppercase;
+	text-align:  center;
+	font-size: 14px;
+	color: #2F4157;
+}
+.btn--active {
+	box-shadow: 1.176px 1.618px 18px 0px rgb( 196, 201, 206 );
+	background-color: rgb(255, 255, 255);
+	border-right: unset;
+}
+.btn--inactive {
+	background-color: #f2f2f2;
+	border-left: unset;
+}
+.btn__title {
+	line-height: 26px;
+	font-size: 14px;
+}
+.angle {
+	position:relative;
+	border: 13px solid transparent;	
+}
+.angle--right {
+	border-right: 10px solid #C5C8CA;
+	border-left: unset;
+}
+.angle--right::before {
+	content: '';
+	border: 13px solid transparent;
+	border-right: 10px solid #f2f2f2;
+	position:relative;
+	border-radius: 2px;
+	position: absolute;
+	left: -12px;
+	top: -13px;
+}
+.angle--left {
+	border-left: 10px solid #C5C8CA;
+	border-right: unset;
+}
+.angle--left::before {
+	content: '';
+	border: 13px solid transparent;
+	border-left: 10px solid white;
+	border-radius: 3px;
+	position: absolute;
+	left: -11px;
+	top: -13px;
+}

@@ -1,4 +1,5 @@
 jQuery(document).ready( function($) {
+
 	$(".item").click( function(el) {
 		var item = $(el.currentTarget);
 		var mselect = item.parent().parent();
@@ -42,6 +43,7 @@ jQuery(document).ready( function($) {
 			});
 		}
 	});
+	
 });
 
 

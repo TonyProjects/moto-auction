@@ -1,0 +1,19 @@
+@font-face {
+	font-family: 'MullerHeavy';
+	src: url(../fonts/MullerHeavy.otf);
+}
+
+@font-face {
+	font-family: 'MullerMedium';
+	src: url('../fonts/MullerMedium.otf');
+}
+
+@font-face {
+	font-family: 'MullerExtraBold';
+	src: url('../fonts/MullerExtraBold.otf');
+}
+
+@font-face {
+	font-family: 'MullerBold';
+	src: url('../fonts/MullerBold.otf');
+}

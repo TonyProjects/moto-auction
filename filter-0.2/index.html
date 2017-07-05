@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>filter</title>
+
+<!-- CSS -->
+	<!-- common -->
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="css/form-normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="css/filter-0.2.css">
+
+	<!-- search-lot -->
+	<link rel="stylesheet" type="text/css" href="css/search-lot.css">
+
+	<!-- label -->
+	<link rel="stylesheet" type="text/css" href="css/filter-label.css">
+
+	<!-- auction-button -->
+	<link rel="stylesheet" type="text/css" href="css/auction-button.css">
+
+	<!-- select-list -->
+	<link rel="stylesheet" type="text/css" href="css/select-list.css">
+
+	<!-- range-slider -->
+	<link rel="stylesheet" type="text/css" href="css/range-slider.css">
+
+<!-- JavaScript -->
+	<!-- common -->
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+
+	<!-- auction-button -->
+	<script type="text/javascript" src="js/auction-button.js"></script>
+
+	<!-- select -->
+	<script type="text/javascript" src="js/select-list.js"></script>
+
+	<script src="js/range-slider.js"></script>
+	<script type="text/javascript" src="js/options.js"></script>
+
+</head>
+<body>
+	<div class="container">
+
+		<form class="filter">
+			<div class="filter__settings">
+
+				<div class="settings__block">
+					<!-- label -->
+					<label class="filter-label">аукцион<span class="custom-colon">:</span></label>
+					<!-- auction-button -->
+					<div class="auction-button auction-button--item" data-state="ina" data-value="bds">
+						<div class="angle angle--right"></div>
+						<div class="btn btn--inactive"><p class="btn__title">bds</p></div>
+						<div class="angle angle--left" style="display: none;"></div>
+						<input type="hidden" id="bds-auction" name="bds-auction" value="">
+					</div> 
+					<div class="auction-button auction-button--item" data-state="ina" data-value="jba">
+						<div class="angle angle--right"></div>
+						<div class="btn btn--inactive"><p class="btn__title">JBA</p></div>
+						<div class="angle angle--left" style="display: none;"></div>
+						<input type="hidden" id="bds-auction" name="jba-auction" value="">
+					</div> 
+
+					<div class="auction-button auction-button--item" data-state="ina" data-value="aucnet">
+						<div class="angle angle--right"></div>
+						<div class="btn btn--inactive"><p class="btn__title">aucnet</p></div>
+						<div class="angle angle--left" style="display: none;"></div>
+						<input type="hidden" id="bds-auction" name="jba-auction" value="">
+					</div> 
+					
+					<div class="auction-button auction-button--item" data-state="ina" data-value="arai">
+						<div class="angle angle--right"></div>
+						<div class="btn btn--inactive"><p class="btn__title">arai</p></div>
+						<div class="angle angle--left" style="display: none;"></div>
+						<input type="hidden" id="bds-auction" name="jba-auction" value="">
+					</div> 
+
+					<div class="auction-button auction-button--all" data-state="ina" data-value="all">
+						<div class="angle angle--right"></div>
+						<div class="btn btn--inactive"><p class="btn__title">Выбрать все</p></div>
+						<div class="angle angle--left" style="display: none;"></div>
+						<input type="hidden" id="bds-auction" name="all-auction" value="">
+					</div> 
+					<!-- auction-button -->
+				</div>
+
+				<div class="settings__block">
+					<label class="filter-label">Производитель<span class="custom-colon">:</span></label>
+						<!-- select-list -->
+						<div id="provider" class="select-list" data-last="0">
+							<div class="select__items">
+								<p class="item" data-index="1234"> YAMAHA </p>
+								<p class="item" data-index="44"> YAMAHA </p>
+								<p class="item" data-index="32"> YAMAHA </p>			
+								<p class="item" data-index="4"> MINSK  </p>
+								<p class="item" data-index="5"> YAWA </p>
+								<p class="item" data-index="6"> MINSK  </p>
+								<p class="item" data-index="7"> MINSK  </p>
+								<p class="item" data-index="8"> MINSK  </p>
+								<p class="item" data-index="9"> MINSK  </p>
+							</div>
+							<input type="hidden" id="id-selected-items" name="id-selected-items" value="0">
+						</div>
+						<!-- select-list -->
+				</div>
+
+				<div class="settings__block">
+					<label class="filter-label">Модель<span class="custom-colon">:</span></label>
+						<!-- select-list -->
+						<div id="provider" class="select-list" data-last="0">
+							<div class="select__items">
+								<p class="item" data-index="1234"> YAMAHA </p>
+								<p class="item" data-index="44"> YAMAHA </p>
+								<p class="item" data-index="32"> YAMAHA </p>			
+								<p class="item" data-index="4"> MINSK  </p>
+								<p class="item" data-index="5"> YAWA </p>
+								<p class="item" data-index="6"> MINSK  </p>
+								<p class="item" data-index="7"> MINSK  </p>
+								<p class="item" data-index="8"> MINSK  </p>
+								<p class="item" data-index="9"> MINSK  </p>
+							</div>
+							<input type="hidden" id="id-selected-items" name="id-selected-items" value="0">
+						</div>
+						<!-- select-list -->
+				</div>
+
+				<div class="settings__block">
+					<label class="filter-label">Объем<span class="custom-colon">:</span></label>
+						<!-- select-list -->
+						<div id="provider" class="select-list select-list--scope" data-last="0">
+							<div class="select__items select__items--scope">
+								<p class="item" data-index="1234"> YAMAHA </p>
+								<p class="item" data-index="44"> YAMAHA </p>
+								<p class="item" data-index="32"> YAMAHA </p>			
+								<p class="item" data-index="4"> MINSK  </p>
+								<p class="item" data-index="5"> YAWA </p>
+								<p class="item" data-index="6"> MINSK  </p>
+								<p class="item" data-index="7"> MINSK  </p>
+								<p class="item" data-index="8"> MINSK  </p>
+								<p class="item" data-index="9"> MINSK  </p>
+							</div>
+							<input type="hidden" id="id-selected-items" name="id-selected-items" value="0">
+						</div>
+						<!-- select-list -->
+				</div>
+
+				<div class="settings__block">
+					<label class="filter-label">Номер лота<span class="custom-colon">:</span></label>
+
+					<div class="filter__parent">
+						<!-- search-lot-new -->
+						<div class="search-lot">
+							<input class="search-lot__text" type="text" id="lot" name="lot">						
+							<input class="search-lot__search" type="submit" id="send" name="send" value="S">
+						</div>
+						<!-- search-lot-new -->
+
+						<div class="block__subblock">
+							<label class="filter-label">Пробег <span style="font-size: 10px">тыс.км</span><span class="custom-colon">:</span></label>
+
+							<div class="filter__tab--horizontale"></div>
+
+							<!-- range-slider -->
+							<div class="slider" id="range-slider--some">
+								<input class="slider-value" id="range--some-from" type="text" value="" name="">
+								<input class="slider-value" id="range--some-to" type="text" value="" name="">
+							</div>	
+							<!-- range-slider -->
+						</div>
+
+						<div class="block__subblock">
+							<label class="filter-label">год выпуска<span class="custom-colon">:</span></label>
+
+							<div class="filter__tab--horizontale"></div>
+
+							<!-- range-slider -->
+							<div class="slider" id="range-slider--year">
+								<input class="slider-value" id="range--year-from" type="text" value="" name="range--year-from">
+								<input class="slider-value" id="range--year-to" type="text" value="" name="range--year-to">
+							</div>	
+							<!-- range-slider -->
+						</div>
+
+					</div>
+				</div>
+
+			</div>	<!-- filter__settings -->
+
+			<div class="filter__footer">
+				<p class="footer__reset">Сбросить все</p>
+
+				<div class="footer__params">
+					<div class="params__property">
+						<p class="property__text"> 18.05.1992 </p>
+						<div class="property__close"></div>
+					</div>
+
+					<div class="params__property">
+					</div>
+					<div class="params__property">
+					</div>
+					<div class="params__property">
+					</div>
+					<div class="params__property">
+					</div>
+					<div class="params__property">
+					</div>
+					<div class="params__property">
+					</div>
+					<div class="params__property">
+					</div>
+					<div class="params__property">
+					</div>
+					<div class="params__property">
+					</div>
+				</div>
+			</div>
+
+		</form>	<!-- fiter -->
+
+	</div>
+</body>
+</html>
