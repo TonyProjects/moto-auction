@@ -15,7 +15,7 @@ jQuery(document).ready( function($) {
 		for (var i = 0; i < selected_items.length; i++)
 			tmp += selected_items.eq(i).attr("data-index") + ",";
 
-		var id_selected_items = select.children("#id-selected-items");
+		var id_selected_items = select.children("input");
 		id_selected_items.val(tmp.substr(0, tmp.length - 1));
 	});
 	

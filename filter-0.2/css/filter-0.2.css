@@ -55,11 +55,13 @@
 	margin-right: 20px;
 	text-decoration: underline;
 	color: rgb( 205, 21, 14 );
+	cursor: pointer;
 }
 
 .footer__params {
 	display: flex;
 	flex-wrap: wrap;
+	cursor: pointer;
 }
 .params__property {
 	display: flex;
@@ -79,6 +81,9 @@
 	color: rgb( 57, 57, 57 );
 }
 .property__close {
+	padding-top: 5px;
+	padding-left: 11px;
+	box-sizing: border-box;
 	min-width: 25px;
 	height:25px;
 }

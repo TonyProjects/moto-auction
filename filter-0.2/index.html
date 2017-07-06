@@ -73,14 +73,14 @@
 						<div class="angle angle--right"></div>
 						<div class="btn btn--inactive"><p class="btn__title">aucnet</p></div>
 						<div class="angle angle--left" style="display: none;"></div>
-						<input type="hidden" id="bds-auction" name="jba-auction" value="">
+						<input type="hidden" id="bds-auction" name="aucnet-auction" value="">
 					</div> 
 					
 					<div class="auction-button auction-button--item" data-state="ina" data-value="arai">
 						<div class="angle angle--right"></div>
 						<div class="btn btn--inactive"><p class="btn__title">arai</p></div>
 						<div class="angle angle--left" style="display: none;"></div>
-						<input type="hidden" id="bds-auction" name="jba-auction" value="">
+						<input type="hidden" id="bds-auction" name="arai-auction" value="">
 					</div> 
 
 					<div class="auction-button auction-button--all" data-state="ina" data-value="all">
@@ -107,7 +107,7 @@
 								<p class="item" data-index="8"> MINSK  </p>
 								<p class="item" data-index="9"> MINSK  </p>
 							</div>
-							<input type="hidden" id="id-selected-items" name="id-selected-items" value="0">
+							<input type="hidden" id="select-manufacture" name="select-manufacture" value="0">
 						</div>
 						<!-- select-list -->
 				</div>
@@ -127,7 +127,7 @@
 								<p class="item" data-index="8"> MINSK  </p>
 								<p class="item" data-index="9"> MINSK  </p>
 							</div>
-							<input type="hidden" id="id-selected-items" name="id-selected-items" value="0">
+							<input type="hidden" id="select-model" name="select-model" value="0">
 						</div>
 						<!-- select-list -->
 				</div>
@@ -147,7 +147,7 @@
 								<p class="item" data-index="8"> MINSK  </p>
 								<p class="item" data-index="9"> MINSK  </p>
 							</div>
-							<input type="hidden" id="id-selected-items" name="id-selected-items" value="0">
+							<input type="hidden" id="select-scope" name="select-scope" value="0">
 						</div>
 						<!-- select-list -->
 				</div>
@@ -159,7 +159,18 @@
 						<!-- search-lot-new -->
 						<div class="search-lot">
 							<input class="search-lot__text" type="text" id="lot" name="lot">						
-							<input class="search-lot__search" type="submit" id="send" name="send" value="S">
+							<!-- <input class="search-lot__search" type="submit" id="send" name="send" value="S"> -->
+							<button class="search-lot__search">
+								<?xml version="1.0" encoding="iso-8859-1"?>
+								<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 446.25 446.25" style="enable-background:new 0 0 446.25 446.25;" xml:space="preserve">
+								<g>
+									<g id="search">
+										<path d="M318.75,280.5h-20.4l-7.649-7.65c25.5-28.05,40.8-66.3,40.8-107.1C331.5,73.95,257.55,0,165.75,0S0,73.95,0,165.75    S73.95,331.5,165.75,331.5c40.8,0,79.05-15.3,107.1-40.8l7.65,7.649v20.4L408,446.25L446.25,408L318.75,280.5z M165.75,280.5    C102,280.5,51,229.5,51,165.75S102,51,165.75,51S280.5,102,280.5,165.75S229.5,280.5,165.75,280.5z" fill="#393939"/>
+									</g>
+								</g>
+								</svg>
+							</button>
 						</div>
 						<!-- search-lot-new -->
 
@@ -198,34 +209,22 @@
 				<p class="footer__reset">Сбросить все</p>
 
 				<div class="footer__params">
-					<div class="params__property">
-						<p class="property__text"> 18.05.1992 </p>
-						<div class="property__close"></div>
-					</div>
 
 					<div class="params__property">
+						<p class="property__text"> 32051 </p>
+						<div class="property__close">
+							<?xml version="1.0" encoding="iso-8859-1"?>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 371.23 371.23" style="enable-background:new 0 0 371.23 371.23;" xml:space="preserve" width="14px" height="14px">
+							<polygon points="371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23   185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 " fill="#cd150e"/>
+							</svg>
+						</div>
 					</div>
-					<div class="params__property">
-					</div>
-					<div class="params__property">
-					</div>
-					<div class="params__property">
-					</div>
-					<div class="params__property">
-					</div>
-					<div class="params__property">
-					</div>
-					<div class="params__property">
-					</div>
-					<div class="params__property">
-					</div>
-					<div class="params__property">
-					</div>
+
 				</div>
+
 			</div>
 
 		</form>	<!-- fiter -->
-
 	</div>
 </body>
 </html>
