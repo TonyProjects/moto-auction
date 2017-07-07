@@ -41,6 +41,7 @@
 	box-sizing: border-box;
 	padding-left: 10px;
 	line-height: 33px;
+	text-transform: uppercase;
 }
 .item--selected {
 	background: #e2e2e2;

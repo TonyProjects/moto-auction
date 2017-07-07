@@ -58,6 +58,7 @@
 	cursor: pointer;
 }
 
+/* !!!! RENAME !!!!*/
 .footer__params {
 	display: flex;
 	flex-wrap: wrap;
@@ -78,6 +79,7 @@
 	/*width: 112px;*/
 }
 .property__text {
+	text-transform: uppercase;
 	color: rgb( 57, 57, 57 );
 }
 .property__close {

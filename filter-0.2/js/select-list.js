@@ -1,24 +1,40 @@
-jQuery(document).ready( function($) {
-
-	// select logics
-	$(".item").click( function(el) {
-		var current_item = $(el.currentTarget);
-		var select = current_item.parent().parent();
+// select logics
+var 
+	logics_select = function(el) {
+		var current_item =  (el instanceof jQuery) ? el : jQuery(el.currentTarget),
+			select = current_item.parent().parent(),
+			select_items_id = select.children("input"),
+			tmp = new String();
 
 		if (current_item.hasClass("item--selected"))
 			current_item.removeClass("item--selected");
 		else
 			current_item.addClass("item--selected");
 
-		var selected_items = select.find(".item--selected");
-		var tmp = new String();
-		for (var i = 0; i < selected_items.length; i++)
-			tmp += selected_items.eq(i).attr("data-index") + ",";
+		var select_items = select.find(".item--selected");
 
-		var id_selected_items = select.children("input");
-		id_selected_items.val(tmp.substr(0, tmp.length - 1));
-	});
-	
-});
+		if (select_items.length != 0)
+		{
 
+			for (var i = 0; i < select_items.length; i++)
+				tmp += select_items.eq(i).attr("data-value") + ",";
+			select_items_id.val(tmp.substr(0, tmp.length - 1));
+		}
+		else
+		{
+			select_items_id.val(new String("0"));
+		}
+	},
 
+	logics_selectsClear = function() {
+		var selects = jQuery('.select-list');
+
+		for (var i = 0; i < selects.length; i ++)
+		{
+			var items = selects.eq(i).find(".item");
+			for (var j = 0; j < items.length; j++)
+				if (items.eq(j).hasClass("item--selected"))
+					items.eq(j).removeClass("item--selected");
+			selects.eq(i).children('input').val("0");
+		}
+	};

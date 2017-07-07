@@ -37,19 +37,25 @@
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 
 	<!-- auction-button -->
-	<script type="text/javascript" src="js/auction-button.js"></script>
-
+	<!-- <script type="text/javascript" src="js/auction-button.js"></script> -->
 	<!-- select -->
-	<script type="text/javascript" src="js/select-list.js"></script>
+	<!-- <script type="text/javascript" src="js/select-list.js"></script> -->
+	<!-- range-slider -->
+	<!-- <script type="text/javascript" src="js/range-slider.js"></script> -->
+	<!-- reset -->
+	<!-- <script type="text/javascript" src="js/reset.js"></script> -->
 
-	<script src="js/range-slider.js"></script>
-	<script type="text/javascript" src="js/options.js"></script>
+	<!-- main -->
+	<script type="text/javascript" src="js/main.js"></script>
+	<!-- page-forming -->
+	<!-- <script type="text/javascript" src="js/page-forming.js"></script> -->
+
 
 </head>
 <body>
 	<div class="container">
 
-		<form class="filter">
+		<form class="filter" id="filter" action="javascript:void(0)">
 			<div class="filter__settings">
 
 				<div class="settings__block">
@@ -66,28 +72,28 @@
 						<div class="angle angle--right"></div>
 						<div class="btn btn--inactive"><p class="btn__title">JBA</p></div>
 						<div class="angle angle--left" style="display: none;"></div>
-						<input type="hidden" id="bds-auction" name="jba-auction" value="">
+						<input type="hidden" id="jba-auction" name="jba-auction" value="">
 					</div> 
 
 					<div class="auction-button auction-button--item" data-state="ina" data-value="aucnet">
 						<div class="angle angle--right"></div>
 						<div class="btn btn--inactive"><p class="btn__title">aucnet</p></div>
 						<div class="angle angle--left" style="display: none;"></div>
-						<input type="hidden" id="bds-auction" name="aucnet-auction" value="">
+						<input type="hidden" id="aucnet-auction" name="aucnet-auction" value="">
 					</div> 
 					
 					<div class="auction-button auction-button--item" data-state="ina" data-value="arai">
 						<div class="angle angle--right"></div>
 						<div class="btn btn--inactive"><p class="btn__title">arai</p></div>
 						<div class="angle angle--left" style="display: none;"></div>
-						<input type="hidden" id="bds-auction" name="arai-auction" value="">
+						<input type="hidden" id="arai-auction" name="arai-auction" value="">
 					</div> 
 
 					<div class="auction-button auction-button--all" data-state="ina" data-value="all">
 						<div class="angle angle--right"></div>
 						<div class="btn btn--inactive"><p class="btn__title">Выбрать все</p></div>
 						<div class="angle angle--left" style="display: none;"></div>
-						<input type="hidden" id="bds-auction" name="all-auction" value="">
+						<input type="hidden" id="all-auction" name="all-auction" value="">
 					</div> 
 					<!-- auction-button -->
 				</div>
@@ -97,15 +103,12 @@
 						<!-- select-list -->
 						<div id="provider" class="select-list" data-last="0">
 							<div class="select__items">
-								<p class="item" data-index="1234"> YAMAHA </p>
-								<p class="item" data-index="44"> YAMAHA </p>
-								<p class="item" data-index="32"> YAMAHA </p>			
-								<p class="item" data-index="4"> MINSK  </p>
-								<p class="item" data-index="5"> YAWA </p>
-								<p class="item" data-index="6"> MINSK  </p>
-								<p class="item" data-index="7"> MINSK  </p>
-								<p class="item" data-index="8"> MINSK  </p>
-								<p class="item" data-index="9"> MINSK  </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="Kawasaki" data-index="1"> Kawasaki </p>
+								<p class="item" data-value="Lotus" data-index="2"> Lotus </p>
+								<p class="item" data-value="Suzuki" data-index="3"> Suzuki </p>
+								<p class="item" data-value="Ducati" data-index="4"> Ducati </p>
+								<p class="item" data-value="Jba" data-index="5"> Jba </p>
 							</div>
 							<input type="hidden" id="select-manufacture" name="select-manufacture" value="0">
 						</div>
@@ -117,15 +120,13 @@
 						<!-- select-list -->
 						<div id="provider" class="select-list" data-last="0">
 							<div class="select__items">
-								<p class="item" data-index="1234"> YAMAHA </p>
-								<p class="item" data-index="44"> YAMAHA </p>
-								<p class="item" data-index="32"> YAMAHA </p>			
-								<p class="item" data-index="4"> MINSK  </p>
-								<p class="item" data-index="5"> YAWA </p>
-								<p class="item" data-index="6"> MINSK  </p>
-								<p class="item" data-index="7"> MINSK  </p>
-								<p class="item" data-index="8"> MINSK  </p>
-								<p class="item" data-index="9"> MINSK  </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
 							</div>
 							<input type="hidden" id="select-model" name="select-model" value="0">
 						</div>
@@ -137,15 +138,14 @@
 						<!-- select-list -->
 						<div id="provider" class="select-list select-list--scope" data-last="0">
 							<div class="select__items select__items--scope">
-								<p class="item" data-index="1234"> YAMAHA </p>
-								<p class="item" data-index="44"> YAMAHA </p>
-								<p class="item" data-index="32"> YAMAHA </p>			
-								<p class="item" data-index="4"> MINSK  </p>
-								<p class="item" data-index="5"> YAWA </p>
-								<p class="item" data-index="6"> MINSK  </p>
-								<p class="item" data-index="7"> MINSK  </p>
-								<p class="item" data-index="8"> MINSK  </p>
-								<p class="item" data-index="9"> MINSK  </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
+								<p class="item" data-value="YAMAHA" data-index="1234"> YAMAHA </p>
 							</div>
 							<input type="hidden" id="select-scope" name="select-scope" value="0">
 						</div>
@@ -160,7 +160,7 @@
 						<div class="search-lot">
 							<input class="search-lot__text" type="text" id="lot" name="lot">						
 							<!-- <input class="search-lot__search" type="submit" id="send" name="send" value="S"> -->
-							<button class="search-lot__search">
+							<button id="search-lot_search" class="search-lot__search">
 								<?xml version="1.0" encoding="iso-8859-1"?>
 								<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 446.25 446.25" style="enable-background:new 0 0 446.25 446.25;" xml:space="preserve">
@@ -171,8 +171,7 @@
 								</g>
 								</svg>
 							</button>
-						</div>
-						<!-- search-lot-new -->
+						</div> <!-- search-lot-new -->
 
 						<div class="block__subblock">
 							<label class="filter-label">Пробег <span style="font-size: 10px">тыс.км</span><span class="custom-colon">:</span></label>
@@ -180,11 +179,10 @@
 							<div class="filter__tab--horizontale"></div>
 
 							<!-- range-slider -->
-							<div class="slider" id="range-slider--some">
-								<input class="slider-value" id="range--some-from" type="text" value="" name="">
-								<input class="slider-value" id="range--some-to" type="text" value="" name="">
-							</div>	
-							<!-- range-slider -->
+							<div class="slider" id="range-slider--mileage" data-min="0" data-max="100">
+								<input class="slider-value" id="range--mileage-from" type="text" value="" name="">
+								<input class="slider-value" id="range--mileage-to" type="text" value="" name="">
+							</div>	<!-- range-slider -->
 						</div>
 
 						<div class="block__subblock">
@@ -193,11 +191,10 @@
 							<div class="filter__tab--horizontale"></div>
 
 							<!-- range-slider -->
-							<div class="slider" id="range-slider--year">
+							<div class="slider" id="range-slider--year" data-min="1900" data-max="2017">
 								<input class="slider-value" id="range--year-from" type="text" value="" name="range--year-from">
 								<input class="slider-value" id="range--year-to" type="text" value="" name="range--year-to">
-							</div>	
-							<!-- range-slider -->
+							</div>	<!-- range-slider -->
 						</div>
 
 					</div>
@@ -205,10 +202,11 @@
 
 			</div>	<!-- filter__settings -->
 
+			<!-- filter footer, reset -->
 			<div class="filter__footer">
-				<p class="footer__reset">Сбросить все</p>
+				<p class="footer__reset" id="reset">Сбросить все</p>
 
-				<div class="footer__params">
+				<div class="footer__params" id="params">
 
 					<div class="params__property">
 						<p class="property__text"> 32051 </p>
@@ -221,8 +219,7 @@
 					</div>
 
 				</div>
-
-			</div>
+			</div> <!-- filter footer -->
 
 		</form>	<!-- fiter -->
 	</div>

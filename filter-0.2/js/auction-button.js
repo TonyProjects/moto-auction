@@ -1,7 +1,7 @@
-jQuery(document).ready( function() {
-
-	function auctionButtonChangeState(el) {
-		var auction_button = $(el.currentTarget),
+// auction-button logics
+var 
+	logics_auctionButtonOne = function(el, clear = false) {
+		var auction_button = (el instanceof jQuery) ? el : jQuery(el.currentTarget),
 			button = auction_button.children(".btn");
 			value = auction_button.children("input[type=hidden]"),
 			angle_left = auction_button.children(".angle--left"),
@@ -9,7 +9,7 @@ jQuery(document).ready( function() {
 
 		// "ina" as "inactive"
 		// "a" as "active"
-		if (auction_button.attr("data-state") === "ina")
+		if (auction_button.attr("data-state") === "ina" && !clear)
 		{
 			angle_right.css("display", "none");
 			angle_left.css("display", "block");
@@ -29,16 +29,12 @@ jQuery(document).ready( function() {
 		 	value.attr("value", "");
 		 	auction_button.attr("data-state", "ina");
 		}
-	}
+	},
 
-	$(".auction-button--item").click( function(el) {
-		auctionButtonChangeState(el);
-	});
-
-	$(".auction-button--all").click( function(el) {
+	logics_auctionButtonAll = function(el) {
 		var event = new Event("click"),
-			all =  $(el.currentTarget),
-			auction_buttons = $(".auction-button--item");
+			all =  (el instanceof jQuery) ? el : jQuery(el.currentTarget),
+			auction_buttons = jQuery(".auction-button--item");
 
 		if (all.attr("data-state") === "ina")
 		{
@@ -47,7 +43,7 @@ jQuery(document).ready( function() {
 				if (auction_buttons.eq(i).attr("data-state") === "ina")	
 					auction_buttons.get(i).dispatchEvent(event);
 			}
-			auctionButtonChangeState(el);			
+			logics_auctionButtonOne(el);			
 		}	
 		else 
 		{
@@ -56,8 +52,18 @@ jQuery(document).ready( function() {
 				if (auction_buttons.eq(i).attr("data-state") === "a")	
 					auction_buttons.get(i).dispatchEvent(event);
 			}
-			auctionButtonChangeState(el);
+			logics_auctionButtonOne(el);
 		}
-	});
-	
-});
+	},
+
+	logics_auctionButtonsClear = function() {
+		var 
+			auction_buttons = jQuery('.auction-button'),
+			auction_buttonAll = auction_buttons.find('.auction-button--all');
+
+		if (auction_buttonAll.attr('data-state') === 'a')
+			logics_auctionButtonAll(auction_buttonAll);
+		else
+			for (var i = 0; i < auction_buttons.length; i++)
+				logics_auctionButtonOne( auction_buttons.eq(i), true );
+	};

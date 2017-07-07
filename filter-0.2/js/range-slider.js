@@ -1,38 +1,34 @@
-$(document).ready( function() {
-	/* range-slider --- begin */
-	var slider_year = $('#range-slider--year');
-	slider_year.slider({
-		range: true,
-		min: 1900,
-		max: 2017,
-		values: [1940, 1980],
-		slide: function (event, ui) {
-			var value = slider_year.children('.slider-value');
-			var left = slider_year.children('span');
-			value
-				.first().val(ui.values[0])
-				.next().val(ui.values[1]);
-		}
-	});
-	slider_year.children("input")
-		.first().val(slider_year.slider("values", 0))
-		.next().val(slider_year.slider("values", 1));
+jQuery(document).ready( function() {
 
-	var slider_some =$('#range-slider--some'); 
-	slider_some.slider({
-		range: true,
-		min: 0,
-		max: 100,
-		values: [35, 65],
-		slide: function (event, ui) {
-			slider_some.children('.slider-value')
-				.first().val(ui.values[0])
-				.next().val(ui.values[1]);
-		}
-	});
-	slider_some.children("input")
-		.first().val(slider_some.slider("values", 0))
-		.next().val(slider_some.slider("values", 1));
+	var do_slider = function(slider_name){
+		slider_name = jQuery(slider_name);
+		var 
+			param = new Object();
+			param.min = parseInt(slider_name.attr("data-min"));
+			param.max = parseInt(slider_name.attr("data-max"));
+			param.range = param.max - param.min;
 
-	/* range-slider --- end */
+		slider_name.slider({
+			range: true,
+			min: param.min,
+			max: param.max,
+			values: [  
+				param.range * 0.25 + param.min, 
+				param.range * 0.75 + param.min
+			],
+			slide: function(event, ui) {
+				var value = slider_name.children('.slider-value'),
+					left = slider_name.children('span');
+				value
+					.first().val(ui.values[0])
+					.next().val(ui.values[1])
+			}
+		});
+		slider_name.children("input")
+			.first().val(slider_name.slider("values", 0))
+			.next().val(slider_name.slider("values", 1));
+	};
+
+	do_slider("#range-slider--mileage");
+	do_slider("#range-slider--year");
 });
