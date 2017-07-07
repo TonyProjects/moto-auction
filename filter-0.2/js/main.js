@@ -69,8 +69,11 @@ var
 		if (auction_buttonAll.attr('data-state') === 'a')
 			logics_auctionButtonAll(auction_buttonAll);
 		else
-			for (var i = 0; i < auction_buttons.length; i++)
+			for (var i = 0; i < auction_buttons.length; i++) {
 				logics_auctionButtonOne( auction_buttons.eq(i), true );
+				if (!!auction_buttons.eq(i).attr('data-key'))
+					filter_addProperty("auction-button--item", auction_buttons.eq(i));
+			}
 	};
 
 
@@ -112,8 +115,13 @@ var
 		{
 			var items = selects.eq(i).find(".item");
 			for (var j = 0; j < items.length; j++)
-				if (items.eq(j).hasClass("item--selected"))
+			{
+				if (items.eq(j).hasClass("item--selected")) 
+				{
 					items.eq(j).removeClass("item--selected");
+					filter_addProperty('select', items.eq(j))
+				}
+			}
 			selects.eq(i).children('input').val("0");
 		}
 	};
@@ -168,7 +176,10 @@ var
 	},
 
 	logics_searchLotClear = function() {
-		jQuery('#lot').val("");
+		var lot = jQuery('#lot');
+		lot.val("");
+		if (!!lot.attr('data-key'))
+			filter_addProperty('search', lot);
 	};
 
 
@@ -177,18 +188,12 @@ var
 *	RESET																	  *
 ******************************************************************************/
 var
-	filter_paramsClear = function() {
-		jQuery('#params').empty();
-	},
-
 	filter_reset = function() {
 		logics_auctionButtonsClear();
 
 		logics_selectsClear();
 
 		logics_searchLotClear();
-
-		filter_paramsClear();
 	},
 
 	filter_addProperty = function(type, el) {
@@ -197,9 +202,11 @@ var
 
 			el = (el instanceof jQuery) ? el : jQuery(el.currentTarget),
 
+			key = type + '-' + el.attr('data-value'),
+
 			template = '\
-				<div class="params__property" data-typ="' + type + '-param">\
-					<p class="property__text"> ' + el.text() + ' </p>\
+				<div class="params__property" id="' + key + '">\
+					<p class="property__text"> ' + el.attr('data-value') + ' </p>\
 					<div class="property__close">\
 						<?xml version="1.0" encoding="iso-8859-1"?>\
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 371.23 371.23" style="enable-background:new 0 0 371.23 371.23;" xml:space="preserve" width="14px" height="14px">\
@@ -209,7 +216,18 @@ var
 				</div>\
 			';
 
-		params.append(template);
+		if (!!el.attr('data-key'))
+		{
+			params.find("#" + key).remove();
+			el.removeAttr('data-key', "");
+		}
+		else
+		{
+			el.attr('data-key', key);
+
+			params.append(template);
+		}
+
 	};
 
 
@@ -223,19 +241,28 @@ var
 			filter_reset();
 
 		else if (type === "auction-button--item")
-			logics_auctionButtonOne(el);
-
-		else if (type === "auction-button--all")
-			logics_auctionButtonAll(el);
-
-		else if (type === "select")
-			logics_select(el);
-		else if (type === "search")
 		{
-
+			logics_auctionButtonOne(el);
+			filter_addProperty(type, el);
 		}
 
-		filter_addProperty(type, el);
+		else if (type === "auction-button--all")
+		{
+			logics_auctionButtonAll(el);
+		}
+
+		else if (type === "select")
+		{
+			logics_select(el);
+			filter_addProperty(type, el);
+		}
+		else if (type === "search")
+		{
+			el = jQuery(el.currentTarget).parent().children("input");
+			console.log(el);
+			el.attr('data-value', el.val());
+			filter_addProperty(type, el);
+		}
 
 		document.getElementById('filter').dispatchEvent(new Event('submit'));		
 	}
