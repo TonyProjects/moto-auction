@@ -1,0 +1,54 @@
+/* My select*/
+.select-list {
+	position: relative;
+	z-index: 3;
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	cursor: pointer;
+	min-height: 25px;
+	max-height: 25px;
+	max-width: 221px;
+	min-width: 221px;
+	border: 1px solid #E8EAEC;
+	/*overflow: hidden;*/
+}
+.select-list--scope {
+	max-width: 170px;
+	min-width: 170px;
+}
+
+.select__items {
+	overflow-y: scroll;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 219px;
+	min-height: 188px;
+	max-height: 188px;
+	margin: 0;
+	background-color: rgb( 255, 255, 255 );
+	border: 1px solid rgb( 204, 208, 212 );
+	font-family: MullerMedium;
+	font-size: 15px;
+	color: rgb( 57, 57, 57 );
+}
+.select__items--scope {
+	width: 170px;
+}
+.item {
+	box-sizing: border-box;
+	padding-left: 10px;
+	line-height: 33px;
+	text-transform: uppercase;
+}
+.item--selected {
+	background: #e2e2e2;
+}
+.item:focus,
+.item:hover {
+	/*border-top: 1px solid #e2e2e2;*/
+	/*border-bottom: 1px solid #e2e2e2;*/
+	background-color: #f2f2f2;
+}
