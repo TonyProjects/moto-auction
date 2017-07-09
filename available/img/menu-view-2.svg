@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="menu-view-1.svg">
+   sodipodi:docname="menu-view-2.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.3450025"
-     inkscape:cx="22.314027"
-     inkscape:cy="54.489038"
+     inkscape:cx="51.219532"
+     inkscape:cy="52.618131"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,73 +60,49 @@
        id="rect3346"
        width="15"
        height="15"
-       x="-31.5"
-       y="968.86218"
+       x="-25.5"
+       y="970.86218"
        transform="scale(-1,1)"
-       ry="0.75" />
+       ry="0.88235295" />
     <rect
        style="display:inline;fill:#1e324c;fill-opacity:1"
        id="rect3346-6"
        width="15"
        height="15"
-       x="16.5"
+       x="10.5"
        y="994.86218"
-       ry="0.75" />
+       ry="0.88235295" />
     <rect
        style="display:inline;fill:#1e324c;fill-opacity:1"
        id="rect3346-7"
        width="15"
        height="15"
-       x="16.5"
-       y="1020.8622"
-       ry="0.75" />
+       x="10.5"
+       y="1018.8622"
+       ry="0.88235295" />
     <rect
        style="display:inline;fill:#1e324c;fill-opacity:1"
        id="rect3346-7-6"
-       width="15"
+       width="53"
        height="15"
-       x="42.5"
-       y="1020.8622"
-       ry="0.75" />
+       x="36.5"
+       y="1018.8622"
+       ry="0.88235295" />
     <rect
        style="display:inline;fill:#1e324c;fill-opacity:1"
        id="rect3346-7-2"
-       width="15"
+       width="53"
        height="15"
-       x="42.5"
+       x="36.5"
        y="994.86218"
-       ry="0.75" />
+       ry="0.88235295" />
     <rect
        style="display:inline;fill:#1e324c;fill-opacity:1"
        id="rect3346-7-2-9"
-       width="15"
+       width="53"
        height="15"
-       x="42.5"
-       y="968.86218"
-       ry="0.75" />
-    <rect
-       style="display:inline;fill:#1e324c;fill-opacity:1"
-       id="rect3346-7-2-1"
-       width="15"
-       height="15"
-       x="68.5"
-       y="968.86218"
-       ry="0.75" />
-    <rect
-       style="display:inline;fill:#1e324c;fill-opacity:1"
-       id="rect3346-7-2-7"
-       width="15"
-       height="15"
-       x="68.5"
-       y="994.86218"
-       ry="0.75" />
-    <rect
-       style="display:inline;fill:#1e324c;fill-opacity:1"
-       id="rect3346-7-2-0"
-       width="15"
-       height="15"
-       x="68.5"
-       y="1020.8622"
-       ry="0.75" />
+       x="36.5"
+       y="970.86218"
+       ry="0.88235295" />
   </g>
 </svg>

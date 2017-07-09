@@ -1,0 +1,7 @@
+available__stream
+available__article
+article__image
+article__content
+article__header-title
+aritcle__header-scope
+article__header-price

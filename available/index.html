@@ -26,72 +26,65 @@
 </head>
 <body>
 	<div class="container">
+
+		<h1 class="page-title"> Мотоциклы в наличие </h1>
+
 		<!-- table of available -->
 		<div class="available" id="available">
 
 			<div class="available__header">
-				<img src="img/menu-view-1.svg" style="height: 39px">
-				<img src="img/menu-view-1.svg" style="height: 39px">
-				<p class="available__header-lable">Сортировать</p>
+				<img class="available__header-align-btn" src="img/menu-view-2.svg" style="height: 39px">
+				<img class="available__header-align-btn" src="img/menu-view-1.svg" style="height: 39px">
+
+				<p class="available__header-lable">Сортировать:</p>
+				<div id="sort-select" class="select" data-current="0" data-state="hide">
+					<div class="select__items">
+						<div class="select__items-item" data-value="default" data-index="0"> По умолчанию </div>
+						<div class="select__items-item" data-value="name-asc" data-index="1"> По имени (А-Я) </div>
+						<div class="select__items-item" data-value="name-desc" data-index="2"> По имени (Я-А)  </div>
+						<div class="select__items-item" data-value="price-asc" data-index="3"> По цене (возрастание) </div>
+						<div class="select__items-item" data-value="price-desc" data-index="4"> По цене (убывание) </div>
+						<div class="select__items-item" data-value="rating-asc" data-index="5"> По рейтингу (возрастание) </div>
+						<div class="select__items-item" data-value="rating-desc" data-index="6"> По рейтингу (убывание) </div>
+						<div class="select__items-item" data-value="model-asc" data-index="7"> По модели (А-Я) </div>
+						<div class="select__items-item" data-value="model-desc" data-index="8"> По модели (Я-А) </div>
+					</div>
+					<div class="select__button">
+						<div class="select__button-arrow select__button-arrow--up"></div>
+					</div>
+					<input type="hidden" name="sort-value" name="sort-value" value="default">
+				</div>
+
+				<p class="available__header-lable">Показывать:</p>
+					<div id="count-select" class="select" data-current="0" data-state="hide" style="min-width: 70px">
+						<div class="select__items" style="min-width: 70px">
+							<div class="select__items-item" data-value="10" data-index="0"> 10 </div>
+							<div class="select__items-item" data-value="25" data-index="1"> 25 </div>
+							<div class="select__items-item" data-value="50" data-index="2"> 50 </div>
+							<div class="select__items-item" data-value="70" data-index="3"> 75 </div>
+						</div>
+						<div class="select__button">
+							<div class="select__button-arrow select__button-arrow--up"></div>
+						</div>
+						<input type="hidden" name="count-value" name="count-value" value="10">
+					</div>
 			</div>
 
-			<section class="available__stream">
+			<section class="available__stream--horizontal">
 				
-				<article class="available__article--horizontal">
-					<figure class="article__image">
+				<article class="available__article available__article--horizontal">
+					<figure class="article__image article__image--horizontal">
 						<img class="article__image-img" src="img/moto.jpg">
 					</figure>
-					<div class="article__content">
+					<div class="article__content article__content--horizontal">
 						<header class="article__header">
-							<h2 class="article__header-title">
-								<span class="article__header-model">Honda CB400SF-4</span>
-								<span class="article__header-price">200 000 руб.</span>
+							<h2 class="article__header-title article__header-title--horizontal">
+								<a class="article__header-link" href="">
+									<span class="article__header-model">Honda CB400SF-4</span>
+								</a>
+								<span class="article__header-price--horizontal">200 000 руб.</span>
 							</h2>
-							<p class="aritcle__header-scope">NC42-1600103</p>
-						</header>
-						<p class="article__description">
-							<span class="article__description-moto"> BMW F650CS</span>
-							 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						</p>
-					</div>
-				</article>
-
-				<article class="available__article--horizontal">
-					<figure class="article__image">
-						<img class="article__image-img" src="img/moto.jpg">
-					</figure>
-					<div class="article__content">
-						<header class="article__header">
-							<h2 class="article__header-title">
-								<span class="article__header-model">Honda CB400SF-4</span>
-								<span class="article__header-price">200 000 руб.</span>
-							</h2>
-							<p class="aritcle__header-scope">NC42-1600103</p>
-						</header>
-						<p class="article__description">
-							<span class="article__description-moto"> BMW F650CS</span>
-							 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						</p>
-					</div>
-				</article>
-
-				<article class="available__article--horizontal">
-					<figure class="article__image">
-						<img class="article__image-img" src="img/moto2.jpeg">
-					</figure>
-					<div class="article__content">
-						<header class="article__header">
-							<h2 class="article__header-title">
-								<span class="article__header-model">Honda CB400SF-4</span>
-								<span class="article__header-price">200 000 руб.</span>
-							</h2>
-							<p class="aritcle__header-scope">NC42-1600103</p>
+							<p class="aritcle__header-scope aritcle__header-scope--horizontal">NC42-1600103</p>
 						</header>
 						<p class="article__description">
 							<span class="article__description-moto"> BMW F650CS</span>
@@ -105,6 +98,35 @@
 
 			</section>
 
+			<section class="available__stream available__stream--vertical">
+				
+				<article class="available__article available__article--vertical">
+					<figure class="article__image article__image--vertical">
+						<img class="article__image-img" src="img/moto.jpg">
+					</figure>
+					<div class="article__content article__content--vertical">
+						<header class="article__header">
+							<h2 class="article__header-title article__header-title--vertical">
+								<a class="article__header-link" href="">
+									<p class="article__header-model">Honda CB400SF-4</p>
+								</a>
+								<p class="aritcle__header-scope aritcle__header-scope--vertical">NC42-1600103</p>
+							</h2>
+							<p class="article__header-price article__header-price--vertical">200 000 руб.</p>
+						</header>
+						<p class="article__description">
+							<span class="article__description-moto"> BMW F650CS</span>
+							 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						</p>
+					</div>
+				</article>
+			</section>
+			<div class="available__navigation">
+				
+			</div>
 		</div>
 		<!-- table of available -->
 	</div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+
+	<title> select-list by E.Anton </title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/select-list.css">
+
+	<style type="text/css">
+
+		.container {
+			max-width: 1170px;
+			width: 100%;
+			min-height: 400px;
+			margin: auto;
+			padding: 15px;
+			font-family: Arial, Helvetica, Sans-serif;
+		}
+
+		.page-title {
+			margin: 22px auto;
+			line-height: 2;
+			letter-spacing: 2px;
+			font-size: 20px;
+			font-family: "MullerHeavy";
+			text-transform: uppercase;
+			text-align: center;
+			color: rgb( 30, 50, 76 );
+		}
+
+		#select-clear:hover,
+		#select-clear:focus {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	</style>
+
+	<!-- JavaScript -->
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="js/select-list.js"></script>
+
+	<script type="text/javascript">
+		jQuery(document).ready( function() {
+
+			jQuery('#example-select').find('.select-list__items-item').click( function(el) {
+				logics_select(el);
+			})
+
+			jQuery('#select-clear').click( function() {
+				logics_selectsClear('#example-select');
+			});
+
+		});
+	</script>
+
+</head>
+<body>
+
+	<h1 class="page-title"> select-list by E.Anton </h1>
+	<div class="container">
+
+		<p class="available__header-lable">Make a choice:</p>
+		<!-- select-list -->
+		<div id="example-select" class="select-list" data-last="0">
+			<div class="select-list__items">
+				<p class="select-list__items-item" data-value="YAMAHA" data-index="0"> YAMAHA </p>
+				<p class="select-list__items-item" data-value="Kawasaki" data-index="1"> Kawasaki </p>
+				<p class="select-list__items-item" data-value="Lotus" data-index="2"> Lotus </p>
+				<p class="select-list__items-item" data-value="Suzuki" data-index="3"> Suzuki </p>
+				<p class="select-list__items-item" data-value="Ducati" data-index="4"> Ducati </p>
+				<p class="select-list__items-item" data-value="Jba" data-index="5"> Jba </p>
+			</div>
+			<input type="hidden" id="example-select-value" name="example-select-value" value="0">
+		</div>
+		<!-- select-list -->
+
+		<p id="select-clear"> Clear select </p>
+
+	</div>
+
+</body>
+</html>

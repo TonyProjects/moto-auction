@@ -177,9 +177,11 @@ var
 
 	logics_searchLotClear = function() {
 		var lot = jQuery('#lot');
-		lot.val("");
+
+		lot.val('');
+
 		if (!!lot.attr('data-key'))
-			filter_addProperty('search', lot);
+			filter_removeProperty('search', lot);
 	};
 
 
@@ -228,7 +230,20 @@ var
 			params.append(template);
 		}
 
-	};
+	},
+
+	filter_removeProperty = function(type, el) {
+		var 
+			params = jQuery('#params'),
+
+			el = (el instanceof jQuery) ? el : jQuery(el.currentTarget),
+
+			key = type + '-' + el.attr('data-value');
+
+			params.find("#" + key).remove();
+			el.removeAttr('data-key', "");
+	}
+
 
 
 
