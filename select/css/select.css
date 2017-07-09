@@ -10,6 +10,7 @@
 	min-height: 25px;
 	max-height: 25px;
 	min-width: 234px;
+	max-width: 234px;
 	border: 1px solid #E8EAEC;
 }
 .select__button {
