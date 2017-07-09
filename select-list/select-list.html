@@ -24,16 +24,21 @@
 			line-height: 2;
 			letter-spacing: 2px;
 			font-size: 20px;
-			font-family: "MullerHeavy";
+			font-family: "MullerHeavy", Arial, Helvetica, Sans-serif;
 			text-transform: uppercase;
 			text-align: center;
 			color: rgb( 30, 50, 76 );
 		}
-
+		#select-clear {
+			color: darkred;	
+		}
 		#select-clear:hover,
 		#select-clear:focus {
-			text-decoration: underline;
 			cursor: pointer;
+			text-decoration: underline;
+		}
+		#selected-items {
+			text-transform: capitalize;
 		}
 	</style>
 
@@ -46,10 +51,12 @@
 
 			jQuery('#example-select').find('.select-list__items-item').click( function(el) {
 				logics_select(el);
+				jQuery('#selected-items').text( jQuery('#example-select').children('input').val() );
 			})
 
 			jQuery('#select-clear').click( function() {
 				logics_selectsClear('#example-select');
+				jQuery('#selected-items').empty();
 			});
 
 		});
@@ -77,6 +84,7 @@
 		<!-- select-list -->
 
 		<p id="select-clear"> Clear select </p>
+		<p id="selected-items"></p>
 
 	</div>
 
