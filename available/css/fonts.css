@@ -4,6 +4,11 @@
 }
 
 @font-face {
+	font-family: 'MullerLight';
+	src: url('../fonts/MullerLight.otf');
+}
+
+@font-face {
 	font-family: 'MullerMedium';
 	src: url('../fonts/MullerMedium.otf');
 }

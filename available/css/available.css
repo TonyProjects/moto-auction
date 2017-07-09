@@ -155,3 +155,32 @@
 	margin-bottom: 22px;
 }
 
+/* page navigation */
+.available__page-nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.page-nav__page-link {
+	width: 35px;
+	height: 35px;
+	margin: 30px 15px;
+	font-size: 22.286px;
+	font-family: "MullerLight";
+	color: rgb( 61, 77, 99 );
+	cursor: pointer;
+	line-height: 1.642;
+	text-align: center;
+	text-decoration: none;
+	-moz-transform: matrix( 1.3548638657714,0,0,1.34615384615385,0,0);
+	-webkit-transform: matrix( 1.3548638657714,0,0,1.34615384615385,0,0);
+	-ms-transform: matrix( 1.3548638657714,0,0,1.34615384615385,0,0);
+}
+.page-nav__page-link:hover,
+.page-nav__page-link:focus {
+	text-decoration: underline;
+}
+.page-nav__page-link--current {
+	background-color: rgb( 61, 77, 99 );
+	color: white;
+}
