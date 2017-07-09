@@ -164,7 +164,7 @@
 .page-nav__page-link {
 	width: 35px;
 	height: 35px;
-	margin: 30px 15px;
+	margin: 30px 10px;
 	font-size: 22.286px;
 	font-family: "MullerLight";
 	color: rgb( 61, 77, 99 );
@@ -178,8 +178,12 @@
 }
 .page-nav__page-link:hover,
 .page-nav__page-link:focus {
-	text-decoration: underline;
-}
+	/*text-decoration: underline;*/
+/*	box-sizing: border-box;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb( 61, 77, 99 );
+*/}
 .page-nav__page-link--current {
 	background-color: rgb( 61, 77, 99 );
 	color: white;
