@@ -20,6 +20,7 @@
 	margin-right: 15px;
 }
 .available__header-align-btn {
+	height: 39px;
 	opacity: 0.45;
 	cursor: pointer;
 }
@@ -95,7 +96,7 @@
 	height: auto;
 	width: 100%;
 }
-.aritcle__header-scope {
+.article__header-scope {
 	font-size: 14px;
 	color: rgb( 80, 80, 80 );
 }
@@ -128,10 +129,14 @@
 .article__header-title--horizontal {
 	margin-bottom: 9px;
 }
+.article__header-model--horizontal {
+	display: inline-block;
+}
 .article__header-price--horizontal {
+	display: inline-block;
 	margin-left: 70px;
 }
-.aritcle__header-scope--horizontal {
+.article__header-scope--horizontal {
 	margin-bottom: 18px;
 }
 
@@ -154,6 +159,9 @@
 .article__header-price--vertical {
 	margin-bottom: 22px;
 }
+/*.article__header-scope--vertical {
+	margin-bottom: 22px;
+}*/
 
 /* page navigation */
 .available__page-nav {
@@ -178,12 +186,7 @@
 }
 .page-nav__page-link:hover,
 .page-nav__page-link:focus {
-	/*text-decoration: underline;*/
-/*	box-sizing: border-box;
-	border-width: 1px;
-	border-style: solid;
-	border-color: rgb( 61, 77, 99 );
-*/}
+}
 .page-nav__page-link--current {
 	background-color: rgb( 61, 77, 99 );
 	color: white;

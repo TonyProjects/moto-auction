@@ -5,3 +5,22 @@ article__content
 article__header-title
 aritcle__header-scope
 article__header-price
+
+article__header-model--horizontal
+
+HORIZONTAL:
+	article__header-title (--h)
+		article__header-link
+			article__header-model--h
+		article__header-price (--h)
+	article__header-scope (--h)
+
+VERTICALE:
+	article__header-title (--v)
+		article__header-link
+			article__header-model (--v)
+		article__header-scope (--v)
+	article__header-price (--v)
+
+CHANGES 
+	1 article__header-price <=> article__header-csope

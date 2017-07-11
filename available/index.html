@@ -23,6 +23,9 @@
 
 	<!-- select -->
 	<script type="text/javascript" src="js/select.js"></script>
+
+	<!-- list-align -->
+	<script type="text/javascript" src="js/list-align.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -33,8 +36,8 @@
 		<div class="available" id="available">
 
 			<div class="available__header">
-				<img class="available__header-align-btn" src="img/menu-view-2.svg" style="height: 39px">
-				<img class="available__header-align-btn" src="img/menu-view-1.svg" style="height: 39px">
+				<img id="align-to-horizontal" class="available__header-align-btn" src="img/menu-view-2.svg">
+				<img id="align-to-vertical" class="available__header-align-btn" src="img/menu-view-1.svg">
 
 				<p class="available__header-lable">Сортировать:</p>
 				<div id="sort-select" class="select" data-current="0" data-state="hide">
@@ -68,23 +71,24 @@
 						</div>
 						<input type="hidden" name="count-value" name="count-value" value="10">
 					</div>
-			</div>
+			</div> <!-- .available__header -->
 
-			<section class="available__stream--horizontal">
-				
-				<article class="available__article available__article--horizontal">
-					<figure class="article__image article__image--horizontal">
+			<section class="available__stream available__stream--horizontal horizontal">
+				<input type="hidden" id="stream__current-align" name="stream__current-align" value="h">	
+
+				<article class="available__article available__article--horizontal horizontal">
+					<figure class="article__image article__image--horizontal horizontal">
 						<img class="article__image-img" src="img/moto.jpg">
 					</figure>
-					<div class="article__content article__content--horizontal">
+					<div class="article__content article__content--horizontal horizontal">
 						<header class="article__header">
-							<h2 class="article__header-title article__header-title--horizontal">
+							<h2 class="article__header-title article__header-title--horizontal horizontal">
 								<a class="article__header-link" href="">
-									<span class="article__header-model">Honda CB400SF-4</span>
+									<p class="article__header-model article__header-model--horizontal horizontal">Honda CB400SF-4</p>
 								</a>
-								<span class="article__header-price--horizontal">200 000 руб.</span>
+								<p class="article__header-price article__header-price--horizontal horizontal">200 000 руб.</p>
 							</h2>
-							<p class="aritcle__header-scope aritcle__header-scope--horizontal">NC42-1600103</p>
+							<p class="article__header-scope article__header-scope--horizontal horizontal">NC42-1600103</p>
 						</header>
 						<p class="article__description">
 							<span class="article__description-moto"> BMW F650CS</span>
@@ -96,19 +100,19 @@
 					</div>
 				</article>
 
-				<article class="available__article available__article--horizontal">
-					<figure class="article__image article__image--horizontal">
+				<article class="available__article available__article--horizontal horizontal">
+					<figure class="article__image article__image--horizontal horizontal">
 						<img class="article__image-img" src="img/moto.jpg">
 					</figure>
-					<div class="article__content article__content--horizontal">
+					<div class="article__content article__content--horizontal horizontal">
 						<header class="article__header">
-							<h2 class="article__header-title article__header-title--horizontal">
+							<h2 class="article__header-title article__header-title--horizontal horizontal">
 								<a class="article__header-link" href="">
-									<span class="article__header-model">Honda CB400SF-4</span>
+									<p class="article__header-model article__header-model--horizontal horizontal">Honda CB400SF-4</p>
 								</a>
-								<span class="article__header-price--horizontal">200 000 руб.</span>
+								<p class="article__header-price article__header-price--horizontal horizontal">200 000 руб.</p>
 							</h2>
-							<p class="aritcle__header-scope aritcle__header-scope--horizontal">NC42-1600103</p>
+							<p class="article__header-scope article__header-scope--horizontal horizontal">NC42-1600103</p>
 						</header>
 						<p class="article__description">
 							<span class="article__description-moto"> BMW F650CS</span>
@@ -120,19 +124,67 @@
 					</div>
 				</article>
 
-				<article class="available__article available__article--horizontal">
-					<figure class="article__image article__image--horizontal">
+				<article class="available__article available__article--horizontal horizontal">
+					<figure class="article__image article__image--horizontal horizontal">
 						<img class="article__image-img" src="img/moto.jpg">
 					</figure>
-					<div class="article__content article__content--horizontal">
+					<div class="article__content article__content--horizontal horizontal">
 						<header class="article__header">
-							<h2 class="article__header-title article__header-title--horizontal">
+							<h2 class="article__header-title article__header-title--horizontal horizontal">
 								<a class="article__header-link" href="">
-									<span class="article__header-model">Honda CB400SF-4</span>
+									<p class="article__header-model article__header-model--horizontal horizontal">Honda CB400SF-4</p>
 								</a>
-								<span class="article__header-price--horizontal">200 000 руб.</span>
+								<p class="article__header-price article__header-price--horizontal horizontal">200 000 руб.</p>
 							</h2>
-							<p class="aritcle__header-scope aritcle__header-scope--horizontal">NC42-1600103</p>
+							<p class="article__header-scope article__header-scope--horizontal horizontal">NC42-1600103</p>
+						</header>
+						<p class="article__description">
+							<span class="article__description-moto"> BMW F650CS</span>
+							 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						</p>
+					</div>
+				</article>
+
+				<article class="available__article available__article--horizontal horizontal">
+					<figure class="article__image article__image--horizontal horizontal">
+						<img class="article__image-img" src="img/moto.jpg">
+					</figure>
+					<div class="article__content article__content--horizontal horizontal">
+						<header class="article__header">
+							<h2 class="article__header-title article__header-title--horizontal horizontal">
+								<a class="article__header-link" href="">
+									<p class="article__header-model article__header-model--horizontal horizontal">Honda CB400SF-4</p>
+								</a>
+								<p class="article__header-price article__header-price--horizontal horizontal">200 000 руб.</p>
+							</h2>
+							<p class="article__header-scope article__header-scope--horizontal horizontal">NC42-1600103</p>
+						</header>
+						<p class="article__description">
+							<span class="article__description-moto"> BMW F650CS</span>
+							 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						</p>
+					</div>
+				</article>
+
+				<article class="available__article available__article--horizontal horizontal">
+					<figure class="article__image article__image--horizontal horizontal">
+						<img class="article__image-img" src="img/moto.jpg">
+					</figure>
+					<div class="article__content article__content--horizontal horizontal">
+						<header class="article__header">
+							<h2 class="article__header-title article__header-title--horizontal horizontal">
+								<a class="article__header-link" href="">
+									<p class="article__header-model article__header-model--horizontal horizontal">Honda CB400SF-4</p>
+								</a>
+								<p class="article__header-price article__header-price--horizontal horizontal">200 000 руб.</p>
+							</h2>
+							<p class="article__header-scope article__header-scope--horizontal horizontal">NC42-1600103</p>
 						</header>
 						<p class="article__description">
 							<span class="article__description-moto"> BMW F650CS</span>
@@ -145,83 +197,8 @@
 				</article>
 
 
-			</section>
+			</section> <!-- available__stream -->
 
-			<section class="available__stream available__stream--vertical">
-				
-				<article class="available__article available__article--vertical">
-					<figure class="article__image article__image--vertical">
-						<img class="article__image-img" src="img/moto.jpg">
-					</figure>
-					<div class="article__content article__content--vertical">
-						<header class="article__header">
-							<h2 class="article__header-title article__header-title--vertical">
-								<a class="article__header-link" href="">
-									<p class="article__header-model">Honda CB400SF-4</p>
-								</a>
-								<p class="aritcle__header-scope aritcle__header-scope--vertical">NC42-1600103</p>
-							</h2>
-							<p class="article__header-price article__header-price--vertical">200 000 руб.</p>
-						</header>
-						<p class="article__description">
-							<span class="article__description-moto"> BMW F650CS</span>
-							 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						</p>
-					</div>
-				</article>
-
-				<article class="available__article available__article--vertical">
-					<figure class="article__image article__image--vertical">
-						<img class="article__image-img" src="img/moto.jpg">
-					</figure>
-					<div class="article__content article__content--vertical">
-						<header class="article__header">
-							<h2 class="article__header-title article__header-title--vertical">
-								<a class="article__header-link" href="">
-									<p class="article__header-model">Honda CB400SF-4</p>
-								</a>
-								<p class="aritcle__header-scope aritcle__header-scope--vertical">NC42-1600103</p>
-							</h2>
-							<p class="article__header-price article__header-price--vertical">200 000 руб.</p>
-						</header>
-						<p class="article__description">
-							<span class="article__description-moto"> BMW F650CS</span>
-							 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						</p>
-					</div>
-				</article>
-
-				<article class="available__article available__article--vertical">
-					<figure class="article__image article__image--vertical">
-						<img class="article__image-img" src="img/moto.jpg">
-					</figure>
-					<div class="article__content article__content--vertical">
-						<header class="article__header">
-							<h2 class="article__header-title article__header-title--vertical">
-								<a class="article__header-link" href="">
-									<p class="article__header-model">Honda CB400SF-4</p>
-								</a>
-								<p class="aritcle__header-scope aritcle__header-scope--vertical">NC42-1600103</p>
-							</h2>
-							<p class="article__header-price article__header-price--vertical">200 000 руб.</p>
-						</header>
-						<p class="article__description">
-							<span class="article__description-moto"> BMW F650CS</span>
-							 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						</p>
-					</div>
-				</article>
-
-			</section>
 			<div class="available__page-nav">
 				<a href="" class="page-nav__page-link">. . .</a>
 				<a href="" class="page-nav__page-link">1</a>
