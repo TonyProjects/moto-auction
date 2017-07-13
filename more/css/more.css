@@ -1,0 +1,196 @@
+.lot-card {
+	border-width: 1px;
+	border-color: rgb( 231, 231, 231 );
+	border-style: solid;
+	background-color: rgb( 255, 255, 255 );
+	width: 1170px;
+	padding: 21px;
+	margin: 15px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	font-family: 'MullerMedium';
+}
+
+.lot-card__sector {
+	width: 547px;
+}
+.lot-card__sector--right {
+	width: 579px;
+	padding: 0 55px 0 70px;
+	box-sizing: border-box;
+}
+
+.lot-card__image {
+	max-width: 547px;
+	height: auto;
+	margin-bottom: 16px;
+}
+
+.lot-card__image-list {
+	height: 98px;
+	margin-bottom: 60px;
+	display: flex;
+	justify-content: space-between;
+}
+.lot-card__image-list-one {
+	height: auto;
+	width: 131px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+.lot-card__image-list-one:focus,
+.lot-card__image-list-one:hover {
+	opacity: 1;
+}
+.lot-card__image-list-one-img {
+	width: inherit;
+	display: block;
+}
+
+.lot-card__additional {
+	border-top: 1px solid rgb( 227, 227, 227 );
+}
+.lot-card__additional-line {
+	border-bottom: 1px solid rgb( 227, 227, 227 );
+	min-height: 64px;
+	display: flex;
+	justify-content: space-between;
+}
+.lot-card__additional-child {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+} 
+.lot-card__additional-child--left {
+	min-width: 45%;
+	background-color: rgb( 242, 242, 242 );
+	border-right: 1px solid rgb(227, 227, 227);
+} 
+.lot-card__additional-chilhd--right {
+	min-width: 55%;
+}
+.lot-card__additional-text {
+	font-size: 14px;
+	font-family: "MullerMedium";
+	color: rgb( 80, 80, 80 );
+	line-height: 1.714;
+	padding: 5px;
+	padding-left: 30px;
+	box-sizing: border-box;
+}
+
+
+
+
+.lot-card__meta-sector {
+	display: flex;
+	justify-content: space-between;
+}
+.lot-card__meta-sector--top {
+	margin-bottom: 30px;
+}
+.lot-card__meta-sector--share {
+	padding: 21px;
+	border-bottom: 1px solid rgb(227,227,227);
+	margin-bottom: 30px;
+}
+.lot-card__meta-right {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.lot-card__meta-child {
+	width: 50%;
+}
+
+.lot-card__title-model {
+	font-size: 22px;
+	color: rgb( 30, 50, 76 );
+	text-transform: uppercase;
+	line-height: 0.909;
+}
+.lot-card__title-model-below {
+	font-size: 14px;
+	color: #959595;
+	text-transform: uppercase;
+	line-height: 0.909;
+}
+
+.lot-card__price {
+	font-size: 22px;
+	color: rgb( 243, 63, 59 );
+	line-height: 1.273;
+	text-align: left;
+}
+
+
+.lot-card__meta-pair {
+	font-size: 14px;
+	line-height: 1.5;
+	text-align: left;
+	margin-bottom: 10px;
+}
+.lot-card__meta-pair-name {
+	text-transform: capitalize;
+	color: rgb( 140, 139, 139 );
+}
+.lot-card__meta-pair-value {
+	text-transform: uppercase;
+	color: #505050;
+}
+
+.lot-card__call {
+	border-width: 3px;
+	border-color: rgb( 61, 77, 99 );
+	border-style: solid;
+	width: 200px;
+	height: 43px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.lot-card__call:hover {
+	background-color: #eee;
+	opacity: 0.3;
+}
+.lot-card__call-text {
+	font-size: 16px;
+	font-family: "MullerBold";
+	color: rgb( 61, 77, 99 );
+	line-height: 1.063;
+	text-align: center;
+}
+
+.lot-card__review {
+	margin-bottom: 6px;
+}
+.lot-card__review-ball {
+	display: flex;
+}
+.lot-card__review-star {
+	cursor: pointer;
+	margin-right: 2px;
+}
+.lot-card__review-star:hover {
+	opacity: 0.3;	
+}
+
+.lot-card__feedback {
+	font-size: 14px;
+	color: rgb( 57, 57, 57 );
+	line-height: 2;
+}
+.lot-card__feedback-text--red {
+	color: #f33f3b;
+}
+
+.lot-card__description-text {
+	font-size: 14px;
+	font-family: "Muller";
+	color: rgb( 80, 80, 80 );
+	line-height: 1.5;
+	text-align: left;
+}
