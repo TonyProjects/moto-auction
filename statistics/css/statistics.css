@@ -7,7 +7,26 @@
 .colon:after {
 	content: ':';
 }
-
+.overphoto {
+	position: relative;
+}
+img {
+	display: block;
+}
+.overphoto:hover::before{
+	opacity: 0.7;
+	content: '';
+	display: block;
+	background-image: url(../img/magnifying-glass.svg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 60% 60%;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 
 
 .lot-statistics {
@@ -234,6 +253,7 @@
 }
 .photos__img-wrapper {
 	margin-bottom: 20px;
+	cursor: pointer;
 }
 .photos__img {
 	max-width: 264px;
@@ -262,6 +282,7 @@
 .row__wrapper {
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-start;
 	padding: 20px;
 }
 .row__definitions {
@@ -302,6 +323,7 @@
 	flex-wrap: wrap;
 }
 .row__photo-wrapper {
+	display: inline-block;
 	cursor: pointer;
 	opacity: 0.3;
 }
