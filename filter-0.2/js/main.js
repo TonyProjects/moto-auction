@@ -48,7 +48,7 @@ var
 				if (auction_buttons.eq(i).attr("data-state") === "ina")	
 				{
 					logics_auctionButtonOne(auction_buttons.eq(i));
-					filter_addProperty('auction-button', auction_buttons.eq(i));
+					filter_addProperty('auction-button--item', auction_buttons.eq(i));
 				}
 			}
 			logics_auctionButtonOne(el);			
@@ -60,7 +60,7 @@ var
 				if (auction_buttons.eq(i).attr("data-state") === "a")	
 				{
 					logics_auctionButtonOne(auction_buttons.eq(i));
-					filter_addProperty('auction-button', auction_buttons.eq(i));
+					filter_addProperty('auction-button--item', auction_buttons.eq(i));
 				}
 			}
 			logics_auctionButtonOne(el);
