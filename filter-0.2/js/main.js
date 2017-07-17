@@ -46,7 +46,10 @@ var
 			for (var i = 0; i < auction_buttons.length; i++)
 			{
 				if (auction_buttons.eq(i).attr("data-state") === "ina")	
-					auction_buttons.get(i).dispatchEvent(event);
+				{
+					logics_auctionButtonOne(auction_buttons.eq(i));
+					filter_addProperty('auction-button', auction_buttons.eq(i));
+				}
 			}
 			logics_auctionButtonOne(el);			
 		}	
@@ -55,7 +58,10 @@ var
 			for (var i = 0; i < auction_buttons.length; i++)
 			{
 				if (auction_buttons.eq(i).attr("data-state") === "a")	
-					auction_buttons.get(i).dispatchEvent(event);
+				{
+					logics_auctionButtonOne(auction_buttons.eq(i));
+					filter_addProperty('auction-button', auction_buttons.eq(i));
+				}
 			}
 			logics_auctionButtonOne(el);
 		}
