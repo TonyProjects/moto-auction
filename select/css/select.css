@@ -1,28 +1,56 @@
+/* main */
+.select-container {
+	/*display: inline-block;*/
+}
+.select-container::after {
+	clear: both;
+	content: '';
+	display: block;
+	height: 0;
+}
+
 /* My select*/
+.select-label::after {
+	content: ':';
+}
+.select-label {
+	float: left;
+	display: block;
+	margin: 0 15px 0 30px;
+	line-height: 26px;
+	text-transform: uppercase;
+	font-family: 'MullerBold';
+	font-size: 14px;
+	color: #5A728B;
+}
+.select--with-label {
+	float: left;
+}
+
 .select {
-	position: relative;
-	z-index: 3;
+	align-items: center;
+	border: 1px solid #E8EAEC;
+	cursor: pointer;
 	display: flex;
 	flex-direction: row-reverse;
-	align-items: center;
-	overflow: hidden;
-	cursor: pointer;
-	min-height: 25px;
 	max-height: 25px;
-	min-width: 234px;
 	max-width: 234px;
-	border: 1px solid #E8EAEC;
+	min-height: 25px;
+	min-width: 234px;
+	overflow: hidden;
+	position: relative;
+	z-index: 3;
 }
 .select__button {
-	display: flex;
 	align-items: center;
-	justify-content: center;
-	width: 14px;
-	height: 14px;
-	border: 1px solid rgb(61, 77, 91);
 	border-radius: 50%;
+	border: 1px solid rgb(61, 77, 91);
+	display: flex;
+	height: 14px;
+	justify-content: center;
 	margin-right: 8px;
 	opacity: 0.7;
+	width: 14px;
 }
 .select:focus .select__button,
 .select:hover .select__button{
@@ -48,25 +76,28 @@
 	margin-bottom: 5px;
 }
 .select__items {
+	background-color: rgb( 255, 255, 255 );
+	box-shadow: 1.176px 1.618px 18px 0px rgb( 196, 201, 206 );
+	left: 0;
+	margin: 0;
+	min-width: 234px;
+	padding: 0;
 	position: absolute;
 	top: 0;
-	left: 0;
 	z-index: -1;
-	min-width: 234px;
-	box-shadow: 1.176px 1.618px 18px 0px rgb( 196, 201, 206 );
-	background-color: rgb( 255, 255, 255 );
 }
 .select__items-item {
 	box-sizing: border-box;
-	height: 27px;
-	padding-top: 4px;
-	line-height: 1.133;
+	color: rgb( 57, 57, 57 );
 	font-family: MullerMedium;
 	font-size: 15px;
-	text-transform: capitalize;
-	text-indent: 10px;
+	height: 27px;
+	line-height: 1.133;
+	list-style: none;
+	padding-top: 4px;
 	text-align: left;
-	color: rgb( 57, 57, 57 );
+	text-indent: 10px;
+	text-transform: capitalize;
 }
 .select__items-item:focus,
 .select__items-item:hover {

@@ -33,29 +33,61 @@
 	<!-- JS -->
 	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/select.js"></script>
+
+	<!-- insert of selects -->
+	<script type="text/javascript">
+		jQuery(document).ready( function($) {
+			var s = new Select(
+				'new-select', 
+				{
+					name: 'new-select-input',
+					value: 'default'
+				}, 
+				[ 
+					{dataValue: 'one', text: 'first'}, 
+					{dataValue: 'two', text: 'second'}
+				],
+				'The select'
+			);
+			s.insertInto( document.getElementsByClassName('container')[0] );
+			s.changeWidth(150);
+
+			var sOther = new Select(
+				'other-new-select',
+				{
+					name: 'other-new-select-input',
+					value: 'default'
+				},
+				[
+					{dataValue: 'otherOne', text: 'otherFirst'},
+					{dataValue: 'otherTwo', text: 'otherSecond'}
+				],
+				'The other select'
+			);
+			sOther.insertInto( document.getElementsByClassName('container')[0] );
+			sOther.changeWidth(150);
+
+			var theSelect = new Select(
+				'theSelect-new-select',
+				{
+					name: 'theSelect-new-select-input',
+					value: 'default'
+				},
+				[
+					{dataValue: 'otherOne', text: 'otherFirst'},
+					{dataValue: 'otherTwo', text: 'otherSecond'}
+				],
+				'theSelect select'
+			);
+			theSelect.insertInto( document.getElementsByClassName('container')[0] );
+			theSelect.changeWidth(150);
+		});
+	</script>
+	</style>
 </head>
 <body>
 	<h1 class="page-title"> select by E.Anton </h1>
-	<div class="container">
-		<p class="available__header-lable">Сортировать:</p>
-
-		<div id="sort-select" class="select" data-current="0" data-state="hide">
-			<div class="select__items">
-				<div class="select__items-item" data-value="default" data-index="0"> По умолчанию </div>
-				<div class="select__items-item" data-value="name-asc" data-index="1"> По имени (А-Я) </div>
-				<div class="select__items-item" data-value="name-desc" data-index="2"> По имени (Я-А)  </div>
-				<div class="select__items-item" data-value="price-asc" data-index="3"> По цене (возрастание) </div>
-				<div class="select__items-item" data-value="price-desc" data-index="4"> По цене (убывание) </div>
-				<div class="select__items-item" data-value="rating-asc" data-index="5"> По рейтингу (возрастание) </div>
-				<div class="select__items-item" data-value="rating-desc" data-index="6"> По рейтингу (убывание) </div>
-				<div class="select__items-item" data-value="model-asc" data-index="7"> По модели (А-Я) </div>
-				<div class="select__items-item" data-value="model-desc" data-index="8"> По модели (Я-А) </div>
-			</div>
-			<div class="select__button">
-				<div class="select__button-arrow select__button-arrow--up"></div>
-			</div>
-			<input type="hidden" name="sort-value" name="sort-value" value="default">
-		</div>
+	<div class="container" style="display: flex;">
 	</div>
 </body>
 </html>
