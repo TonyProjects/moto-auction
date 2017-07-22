@@ -13,12 +13,67 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" href="css/table.css">
 
+	<!--  -->
+	<link rel="stylesheet" type="text/css" href="css/select.css">
+
 	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 	<script src="js/range-slider.js"></script>
 	<script type="text/javascript" src="js/mselect.js"></script>
 	<script type="text/javascript" src="js/mbtn-langl.js"></script>
 	<script type="text/javascript" src="js/options.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
+
+	<script type="text/javascript">
+			var 
+				providerSelect = new Select(
+					'provider',
+					{ name: 'provider-item', value: ''},
+					[
+						{ sent: '0', text: 'YAMAHA'},
+						{ sent: '1', text: 'MINSK'},
+						{ sent: '2', text: 'YAWA'}
+					],
+					'Производитель'
+				),
+
+				capacitySelect = new Select(
+					'capacity',
+					{ name: 'capacity-item', value: ''},
+					[
+						{ sent: '0', text: '3000'},
+						{ sent: '1', text: '6000'},
+						{ sent: '2', text: '9000'}
+					],
+					'Объем см^3'
+				),
+
+				modelSelect = new Select(
+					'model',
+					{ name: 'model-item', value: ''},
+					[
+						{ sent: '0', text: 'LOTUS'},
+						{ sent: '1', text: 'KAWASAKI'},
+						{ sent: '2', text: 'HONDA'}
+					],
+					'Модель'
+				);
+
+		jQuery(document).ready( function() {
+			var selectContainer = document.getElementsByClassName('filter-content__inputs--select')[0];
+			// Производитель
+			providerSelect.insertInto(selectContainer);
+			providerSelect.changeWidth(144);
+
+			// Объем
+			capacitySelect.insertInto(selectContainer);
+			capacitySelect.changeWidth(144);
+
+			// Модель
+			modelSelect.insertInto(selectContainer);
+			modelSelect.changeWidth(144);
+		});
+	</script>
 </head>
 <body>
 
@@ -79,7 +134,7 @@
 				<div class="filter-content-body__data filter-content__inputs--select">
 
 					<!-- mselect -->
-					<lable for="provider" class="filter__label">производитель<span class="custom-colon">:</span></lable>
+					<!-- <lable for="provider" class="filter__label">производитель<span class="custom-colon">:</span></lable>
 					<div id="provider" class="filter__mselect" data-current="0">
 						<div class="values">
 							<div class="item" data-index="0"> Выбрать </div>
@@ -91,9 +146,9 @@
 							<div class="arrow"></div>
 						</div>
 						<input type="hidden" name="provider-item" value="0">
-					</div> <!-- mselect -->
+					</div>  --><!-- mselect -->
 
-					<lable class="filter__label">Объем см^3<span class="custom-colon">:</span></lable>
+					<!-- <lable class="filter__label">Объем см^3<span class="custom-colon">:</span></lable>
 					<div class="filter__mselect" data-current="0">
 						<div class="values">
 							<div class="item" data-index="0"> Выбрать </div>
@@ -123,7 +178,7 @@
 							<div class="arrow"></div>
 						</div>
 						<input type="hidden" name="model-item" value="0">
-					</div>
+					</div> -->
 
 					<div class="filter__search">
 						<p class="filter__search-title"> Номер лота </p>

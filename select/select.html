@@ -36,51 +36,59 @@
 
 	<!-- insert of selects -->
 	<script type="text/javascript">
+			var 
+				s = new Select(
+					'new-select', 
+					{
+						name: 'new-select-input',
+						value: 'default'
+					}, 
+					[ 
+						{sent: 'one', text: 'first'}, 
+						{sent: 'two', text: 'second'}
+					],
+					'The select'
+				),
+				
+
+				sTwo = new Select(
+					'other-new-select',
+					{
+						name: 'other-new-select-input',
+						value: 'default'
+					},
+					[
+						{sent: 'otherOne', text: 'otherFirst'},
+						{sent: 'otherTwo', text: 'otherSecond'}
+					],
+					'The other select'
+				),
+				
+
+				sThree = new Select(
+					'sThree-new-select',
+					{
+						name: 'sThree-new-select-input',
+						value: 'default'
+					},
+					[
+						{sent: 'otherOne', text: 'otherFirst'},
+						{sent: 'otherTwo', text: 'otherSecond'}
+					],
+					'sThree select'
+				);
+			
 		jQuery(document).ready( function($) {
-			var s = new Select(
-				'new-select', 
-				{
-					name: 'new-select-input',
-					value: 'default'
-				}, 
-				[ 
-					{dataValue: 'one', text: 'first'}, 
-					{dataValue: 'two', text: 'second'}
-				],
-				'The select'
-			);
-			s.insertInto( document.getElementsByClassName('container')[0] );
+			var selectContainer = document.getElementsByClassName('container')[0]
+
+			s.insertInto( selectContainer );
 			s.changeWidth(150);
 
-			var sOther = new Select(
-				'other-new-select',
-				{
-					name: 'other-new-select-input',
-					value: 'default'
-				},
-				[
-					{dataValue: 'otherOne', text: 'otherFirst'},
-					{dataValue: 'otherTwo', text: 'otherSecond'}
-				],
-				'The other select'
-			);
-			sOther.insertInto( document.getElementsByClassName('container')[0] );
-			sOther.changeWidth(150);
+			sTwo.insertInto( selectContainer );
+			sTwo.changeWidth(150);
 
-			var theSelect = new Select(
-				'theSelect-new-select',
-				{
-					name: 'theSelect-new-select-input',
-					value: 'default'
-				},
-				[
-					{dataValue: 'otherOne', text: 'otherFirst'},
-					{dataValue: 'otherTwo', text: 'otherSecond'}
-				],
-				'theSelect select'
-			);
-			theSelect.insertInto( document.getElementsByClassName('container')[0] );
-			theSelect.changeWidth(150);
+			sThree.insertInto( selectContainer );
+			sThree.changeWidth(150);
 		});
 	</script>
 	</style>
