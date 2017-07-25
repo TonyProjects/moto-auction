@@ -40,6 +40,7 @@ class Select {
 		// items lists
 		this.items = [];
 		this.addItems(list);
+		this.currentItem = this.items[0];
 
 		// button
 		{
@@ -204,6 +205,12 @@ class Select {
 				else
 					self.showList();
 			});
+
+			this.button.angle.parentNode.addEventListener('click', function(event) {
+				if ( self.isOpenList )
+					self.changeCurrentItem( self.currentItem );
+			});
+
 			this.isActive = true;
 		}
 	}
@@ -253,12 +260,17 @@ class Select {
 	*		change current item of select
 	*/
 	changeCurrentItem(item) {
-		this.input.setAttribute( 'value', item.getAttribute('data-value') );
-		this.select.setAttribute('data-current', item.getAttribute('data-index'));
-		this.itemsContainer.style.top = (item.getAttribute('data-index') * (-27)) + 'px';
+		if ( !(this.currentItem === item) )
+		{
+			this.currentItem = item;
+			this.input.setAttribute( 'value', item.getAttribute('data-value') );
+			this.itemsContainer.style.top = (item.getAttribute('data-index') * (-27)) + 'px';
 
-		if ( this.isHaveListeners() )
-			this.emitSelectEvent();
+			if ( this.isHaveListeners() )
+				this.emitSelectEvent();
+		} else {
+			this.itemsContainer.style.top = (this.currentItem.getAttribute('data-index') * (-27)) + 'px';
+		}
 	}
 
 
