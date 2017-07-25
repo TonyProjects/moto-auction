@@ -2,11 +2,11 @@ jQuery(document).ready( function() {
 
 	var do_slider = function(slider_name){
 		slider_name = jQuery(slider_name);
-		var 
-			param = new Object();
-			param.min = parseInt(slider_name.attr("data-min"));
-			param.max = parseInt(slider_name.attr("data-max"));
-			param.range = param.max - param.min;
+		let param = {
+			min: parseInt(slider_name.attr("data-min"));
+			max: parseInt(slider_name.attr("data-max"));
+			range: param.max - param.min;
+		};
 
 		slider_name.slider({
 			range: true,
@@ -17,7 +17,7 @@ jQuery(document).ready( function() {
 				param.range * 0.75 + param.min
 			],
 			slide: function(event, ui) {
-				var value = slider_name.children('.slider-value'),
+				let value = slider_name.children('.slider-value'),
 					left = slider_name.children('span');
 				value
 					.first().val(ui.values[0])

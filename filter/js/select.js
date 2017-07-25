@@ -56,6 +56,10 @@ class Select {
 			inpt.setAttribute('value', input.value);
 
 			angleWrapper.appendChild(angle);
+
+			this.button = angleWrapper;
+			this.button.angle = angle;
+			this.input = inpt;
 			this.select.appendChild(angleWrapper);
 			this.select.appendChild(inpt);
 		}
@@ -75,11 +79,18 @@ class Select {
 			this.select.appendChild( this.itemsContainer );
 		}
 
-		let newItem = document.createElement('li');
+		index = !index ? this.countItems : index;
+
+		let 
+			self = this,
+			newItem = document.createElement('li');
 			newItem.className = 'select__items-item';
 			newItem.setAttribute('data-index', index);
 			newItem.setAttribute('data-value', item.sent);
 			newItem.appendChild( document.createTextNode(item.text) );
+			newItem.addEventListener('click', function(event) { 
+				self.changeCurrentItem(event.currentTarget);
+			});
 		this.items.push(newItem);
 		this.itemsContainer.appendChild(newItem);
 		this.countItems++;
@@ -93,8 +104,10 @@ class Select {
 				Look like this: [ {sent: string, text: string} ... ]
 	*/
 	addItems(newItems) {
-		for (let index = 0; index < newItems.length; index++)
-			this.addItem( newItems[index], index);
+		if ( 'length' in newItems)
+			for (let index = 0; index < newItems.length; index++)
+				this.addItem( newItems[index], index);
+		else console.log(' invalid function argument');
 	}
 
 	/**********************************
@@ -106,8 +119,10 @@ class Select {
 		{
 			this.items[i].remove();
 		}
+
 		while (this.items.length)
 			this.items.pop();
+
 		this.countItems = 0;
 	}
 
@@ -129,6 +144,25 @@ class Select {
 				}
 				else {
 					obj.appendChild(this.select);
+					this.isInsert = true;
+				}
+			}
+		this.toActive();
+	}
+
+	insertIntoBefore(obj, before) {
+		if (!this.inserted)
+			if ( (obj instanceof HTMLElement) 
+			&& (before instanceof HTMLElement) ){
+				this.parent = obj;
+				if (this.isHaveLabel)
+				{
+					this.container.appendChild(this.label);
+					this.container.appendChild(this.select);
+					obj.insertBefore(this.container, before);
+				}
+				else {
+					obj.insertBefore(this.select, before);
 					this.isInsert = true;
 				}
 			}
@@ -157,75 +191,126 @@ class Select {
 	toActive() {
 		if (!this.active)
 		{
-			this.select.addEventListener('click', function(el) { 
-				logics_select( jQuery(el.currentTarget) );
-			}, false);
+			var self = this;
 
+			// create listener for select
+			this.select.addEventListener('click', function(event) {
+				if ( self.select.getAttribute('data-state') === 'hide' )
+					self.showList();
+				else
+					self.hideList();
+			});
+
+			// create listeners for items of select
 			this.items.forEach( function(value) {
-				value.addEventListener('click', function(el) {
-					logics_select_item( jQuery(el.currentTarget) );
+				value.addEventListener('click', function(event) {
+					if ( self.select.getAttribute('data-state') === 'show' )
+						self.changeCurrentItem(event.currentTarget);
 				});
 			});
 
 			this.isActive = true;
 		}
 	}
-}
 
-var 
-	logics_select_item = function(el) {
-		var item = (el instanceof jQuery) ? el : jQuery(el.currentTarget),
-			select = item.parent().parent(),
-			value = select.children("input[type=hidden]");
-
-		value.val(item.attr("data-value"));
-		select.attr("data-current", item.attr("data-index"));
-		select.children(".select__items").css(
-			"top", 
-			( parseInt(item.attr("data-index")) * (-27)) + "px"
+	/**********************************
+	*	@todo
+	*		chande state of select to show
+	*/
+	showList() {
+		let newClasses = this.button.angle.className.replace(
+			'select__button-arrow--up', 
+			'select__button-arrow--down'
 		);
-	},
+		this.button.angle.setAttribute('class', newClasses);
 
-	logics_select = function(el) {
-		el = (el instanceof jQuery) ? el : jQuery(el.currentTarget);
+		this.itemsContainer.style.top = '-1px';
+		this.itemsContainer.style.left = '-1px';
+		this.itemsContainer.style.border = '1px solid rgb( 204, 208, 212)';
+		
+		this.select.style.overflow = 'visible';
+		this.select.style.zIndex = 4;
+		this.select.setAttribute('data-state', 'show');
+	}
 
-		let items = el.children(".select__items"),
-			arrow = el.find(".select__button-arrow");
+	/**********************************
+	*	@todo
+	* 		change state of select to hide
+	*/
+	hideList() {
+		let newClasses = this.button.angle.className.replace(
+			'select__button-arrow--down',
+			'select__button-arrow--up'
+		);
+		this.button.angle.setAttribute('class', newClasses);
 
-		if (el.attr('data-state') === "hide")
-		{
-			el.css({
-				"overflow": "visible",
-				"z-index": "4"
-			});
-			items.css({
-				"top": "-1px", 
-				"left": "-1px",
-				"border-width": "1px",
-				"border-color": "rgb( 204, 208, 212 )",
-				"border-style": "solid"
-			});
-			arrow
-				.removeClass('select__button-arrow--up')
-				.addClass('select__button-arrow--down');
-			el.attr('data-state', 'show');
-		}
-		else 
-		{
-			el.css({
-				"overflow": "hidden",
-				"z-index": "3"
-			});
-			items.css({
-				"border": "none",
-				"left": "0",
-				"z-index": "unset"
-			});
-			arrow
-				.removeClass('select__button-arrow--down')
-				.addClass('select__button-arrow--up');
-			el.attr('data-state', 'hide');
-		}
-	};
+		this.itemsContainer.style.border = 'none';
+		this.itemsContainer.style.left = 0;
+		this.itemsContainer.style.zIndex = 'unset';
+
+		this.select.style.overflow = 'hidden';
+		this.select.style.zIndex = 3;
+		this.select.setAttribute('data-state', 'hide');
+	}
+
+	/**********************************
+	*	@todo
+	*		change current item of select
+	*/
+	changeCurrentItem(item) {
+		this.input.setAttribute( 'value', item.getAttribute('data-value') );
+		this.select.setAttribute('data-current', item.getAttribute('data-index'));
+		this.itemsContainer.style.top = (item.getAttribute('data-index') * (-27)) + 'px';
+
+		if ( this.isHaveListeners() )
+			this.tellListeners();
+	}
 
 
+
+	/**********************************
+	****************EDIT**************
+	**********************************/
+
+
+
+	/**********************************
+	*	@todo
+	*		
+	*/
+	isHaveListeners() {
+		return this.hasOwnProperty('listeners');
+	}
+
+	/**********************************
+	*	@todo
+	*		
+	*	@param
+	*		newListener: HTMLElement
+			eventFor: string
+	*/
+	// addSelectListener( newListener, callback ) {
+	// 	if ( (newListener instanceof HTMLElement) 
+	// 	&&	 (true) ) {
+
+	// 		if ( !this.isHaveListeners() )
+	// 			this.listeners = [];
+
+	// 		this.listeners.push( newListener );
+	// 		newListener.addEventListener('changeSelectItem', callback);
+	// 	}
+	// }
+
+	/**********************************
+	*	@todo
+	*		
+	*/
+// 	tellListeners( event ) {
+// 		let selectEvent = new Event('changeSelectItem');
+// 		for (let i = 0; i < this.listeners.length; i++) 
+// 		{
+// 			this.listeners[i].dispatchEvent( selectEvent );
+// 		}
+// 	}
+
+} // Select

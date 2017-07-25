@@ -13,8 +13,10 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" href="css/table.css">
 
-	<!--  -->
+	<!-- For select class -->
 	<link rel="stylesheet" type="text/css" href="css/select.css">
+	<!-- For AuctionButton class -->
+	<link rel="stylesheet" type="text/css" href="css/auctionButton.css">
 
 	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -22,9 +24,15 @@
 	<script type="text/javascript" src="js/mselect.js"></script>
 	<script type="text/javascript" src="js/mbtn-langl.js"></script>
 	<script type="text/javascript" src="js/options.js"></script>
+
+	<!-- Select class -->
 	<script type="text/javascript" src="js/select.js"></script>
 
+	<!-- AuctionButton, AuctionButtonCombiner clases -->
+	<script type="text/javascript" src="js/auctionButton.js"></script>
+
 	<script type="text/javascript">
+		// selects
 			var 
 				providerSelect = new Select(
 					'provider',
@@ -59,19 +67,43 @@
 					'Модель'
 				);
 
+			// auction buttons
+			var
+				bds = new AuctionButton('bds-auction', 'bds', 'bds', 'bds'),
+
+				arai = new AuctionButton('arai-auction', 'arai', 'arai', 'arai'),
+
+				aucnet = new AuctionButton('aucnet-auction', 'aucnet', 'aucnet', 'aucnet'),
+
+				jba = new AuctionButton('jba-auction', 'jba', 'jba', 'jba');
+
+				auctionCombiner = new AuctionButtonCombiner(
+					'all-auction', 'all', 'all', 'all',
+					[bds, arai, aucnet, jba]
+				);
+
 		jQuery(document).ready( function() {
-			var selectContainer = document.getElementsByClassName('filter-content__inputs--select')[0];
+			var 
+				selectContainer = document.getElementsByClassName('filter-content__inputs--select')[0],
+				filterSearch = document.getElementsByClassName('filter__search')[0],
+
+				auctionButtonContainer = document.getElementsByClassName('filter-content__inputs--btn')[0];
+
+			// Selects
 			// Производитель
-			providerSelect.insertInto(selectContainer);
+			providerSelect.insertIntoBefore(selectContainer, filterSearch);
 			providerSelect.changeWidth(144);
 
 			// Объем
-			capacitySelect.insertInto(selectContainer);
+			capacitySelect.insertIntoBefore(selectContainer, filterSearch);
 			capacitySelect.changeWidth(144);
 
 			// Модель
-			modelSelect.insertInto(selectContainer);
+			modelSelect.insertIntoBefore(selectContainer, filterSearch);
 			modelSelect.changeWidth(144);
+
+			// AuctionButtons
+			auctionCombiner.insertIntoEndAll( auctionButtonContainer );
 		});
 	</script>
 </head>
@@ -91,37 +123,9 @@
 					<p class="filter__label filter__label--auction">
 						аукцион<span class="custom-colon">:</span>
 					</p>
-					<!-- mbutton-with-left-angle -->
-					<div class="mbtn-with-langle mbtn-with-langle--item" data="na" data-value="1">
-						<div class="btn"><p class="title">bds</p></div>
-						<div class="a angle"></div>
-						<input type="hidden" name="bds" value="">
-					</div> 
 
-					<div class="mbtn-with-langle mbtn-with-langle--item" data="na" data-value="1">
-						<div class="btn"><p class="title">arai</p></div>
-						<div class="a angle"></div>
-						<input type="hidden" name="arai" value="">
-					</div>
+					<!-- auctionButtons (4 шт.), auctionButtonCombiner (шт.) -->
 
-					<div class="mbtn-with-langle mbtn-with-langle--item" data="na" data-value="1">
-						<div class="btn"><p class="title">aucnet</p></div>
-						<div class="a angle"></div>
-						<input type="hidden" name="aucnet" value="">
-					</div>
-					
-					<div class="mbtn-with-langle mbtn-with-langle--item" data="na" data-value="1">
-						<div class="btn"><p class="title">jba</p></div>
-						<div class="a angle"></div>
-						<input type="hidden" name="jba" value="">
-					</div>
-
-					<div class="mbtn-with-langle mbtn-with-langle--all" data="na" data-value="1">
-						<div class="btn"><p class="title">Выбрать все</p></div>
-						<div class="a angle"></div>
-						<input type="hidden" name="all" value="">
-					</div>
-					<!-- mbutton-with-left-angle -->
 				</div>
 			</div>
 			<div class="filter-content__tab"></div>
@@ -133,52 +137,7 @@
 				<div class="filter-content-body__burger"></div>
 				<div class="filter-content-body__data filter-content__inputs--select">
 
-					<!-- mselect -->
-					<!-- <lable for="provider" class="filter__label">производитель<span class="custom-colon">:</span></lable>
-					<div id="provider" class="filter__mselect" data-current="0">
-						<div class="values">
-							<div class="item" data-index="0"> Выбрать </div>
-							<div class="item" data-index="1"> YAMAHA </div>
-							<div class="item" data-index="2"> MINSK  </div>
-							<div class="item" data-index="3"> YAWA </div>
-						</div>
-						<div class="select-button">
-							<div class="arrow"></div>
-						</div>
-						<input type="hidden" name="provider-item" value="0">
-					</div>  --><!-- mselect -->
-
-					<!-- <lable class="filter__label">Объем см^3<span class="custom-colon">:</span></lable>
-					<div class="filter__mselect" data-current="0">
-						<div class="values">
-							<div class="item" data-index="0"> Выбрать </div>
-							<div class="item" data-index="1"> 3000 </div>
-							<div class="item" data-index="2"> 6000  </div>
-							<div class="item" data-index="3"> 10000 </div>
-							<div class="item" data-index="4"> 20000 </div>
-						</div>
-						<div class="select-button">
-							<div class="arrow"></div>
-						</div>
-						<input type="hidden" name="capacity-item" value="0">
-					</div>
-
-					<lable class="filter__label">Модель <span class="custom-colon">:</span></lable>
-					<div class="filter__mselect" data-current="0">
-						<div class="values">
-							<div class="item" data-index="0"> Выбрать </div>
-							<div class="item" data-index="1"> YAMAHA </div>
-							<div class="item" data-index="2"> LOTUS  </div>
-							<div class="item" data-index="3"> HONDA </div>
-							<div class="item" data-index="4"> KAWASAKI </div>
-							<div class="item" data-index="5"> SUZUKI </div>
-							<div class="item" data-index="6"> DUCATTI </div>
-						</div>
-						<div class="select-button">
-							<div class="arrow"></div>
-						</div>
-						<input type="hidden" name="model-item" value="0">
-					</div> -->
+					<!-- selects (3 шт.) -->
 
 					<div class="filter__search">
 						<p class="filter__search-title"> Номер лота </p>

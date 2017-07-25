@@ -1,0 +1,71 @@
+/* Button with angle at left */
+.auctionButton {
+	display: flex;
+	cursor: pointer;
+}
+.auctionButton__base {
+	border-right: none;
+	border: 1px solid #C5C8CA;
+	font-size: 14px;
+	height: 24px;
+	text-align:  center;
+	text-transform: uppercase;
+	min-width: 140px;
+}
+.auctionButton__base--light {
+	background-color: white;
+	color: #2F4157;
+}
+.auctionButton__base--dark {
+	background-color: #2F4157;
+	color: white;
+}
+
+.auctionButton__title {
+	line-height: 20px;
+	margin-top: 4px;
+}
+.auctionButton__angle {
+	border: 13px solid transparent;
+	position: relative;
+}
+.auctionButton__angle::before {
+	content: '';
+	border: 13px solid transparent;
+	border-left: 10px solid white;
+	border-radius: 3px;
+	position: absolute;
+	left: -11px;
+	top: -13px;
+}
+
+.auctionButton__angle--light {
+	border-left: 10px solid #C5C8CA;
+}
+.auctionButton__angle--dark {
+	border-left: 10px solid #C5C8CA;
+}
+.auctionButton__angle--dark::before {
+	content: '';
+	border: 13px solid transparent;
+	border-left: 10px solid #2F4157;
+	border-radius: 3px;
+	position: absolute;
+	left: -11px;
+	top: -13px;
+}
+
+.btn-left-angle {
+	width: 134px;
+	height: 24px;
+	border: 1px solid #C5C8CA;
+	border-right: none;
+	text-transform: uppercase;
+	text-align:  center;
+	font-size: 14px;
+	color: #2F4157;
+}
+.btn-left-angle__title {
+	line-height: 20px;
+	margin-top: 4px;
+}

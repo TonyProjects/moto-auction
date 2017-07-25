@@ -7156,7 +7156,7 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right name
 		name = jQuery.cssProps[ origName ] ||
-			( jQuery.cssProps[ origName ] = Vendor-prefixropName( origName ) || origName );
+			( jQuery.cssProps[ origName ] = vendorPropName( origName ) || origName );
 
 		// gets hook for the prefixed version
 		// followed by the unprefixed version
