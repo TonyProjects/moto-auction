@@ -16,8 +16,7 @@ class Select {
 		this.select.className = 'select';
 		this.select.id = id;
 		this.select.setAttribute('data-current', 0);
-		this.select.setAttribute('data-state', 'hide');
-
+		this.isOpenList = false;
 		this.countItems = 0;
 
 		// label
@@ -63,6 +62,9 @@ class Select {
 			this.select.appendChild(angleWrapper);
 			this.select.appendChild(inpt);
 		}
+
+		// default
+		this.listeners = [];
 	}
 
 	/**********************************
@@ -84,12 +86,14 @@ class Select {
 		let 
 			self = this,
 			newItem = document.createElement('li');
+
 			newItem.className = 'select__items-item';
 			newItem.setAttribute('data-index', index);
 			newItem.setAttribute('data-value', item.sent);
 			newItem.appendChild( document.createTextNode(item.text) );
 			newItem.addEventListener('click', function(event) { 
-				self.changeCurrentItem(event.currentTarget);
+				if ( self.isOpenList )
+					self.changeCurrentItem(event.currentTarget);
 			});
 		this.items.push(newItem);
 		this.itemsContainer.appendChild(newItem);
@@ -195,20 +199,11 @@ class Select {
 
 			// create listener for select
 			this.select.addEventListener('click', function(event) {
-				if ( self.select.getAttribute('data-state') === 'hide' )
-					self.showList();
-				else
+				if ( self.isOpenList )
 					self.hideList();
+				else
+					self.showList();
 			});
-
-			// create listeners for items of select
-			this.items.forEach( function(value) {
-				value.addEventListener('click', function(event) {
-					if ( self.select.getAttribute('data-state') === 'show' )
-						self.changeCurrentItem(event.currentTarget);
-				});
-			});
-
 			this.isActive = true;
 		}
 	}
@@ -230,7 +225,7 @@ class Select {
 		
 		this.select.style.overflow = 'visible';
 		this.select.style.zIndex = 4;
-		this.select.setAttribute('data-state', 'show');
+		this.isOpenList = true;
 	}
 
 	/**********************************
@@ -250,7 +245,7 @@ class Select {
 
 		this.select.style.overflow = 'hidden';
 		this.select.style.zIndex = 3;
-		this.select.setAttribute('data-state', 'hide');
+		this.isOpenList = false;
 	}
 
 	/**********************************
@@ -263,7 +258,7 @@ class Select {
 		this.itemsContainer.style.top = (item.getAttribute('data-index') * (-27)) + 'px';
 
 		if ( this.isHaveListeners() )
-			this.tellListeners();
+			this.emitSelectEvent();
 	}
 
 
@@ -279,7 +274,7 @@ class Select {
 	*		
 	*/
 	isHaveListeners() {
-		return this.hasOwnProperty('listeners');
+		return !!this.listeners.length;
 	}
 
 	/**********************************
@@ -289,28 +284,22 @@ class Select {
 	*		newListener: HTMLElement
 			eventFor: string
 	*/
-	// addSelectListener( newListener, callback ) {
-	// 	if ( (newListener instanceof HTMLElement) 
-	// 	&&	 (true) ) {
-
-	// 		if ( !this.isHaveListeners() )
-	// 			this.listeners = [];
-
-	// 		this.listeners.push( newListener );
-	// 		newListener.addEventListener('changeSelectItem', callback);
-	// 	}
-	// }
+	addSelectListener( newListener, callback ) {
+		if ( (newListener instanceof HTMLElement) 
+		&&	 (typeof callback === 'function') ) {
+			this.listeners.push( newListener );
+			newListener.addEventListener('changeSelectItem', callback);
+		}
+	}
 
 	/**********************************
 	*	@todo
 	*		
 	*/
-// 	tellListeners( event ) {
-// 		let selectEvent = new Event('changeSelectItem');
-// 		for (let i = 0; i < this.listeners.length; i++) 
-// 		{
-// 			this.listeners[i].dispatchEvent( selectEvent );
-// 		}
-// 	}
+	emitSelectEvent( event ) {
+		let selectEvent = new Event('changeSelectItem');
+		for (let i = 0; i < this.listeners.length; i++)
+			this.listeners[i].dispatchEvent( selectEvent );
+	}
 
 } // Select

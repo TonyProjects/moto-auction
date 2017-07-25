@@ -191,7 +191,6 @@ class AuctionButton {
 		if (this.listeners.length) {
 			for (let i = 0; i < this.listeners.length; i++)
 				this.listeners[i].dispatchEvent( new Event(this.stateEvent) );
-			console.log('emit change button state');
 			return true;
 		} else return false;
 	}

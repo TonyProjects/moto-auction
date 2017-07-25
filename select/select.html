@@ -79,10 +79,12 @@
 				);
 			
 		jQuery(document).ready( function($) {
-			var selectContainer = document.getElementsByClassName('container')[0]
+			var selectContainer = document.getElementsByClassName('container')[0];
 
 			s.insertInto( selectContainer );
 			s.changeWidth(150);
+
+			s.addSelectListener( selectContainer, function(event) { console.log(event.target.className)} );
 
 			sTwo.insertInto( selectContainer );
 			sTwo.changeWidth(150);
