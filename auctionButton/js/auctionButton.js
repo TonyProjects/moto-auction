@@ -62,6 +62,8 @@ class AuctionButton {
 		this.state = false;
 		this.isInserted = false;
 		this.isListen = false;
+		this.listeners = [];
+		this.stateEvent = 'changeButtonState';
 	}
 
 	/**************************************************************************
@@ -137,7 +139,7 @@ class AuctionButton {
 		return this.insertIntoBefore( obj, obj.firstChild );
 	}
 
-	makeActive() {
+	makeActive( silence = false ) {
 		if (!this.state) {
 			let 
 				newBaseClases = this.button_base.className
@@ -150,9 +152,12 @@ class AuctionButton {
 			this.button_sendData.setAttribute('value', this.sendData);
 			this.state = true;
 		}
+		if ( !silence ) {
+			this.emitStateEvent();
+		}
 	}
 
-	makeInactive() {
+	makeInactive( silence = false ) {
 		if (this.state) {
 			let 
 				newBaseClases = this.button_base.className
@@ -165,6 +170,30 @@ class AuctionButton {
 			this.button_sendData.setAttribute('value', '');
 			this.state = false;
 		}
+		if ( !silence ) {
+			this.emitStateEvent();
+		}
+	}
+
+	addStateEventListener( newListener, handler ) {
+		if ((newListener instanceof HTMLElement)
+		&&	(typeof handler === 'function')) {
+
+			this.listeners.push(newListener);
+
+			newListener.addEventListener( this.stateEvent, handler );
+
+			return true;
+		} else return false;
+	}
+
+	emitStateEvent() {
+		if (this.listeners.length) {
+			for (let i = 0; i < this.listeners.length; i++)
+				this.listeners[i].dispatchEvent( new Event(this.stateEvent) );
+			console.log('emit change button state');
+			return true;
+		} else return false;
 	}
 }
 
@@ -214,40 +243,25 @@ class AuctionButtonCombiner extends AuctionButton {
 	}
 
 	makeAllActive() {
-		console.log('active')
 		if ( !this.stateAll ) {
 			for (let i = 0; i < this.children.length; i++)
-				this.children[i].makeActive();
+				this.children[i].makeActive(true);
 			this.stateAll = true;
 		}
 	}
 
 	makeAllInactive() {
-		console.log('inactive')
 		if ( this.stateAll ) {
 			for (let i = 0; i < this.children.length; i++)
-				this.children[i].makeInactive()
+				this.children[i].makeInactive(true)
 			this.stateAll = false;
 		}
 	}
 
-	emitStateAllEvent() {
-		if (this.listeners.length) {
-			for (let i = 0; i < this.listeners.length; i++)
-				this.listeners[i].dispatchEvent( new Event(this.stateAllEvent) );
-			return true;
-		} else return false;
-	}
-
-	addStateAllEventListener( newListener, callback ) {
-		if ((newListener instanceof HTMLElement)
-		&&	(typeof callback === 'function')) {
-
-			this.listeners.push(newListener);
-
-			newListener.addEventListener( this.stateAllEvent, callback );
-
-			return true;
-		} else return false;
+	addStateAllEventListener( newListener, handler ) {
+		this.children.forEach( function(value, index, array) {
+			value.addStateEventListener( newListener, handler );
+		});
+		this.addStateEventListener( newListener, handler );
 	}
 }

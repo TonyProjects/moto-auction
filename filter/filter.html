@@ -104,6 +104,12 @@
 
 			// AuctionButtons
 			auctionCombiner.insertIntoEndAll( auctionButtonContainer );
+			auctionCombiner.addStateAllEventListener( 
+				document.getElementById('filter'),
+				function(event) { 
+			 		event.target.dispatchEvent(new Event('submit') )
+				}
+			);
 		});
 	</script>
 </head>
@@ -113,7 +119,7 @@
 		<h1 class="page-title">статистика торгов</h1>
 	</div>
 
-	<form class="filter" action="javascript:void(null);">
+	<form id="filter" class="filter" action="javascript:void(null);">
 
 		<div class="filter__content">
 			<div class="filter-content__tab filter-content__tab--before"></div>
