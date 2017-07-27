@@ -33,74 +33,58 @@
 
 	<script type="text/javascript">
 		// selects
-			var 
-				providerSelect = new Select(
-					'provider',
-					{ name: 'provider-item', value: ''},
-					[
-						{ sent: '0', text: 'YAMAHA'},
-						{ sent: '1', text: 'MINSK'},
-						{ sent: '2', text: 'YAWA'}
-					],
-					'Производитель'
-				),
+		var 
+			// Производитель
+			providerSelect = new Select('provider', 
+				{ name: 'provider-item', value: ''},
+				[	{ sent: '0', text: 'YAMAHA'},
+					{ sent: '1', text: 'MINSK'},
+					{ sent: '2', text: 'YAWA'}
+				],'Производитель'
+			),
+			// Объем
+			capacitySelect = new Select('capacity',
+				{ name: 'capacity-item', value: ''},
+				[	{ sent: '0', text: '3000'},
+					{ sent: '1', text: '6000'},
+					{ sent: '2', text: '9000'}
+				],'Объем см^3'
+			),
+			// Модель
+			modelSelect = new Select('model',
+				{ name: 'model-item', value: ''},
+				[	{ sent: '0', text: 'LOTUS'},
+					{ sent: '1', text: 'KAWASAKI'},
+					{ sent: '2', text: 'HONDA'}
+				],'Модель'
+			);
+			selectsCombiner = new SelectCombiner( [providerSelect, capacitySelect, modelSelect] );
 
-				capacitySelect = new Select(
-					'capacity',
-					{ name: 'capacity-item', value: ''},
-					[
-						{ sent: '0', text: '3000'},
-						{ sent: '1', text: '6000'},
-						{ sent: '2', text: '9000'}
-					],
-					'Объем см^3'
-				),
-
-				modelSelect = new Select(
-					'model',
-					{ name: 'model-item', value: ''},
-					[
-						{ sent: '0', text: 'LOTUS'},
-						{ sent: '1', text: 'KAWASAKI'},
-						{ sent: '2', text: 'HONDA'}
-					],
-					'Модель'
-				);
-
-			// auction buttons
-			var
-				bds = new AuctionButton('bds-auction', 'bds', 'bds', 'bds'),
-
-				arai = new AuctionButton('arai-auction', 'arai', 'arai', 'arai'),
-
-				aucnet = new AuctionButton('aucnet-auction', 'aucnet', 'aucnet', 'aucnet'),
-
-				jba = new AuctionButton('jba-auction', 'jba', 'jba', 'jba');
-
-				auctionCombiner = new AuctionButtonCombiner(
-					'all-auction', 'all', 'all', 'all',
-					[bds, arai, aucnet, jba]
-				);
+		// auction buttons
+		var
+			bds = new AuctionButton('bds-auction', 'bds', 'bds', 'bds'),
+			arai = new AuctionButton('arai-auction', 'arai', 'arai', 'arai'),
+			aucnet = new AuctionButton('aucnet-auction', 'aucnet', 'aucnet', 'aucnet'),
+			jba = new AuctionButton('jba-auction', 'jba', 'jba', 'jba');
+			auctionCombiner = new AuctionButtonCombiner(
+				'all-auction', 'all', 'all', 'all',
+				[bds, arai, aucnet, jba]
+			);
 
 		jQuery(document).ready( function() {
 			var 
 				selectContainer = document.getElementsByClassName('filter-content__inputs--select')[0],
 				filterSearch = document.getElementsByClassName('filter__search')[0],
-
 				auctionButtonContainer = document.getElementsByClassName('filter-content__inputs--btn')[0];
 
 			// Selects
-			// Производитель
-			providerSelect.insertIntoBefore(selectContainer, filterSearch);
-			providerSelect.changeWidth(144);
-
-			// Объем
-			capacitySelect.insertIntoBefore(selectContainer, filterSearch);
-			capacitySelect.changeWidth(144);
-
-			// Модель
-			modelSelect.insertIntoBefore(selectContainer, filterSearch);
-			modelSelect.changeWidth(144);
+			selectsCombiner.insertIntoBeforeAll( selectContainer, filterSearch);
+			selectsCombiner.changeWidthAll( 144 );
+			selectsCombiner.addListenerForAll(
+				document.getElementById('filter'),
+				function(event) { 
+			 		event.target.dispatchEvent(new Event('submit') )
+				});
 
 			// AuctionButtons
 			auctionCombiner.insertIntoEndAll( auctionButtonContainer );
@@ -130,7 +114,7 @@
 						аукцион<span class="custom-colon">:</span>
 					</p>
 
-					<!-- auctionButtons (4 шт.), auctionButtonCombiner (шт.) -->
+					<!-- AuctionButtons (4 шт.), AuctionButtonCombiner (шт.) -->
 
 				</div>
 			</div>
@@ -143,7 +127,7 @@
 				<div class="filter-content-body__burger"></div>
 				<div class="filter-content-body__data filter-content__inputs--select">
 
-					<!-- selects (3 шт.) -->
+					<!-- Selects (3 шт.) -->
 
 					<div class="filter__search">
 						<p class="filter__search-title"> Номер лота </p>

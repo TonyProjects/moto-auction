@@ -41,6 +41,11 @@ class SliderRangeWrapper {
 		this.sliderNative.appendChild( this.inputMax );
 	}
 
+	/****************************************
+	*	@todo
+	*		using jQurty ui slider method with
+	*		param o this
+	****************************************/
 	toActive() {
 		let self = this;
 		jQuery(this.sliderNative).slider( {
@@ -57,8 +62,9 @@ class SliderRangeWrapper {
 
 	/****************************************
 	*	@param
-	*
+	*		parent: HTMLElement | jQuery object.
 	*	@todo
+	*		insert slider into end of parent
 	*
 	****************************************/	
 	insertIntoEnd( parent ) {
@@ -66,11 +72,28 @@ class SliderRangeWrapper {
 			parent = jQuery(parent);
 
 		if (parent instanceof jQuery) {
+			let self = this;
+
 			parent.append(this.sliderNative);
 			this.toActive();
+			this.sliderHandlers = jQuery(this.sliderNative).find('.ui-slider-handle');
+			this.sliderHandlers.mouseup( function(event) {
+				self.emitSliderChangeValue();
+			});
+
 			return true;
 		}
 		else return false;
+	}
+
+	emitSliderChangeValue() {
+		console.log('up');
+	}
+}
+
+class SliderRangeWrapperCombiner {
+	constructor( sliders ) {
+		
 	}
 }
 

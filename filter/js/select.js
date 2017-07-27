@@ -315,3 +315,38 @@ class Select {
 	}
 
 } // Select
+
+class SelectCombiner {
+	constructor( selects ) {
+		if (selects.hasOwnProperty('length'))
+			this.selects = selects;
+	}
+
+	addListenerForAll( newListener, callback ) {
+		let self = this;
+		this.selects.forEach( function( select ) {
+			select.addSelectListener( newListener, callback );
+		});
+	}
+
+	insertIntoEndAll( parent ) {
+		let self = this;
+		this.selects.forEach( function( select ) {
+			select.insertInto( parent );
+		});
+	}
+
+	insertIntoBeforeAll( parent, before ) {
+		let self = this;
+		this.selects.forEach( function( select ) {
+			select.insertIntoBefore( parent, before );
+		});
+	}
+
+	changeWidthAll( newWidth ) {
+		let self = this;
+		this.selects.forEach( function( select ) {
+			select.changeWidth( newWidth );
+		});
+	}
+}
