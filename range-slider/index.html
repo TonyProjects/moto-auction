@@ -13,18 +13,17 @@
 	<script src="js/range-slider.js"></script>
 	<script>
 		var 
-			s = new SliderRangeWrapper('newRangeSlider', {min:10, max:20}),
-			s2 = new SliderRangeWrapper('newRangeSlider2', {min:100, max:200}),
-			s3 = new SliderRangeWrapper('newRangeSLider3', {min:1000, max:2000}),
+			ballSlider = new SliderRangeWrapper('newRangeSlider', {min:10, max:20}),
+			yearSlider = new SliderRangeWrapper('newRangeSlider2', {min:100, max:200}),
+			anythingSlider = new SliderRangeWrapper('newRangeSLider3', {min:1000, max:2000}),
 
-			sCombiner = new SliderRangeWrapperCombiner( [s, s2, s3] );
+			sCombiner = new SliderRangeWrapperCombiner( [ballSlider, yearSlider, anythingSlider] );
 
 		jQuery(document).ready( function() {
-
 			sCombiner.createSameWrappers( {type: 'div', className: 'slider-wrapper'} );
 			sCombiner.createLabels( [ 'Оценка', 'Год выпуска', 'Что-то еще'] );
 			sCombiner.insertAllIntoEnd( jQuery('.container')[0] );
-
+			sCombiner.addListenersAll( document.body, function(event) { console.log( 'up' ); });
 		});
 	</script>
 </head>

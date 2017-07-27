@@ -1,53 +1,184 @@
-$(document).ready( function() {
-	/* range-slider --- begin */
+/*
+*	included: jquery-1.12.4.js, jquery-ui.min.js (jquery-ui.min.css)
+*/
+class SliderRangeWrapper {
 
-	var slider_ball = $('#range-slider--ball');
-	slider_ball.slider({
-		range: true,
-		min: 0,
-		max: 100,
-		values: [35, 65],
-		slide: function (event, ui) {
-			slider_ball.children('.slider-value').first().val(ui.values[0]).next().val(ui.values[1]);
+	/***********************************
+	*	@param
+	*		sliderId: string.
+	*		sliderParam: object. look like this: {min: number, max: number}
+	*
+	*/
+	constructor( sliderId, sliderParams ) {
+		this.sliderNative = document.createElement('div');
+		this.sliderNative.id = sliderId;
+		this.sliderNative.className = 'slider';
+
+		this.mnv = sliderParams.min;
+		this.mxv = sliderParams.max;
+		this.rangeLength = this.mxv - this.mnv;
+		this.defv = [
+			parseInt(this.rangeLength * 0.30 + this.mnv),
+			parseInt(this.rangeLength * 0.75 + this.mnv)
+		];
+
+		// inputs
+		this.inputMin = document.createElement('input');
+		this.inputMin.id = this.sliderNative.id + '--min';
+		this.inputMin.className = 'slider-value';
+		this.inputMin.name = this.sliderNative.id + '-name--min';
+		this.inputMin.value = this.defv[ 0 ];
+		this.inputMin.type = 'text';
+
+		this.inputMax = document.createElement('input');
+		this.inputMax.id = this.sliderNative.id + '--max';
+		this.inputMax.className = 'slider-value';
+		this.inputMax.name = this.sliderNative.id + '-name--max';
+		this.inputMax.value = this.defv[ 1 ];
+		this.inputMax.type = 'text';
+
+		this.sliderNative.appendChild( this.inputMin );
+		this.sliderNative.appendChild( this.inputMax );
+
+		this.listeners = [];
+		this.event = 'moveHandle';
+	}
+
+	/****************************************
+	*	@param
+	*		wrapper: object. Look like this:
+	*		{type: string ('div' | 'p' | other), ClassName: string}
+	*	@todo
+	*		Creating wrapper that will be contain
+	*		slider and label
+	****************************************/
+	createWrapper( wrapper ) {		
+		if ( typeof wrapper === 'object' ) {
+			console.log('wrapper is create');
+			this.wrapper = document.createElement( wrapper.type );
+			this.wrapper.className = wrapper.className;
 		}
-	});
-	slider_ball.children("input")
-		.first().val(slider_ball.slider("values", 0))
-		.next().val(slider_ball.slider("values", 1));
+	}
 
-	var slider_year = $('#range-slider--year');
-	slider_year.slider({
-		range: true,
-		min: 1900,
-		max: 2017,
-		values: [1940, 1980],
-		slide: function (event, ui) {
-			var value = slider_year.children('.slider-value');
-			var left = slider_year.children('span');
-			value
-				.first().val(ui.values[0])
-				.next().val(ui.values[1]);
+	/****************************************
+	*	@param
+	*		text: string.
+	*		className: string.
+	*	@todo
+	*		Creating label that will be inserted
+	*		before slider
+	****************************************/
+	createLabel( text, className ) {
+		this.label = document.createElement('div');
+		this.label.appendChild( document.createTextNode( text ) );
+
+		if ( className )
+			this.label.className = className;
+		else this.label.className = 'filter-label';
+	}
+
+	/****************************************
+	*	@todo
+	*		using jQurty ui slider method with
+	*		param o this
+	****************************************/
+	toActive() {
+		let self = this;
+		jQuery(this.sliderNative).slider( {
+			range: true,
+			min: this.mnv,
+			max: this.mxv,
+			values: [ this.defv[ 0 ], this.defv[ 1 ] ],
+			slide: function(event, ui) {
+				jQuery(self.inputMin).val( ui.values[ 0 ] );
+				jQuery(self.inputMax).val( ui.values[ 1 ] );
+			}
+		});
+	}
+
+	/****************************************
+	*	@param
+	*		parent: HTMLElement | jQuery object.
+	*	@todo
+	*		insert slider into end of parent
+	*
+	****************************************/	
+	insertIntoEnd( parent ) {
+		if (parent instanceof HTMLElement)
+			parent = jQuery(parent);
+
+		if (parent instanceof jQuery) {
+			let self = this;
+
+			if ( this.wrapper ) {
+				if ( this.label )
+					this.wrapper.appendChild( this.label );
+				this.wrapper.appendChild( this.sliderNative );
+				parent.append( this.wrapper );
+			} else {
+				if ( this.label )
+					parent.append( this.label );
+				parent.append(this.sliderNative);
+			}
+
+			this.toActive();
+			this.sliderHandlers = jQuery(this.sliderNative).find('.ui-slider-handle');
+
+			this.sliderHandlers.mouseup( function(event) {
+				self.emitSliderChangeValue();
+			});
+
+			return true;
 		}
-	});
-	slider_year.children("input")
-		.first().val(slider_year.slider("values", 0))
-		.next().val(slider_year.slider("values", 1));
+		else return false;
+	}
 
-	var slider_some =$('#range-slider--some'); 
-	slider_some.slider({
-		range: true,
-		min: 0,
-		max: 100,
-		values: [35, 65],
-		slide: function (event, ui) {
-			slider_some.children('.slider-value')
-				.first().val(ui.values[0])
-				.next().val(ui.values[1]);
+	addListener( newListener, callback ) {
+		if ( (newListener instanceof HTMLElement) 
+		&&	 (typeof callback === 'function') ) {
+			this.listeners.push( newListener );
+			newListener.addEventListener( this.event, callback );
 		}
-	});
-	slider_some.children("input")
-		.first().val(slider_some.slider("values", 0))
-		.next().val(slider_some.slider("values", 1));
+	}
 
-	/* range-slider --- end */
-});
+	/**********************************
+	*	@todo
+	*		
+	*/
+	emitSliderChangeValue() {
+		for (let i = 0; i < this.listeners.length; i++)
+			this.listeners[i].dispatchEvent( new Event(this.event) );
+	}
+}
+
+class SliderRangeWrapperCombiner {
+	constructor( sliders ) {
+		if ( sliders.hasOwnProperty('length') )
+			this.sliders = sliders;
+	}
+
+	addListenersAll( newListener, callback ) {
+		this.sliders.forEach( function( slider ) {
+			slider.addListener( newListener, callback );
+		});
+	}
+
+	createSameWrappers ( wrapper ) {
+		this.sliders.forEach( function( slider ) {
+			slider.createWrapper( wrapper );
+		});
+	}
+
+	createLabels( labels, className ) {
+		this.sliders.forEach( function( slider, id ) {
+			slider.createLabel( labels[ id ], className );
+		});
+	}
+
+	insertAllIntoEnd( parent ) {
+		this.sliders.forEach( function( slider ) {
+			slider.insertIntoEnd( parent );
+		});
+	}
+}
+

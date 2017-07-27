@@ -41,6 +41,7 @@ class SliderRangeWrapper {
 		this.sliderNative.appendChild( this.inputMax );
 
 		this.listeners = [];
+		this.event = 'moveHandle';
 	}
 
 	/****************************************
@@ -123,22 +124,30 @@ class SliderRangeWrapper {
 			this.toActive();
 			this.sliderHandlers = jQuery(this.sliderNative).find('.ui-slider-handle');
 
-			if ( this.listeners.length )
-				this.sliderHandlers.mouseup( function(event) {
-					self.emitSliderChangeValue();
-				});
+			this.sliderHandlers.mouseup( function(event) {
+				self.emitSliderChangeValue();
+			});
 
 			return true;
 		}
 		else return false;
 	}
 
-	addListener( newListner ) {
-
+	addListener( newListener, callback ) {
+		if ( (newListener instanceof HTMLElement) 
+		&&	 (typeof callback === 'function') ) {
+			this.listeners.push( newListener );
+			newListener.addEventListener( this.event, callback );
+		}
 	}
 
+	/**********************************
+	*	@todo
+	*		
+	*/
 	emitSliderChangeValue() {
-
+		for (let i = 0; i < this.listeners.length; i++)
+			this.listeners[i].dispatchEvent( new Event(this.event) );
 	}
 }
 
@@ -146,6 +155,12 @@ class SliderRangeWrapperCombiner {
 	constructor( sliders ) {
 		if ( sliders.hasOwnProperty('length') )
 			this.sliders = sliders;
+	}
+
+	addListenersAll( newListener, callback ) {
+		this.sliders.forEach( function( slider ) {
+			slider.addListener( newListener, callback );
+		});
 	}
 
 	createSameWrappers ( wrapper ) {

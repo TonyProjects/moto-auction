@@ -15,21 +15,25 @@
 
 	<!-- For select class -->
 	<link rel="stylesheet" type="text/css" href="css/select.css">
+
 	<!-- For AuctionButton class -->
 	<link rel="stylesheet" type="text/css" href="css/auctionButton.css">
 
+	<!-- For SliderRangeWrapper class -->
+	<link rel="stylesheet" type="text/css" href="css/range-slider.css">
+
 	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-	<script src="js/range-slider.js"></script>
-	<script type="text/javascript" src="js/mselect.js"></script>
-	<script type="text/javascript" src="js/mbtn-langl.js"></script>
 	<script type="text/javascript" src="js/options.js"></script>
 
-	<!-- Select class -->
+	<!-- Select, SelectCombiner clases -->
 	<script type="text/javascript" src="js/select.js"></script>
 
 	<!-- AuctionButton, AuctionButtonCombiner clases -->
 	<script type="text/javascript" src="js/auctionButton.js"></script>
+
+	<!-- SliderRangeWrapper, SliderRangeWrapperCombiner classes -->
+	<script src="js/range-slider.js"></script>
 
 	<script type="text/javascript">
 		// selects
@@ -71,29 +75,39 @@
 				[bds, arai, aucnet, jba]
 			);
 
+		// range-sliders
+		var 
+			ballSlider = new SliderRangeWrapper('newRangeSlider', {min:10, max:20}),
+			yearSlider = new SliderRangeWrapper('newRangeSlider2', {min:100, max:200}),
+			anythingSlider = new SliderRangeWrapper('newRangeSLider3', {min:1000, max:2000}),
+
+			sCombiner = new SliderRangeWrapperCombiner( [ballSlider, yearSlider, anythingSlider] );
+
 		jQuery(document).ready( function() {
 			var 
 				selectContainer = document.getElementsByClassName('filter-content__inputs--select')[0],
 				filterSearch = document.getElementsByClassName('filter__search')[0],
-				auctionButtonContainer = document.getElementsByClassName('filter-content__inputs--btn')[0];
+				auctionButtonContainer = document.getElementsByClassName('filter-content__inputs--btn')[0],
+
+				eventTurget = document.getElementById('filter'),
+				event = function(event) { 
+			 		event.target.dispatchEvent(new Event('submit') )
+				}
 
 			// Selects
 			selectsCombiner.insertIntoBeforeAll( selectContainer, filterSearch);
 			selectsCombiner.changeWidthAll( 144 );
-			selectsCombiner.addListenerForAll(
-				document.getElementById('filter'),
-				function(event) { 
-			 		event.target.dispatchEvent(new Event('submit') )
-				});
+			selectsCombiner.addListenerForAll( eventTurget, event);
 
 			// AuctionButtons
 			auctionCombiner.insertIntoEndAll( auctionButtonContainer );
-			auctionCombiner.addStateAllEventListener( 
-				document.getElementById('filter'),
-				function(event) { 
-			 		event.target.dispatchEvent(new Event('submit') )
-				}
-			);
+			auctionCombiner.addStateAllEventListener( eventTurget, event );
+
+			// range-sliders
+			sCombiner.createSameWrappers( {type: 'div', className: 'slider-wrapper'} );
+			sCombiner.createLabels( [ 'Оценка', 'Год выпуска', 'Что-то еще'] );
+			sCombiner.insertAllIntoEnd( jQuery('.filter-content__inputs--slider')[0] );
+			sCombiner.addListenersAll( eventTurget, event );
 		});
 	</script>
 </head>
@@ -127,7 +141,7 @@
 				<div class="filter-content-body__burger"></div>
 				<div class="filter-content-body__data filter-content__inputs--select">
 
-					<!-- Selects (3 шт.) -->
+					<!-- Select (3 шт.), SelectCombiner(шт.)-->
 
 					<div class="filter__search">
 						<p class="filter__search-title"> Номер лота </p>
@@ -144,23 +158,7 @@
 				<div class="filter-content-body__burger"></div>
 				<div class="filter-content-body__data filter-content__inputs--slider">
 
-					<lable class="filter__label">Оценка<span class="custom-colon">:</span></lable>
-					<div class="slider" id="range-slider--ball" style="width: 150px; height: 5px;"> 
-						<input class="slider-value" id="range--ball-from" type="text" value="" name="">
-						<input class="slider-value" id="range--ball-to" type="text" value="" name="">
-					</div>
-
-					<label class="filter__label filter__label--range-slider">год выпуска<span class="custom-colon">:</span></label>
-					<div class="slider" id="range-slider--year" style="width: 150px; height: 5px;">
-						<input readonly class="slider-value" id="range--year-from" type="text" value="" name="">
-						<input readonly class="slider-value" id="range--year-to" type="text" value="" name="">
-					</div>	
-
-					<label class="filter__label filter__label--range-slider">что-то еще<span class="custom-colon">:</span></label>
-					<div class="slider" id="range-slider--some" style="width: 150px; height: 5px;">
-						<input class="slider-value" id="range--some-from" type="text" value="" name="">
-						<input class="slider-value" id="range--some-to" type="text" value="" name="">
-					</div>	
+					<!-- SliderRangeWrapper (3 шт.), SliderRangeWrapperCombiner (шт.) -->
 
 				</div>
 			</div>
