@@ -39,6 +39,41 @@ class SliderRangeWrapper {
 
 		this.sliderNative.appendChild( this.inputMin );
 		this.sliderNative.appendChild( this.inputMax );
+
+		this.listeners = [];
+	}
+
+	/****************************************
+	*	@param
+	*		wrapper: object. Look like this:
+	*		{type: string ('div' | 'p' | other), ClassName: string}
+	*	@todo
+	*		Creating wrapper that will be contain
+	*		slider and label
+	****************************************/
+	createWrapper( wrapper ) {		
+		if ( typeof wrapper === 'object' ) {
+			console.log('wrapper is create');
+			this.wrapper = document.createElement( wrapper.type );
+			this.wrapper.className = wrapper.className;
+		}
+	}
+
+	/****************************************
+	*	@param
+	*		text: string.
+	*		className: string.
+	*	@todo
+	*		Creating label that will be inserted
+	*		before slider
+	****************************************/
+	createLabel( text, className ) {
+		this.label = document.createElement('div');
+		this.label.appendChild( document.createTextNode( text ) );
+
+		if ( className )
+			this.label.className = className;
+		else this.label.className = 'filter-label';
 	}
 
 	/****************************************
@@ -74,33 +109,61 @@ class SliderRangeWrapper {
 		if (parent instanceof jQuery) {
 			let self = this;
 
-			parent.append(this.sliderNative);
+			if ( this.wrapper ) {
+				if ( this.label )
+					this.wrapper.appendChild( this.label );
+				this.wrapper.appendChild( this.sliderNative );
+				parent.append( this.wrapper );
+			} else {
+				if ( this.label )
+					parent.append( this.label );
+				parent.append(this.sliderNative);
+			}
+
 			this.toActive();
 			this.sliderHandlers = jQuery(this.sliderNative).find('.ui-slider-handle');
-			this.sliderHandlers.mouseup( function(event) {
-				self.emitSliderChangeValue();
-			});
+
+			if ( this.listeners.length )
+				this.sliderHandlers.mouseup( function(event) {
+					self.emitSliderChangeValue();
+				});
 
 			return true;
 		}
 		else return false;
 	}
 
+	addListener( newListner ) {
+
+	}
+
 	emitSliderChangeValue() {
-		console.log('up');
+
 	}
 }
 
 class SliderRangeWrapperCombiner {
 	constructor( sliders ) {
-		
+		if ( sliders.hasOwnProperty('length') )
+			this.sliders = sliders;
+	}
+
+	createSameWrappers ( wrapper ) {
+		this.sliders.forEach( function( slider ) {
+			slider.createWrapper( wrapper );
+		});
+	}
+
+	createLabels( labels, className ) {
+		this.sliders.forEach( function( slider, id ) {
+			slider.createLabel( labels[ id ], className );
+		});
+	}
+
+	insertAllIntoEnd( parent ) {
+		this.sliders.forEach( function( slider ) {
+			slider.insertIntoEnd( parent );
+		});
 	}
 }
 
-var s = new SliderRangeWrapper('newRangeSlider', {min:10, max:20})
-
-jQuery(document).ready( function() {
-
-		s.insertIntoEnd( jQuery('.container')[0] );
-
-});

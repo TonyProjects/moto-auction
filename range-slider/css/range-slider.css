@@ -33,3 +33,24 @@ input[type="text"].slider-value {
 	display: inline;
 	border: none;
 }
+
+
+/********* other *********/
+.filter-label {
+    float: left;
+    display: block;
+    margin: 0 15px 0 30px;
+    line-height: 26px;
+    text-transform: uppercase;
+    font-family: 'MullerBold';
+    font-size: 14px;
+    color: #5A728B;
+}
+.filter-label::after {
+	content: ':';
+}
+.slider-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

@@ -11,13 +11,28 @@
 	<script src="js/jquery-1.12.4.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/range-slider.js"></script>
+	<script>
+		var 
+			s = new SliderRangeWrapper('newRangeSlider', {min:10, max:20}),
+			s2 = new SliderRangeWrapper('newRangeSlider2', {min:100, max:200}),
+			s3 = new SliderRangeWrapper('newRangeSLider3', {min:1000, max:2000}),
 
+			sCombiner = new SliderRangeWrapperCombiner( [s, s2, s3] );
+
+		jQuery(document).ready( function() {
+
+			sCombiner.createSameWrappers( {type: 'div', className: 'slider-wrapper'} );
+			sCombiner.createLabels( [ 'Оценка', 'Год выпуска', 'Что-то еще'] );
+			sCombiner.insertAllIntoEnd( jQuery('.container')[0] );
+
+		});
+	</script>
 </head>
 <body>
 
 <h1 class="page-title" style="text-align: center">Range slider</h1>
 
-<div class="container" style="margin-top: 30px">
+<div class="container" style="margin-top: 30px; display: flex;">
 	
 </div>
 
