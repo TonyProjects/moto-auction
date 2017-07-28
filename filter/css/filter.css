@@ -322,6 +322,12 @@ input[type="submit"].filter__search-send {
 	border-left: none;
 	padding: 4px 0;
 }
+.m-option__close-img {
+	opacity: 1;
+}
+.m-option__close-img:hover {
+	opacity: 0.5;
+}
 .m-option__angle {
 	position: relative;
 	border: 13px solid transparent;
@@ -329,7 +335,7 @@ input[type="submit"].filter__search-send {
 }
 .m-option__angle::before {
 	content: '';
-	display: blo4k;
+	display: block;
 	position: absolute;
 	border: 12px solid transparent;
 	border-right: 10px solid white;

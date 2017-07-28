@@ -51,7 +51,7 @@ jQuery(document).ready( function() {
 		filterSearch = document.getElementsByClassName('filter__search')[0],
 		auctionButtonContainer = document.getElementsByClassName('filter-content__inputs--btn')[0],
 
-		eventTurget = document.getElementById('filter'),
+		eventTarget = document.getElementById('filter'),
 		event = function(event) { 
 	 		event.target.dispatchEvent(new Event('submit') )
 		}
@@ -59,15 +59,15 @@ jQuery(document).ready( function() {
 	// Selects
 	selectsCombiner.insertIntoBeforeAll( selectContainer, filterSearch);
 	selectsCombiner.changeWidthAll( 144 );
-	selectsCombiner.addListenerForAll( eventTurget, event);
+	selectsCombiner.addListenerForAll( eventTarget, event);
 
 	// AuctionButtons
 	auctionCombiner.insertIntoEndAll( auctionButtonContainer );
-	auctionCombiner.addStateAllEventListener( eventTurget, event );
+	auctionCombiner.addStateAllEventListener( eventTarget, event );
 
 	// range-sliders
 	sCombiner.createSameWrappers( {type: 'div', className: 'slider-wrapper'} );
 	sCombiner.createLabels( [ 'Оценка', 'Год выпуска', 'Что-то еще'] );
 	sCombiner.insertAllIntoEnd( jQuery('.filter-content__inputs--slider')[0] );
-	sCombiner.addListenersAll( eventTurget, event );
+	sCombiner.addListenersAll( eventTarget, event );
 });

@@ -1,4 +1,71 @@
-class AuctionButton {
+class Common {
+	constructor() {
+		this.tasks = [];
+		this.taskCount = 0;
+	}
+
+	/****************************************
+	*	@param
+	*		t (task): function.
+	*		an (argumentsName): object of strings 
+	*			where each string is method of this (class instance)
+	*		aa (additionalArguments): object. look like this:
+	*			{ argumentName: argumentValue, ...}
+	*	@todo
+	*		add new task for executing
+	***********************************/
+	addTask( t, an, aa ) {
+		if ( typeof t === 'function' ) {	
+			this.tasks.push({ 
+				task: t,
+				arguments: an,
+				additional: aa 
+			});
+			this.taskCount++;
+		}
+	}
+	/***************************************
+	*	@param
+	*		i (index of task): number.
+	*	@todo
+	*		Execute task with number i
+	***************************************/
+	execTask( i ) {
+		return this.tasks[ i ].task( 
+			this.getPropertiesAsObj( this.tasks[ i ].arguments ),
+			this.tasks[ i ].additional
+		) || true;
+	}
+
+	/***************************************
+	*	@todo
+	*		execute all tasks in order
+	***************************************/	
+	execAllTasks() {
+		let i;
+		for (i = 0; i < this.taskCount; i++)
+			this.execTask( i );
+	}
+
+	/***************************************	
+	*	@param
+	*		p (propertiesName): string array.
+	*	@todo
+	*		transform this: [ propertyName, ... ]
+	*		to: { propertyName: propertyValue of current object, ...}	
+	***************************************/	
+	getPropertiesAsObj( p ) {
+		if ( p.hasOwnProperty('length') ) {
+			let i, args = {};
+			for (i = 0; i < p.length; i++)
+				if ( p[ i ] in this )
+					args[ p[i] ] = this[ p[i] ];
+			return args;
+		}
+	}
+}
+
+class AuctionButton extends Common {
 	/**************************************************************************
 	*	@param
 	*		id: 		string. Button id
@@ -18,6 +85,8 @@ class AuctionButton {
 	*		
 	***************************************************************************/
 	constructor(id, titleText, inputName, sendData) {
+		super();
+
 		this.sendData = sendData;
 		// auctionButton
 		this.button = document.createElement('div');
@@ -68,7 +137,7 @@ class AuctionButton {
 
 	/**************************************************************************
 	*	@todo
-	*		Add the click event listener for button
+	*		Add listener for button
 	**************************************************************************/
 	createListener() {
 		if ( !this.isListen ){
@@ -151,9 +220,10 @@ class AuctionButton {
 			this.button_angle.setAttribute('class', newAngleClases);
 			this.button_sendData.setAttribute('value', this.sendData);
 			this.state = true;
-		}
-		if ( !silence ) {
-			this.emitStateEvent();
+
+			if ( !silence )
+				this.emitStateEvent();
+
 		}
 	}
 
@@ -169,9 +239,10 @@ class AuctionButton {
 			this.button_angle.setAttribute('class', newAngleClases);
 			this.button_sendData.setAttribute('value', '');
 			this.state = false;
-		}
-		if ( !silence ) {
-			this.emitStateEvent();
+
+			if ( !silence )
+				this.emitStateEvent();
+
 		}
 	}
 
@@ -187,6 +258,9 @@ class AuctionButton {
 	}
 
 	emitStateEvent() {
+		// execution tasks
+		this.execAllTasks();
+
 		if (this.listeners.length) {
 			for (let i = 0; i < this.listeners.length; i++)
 				this.listeners[i].dispatchEvent( new Event(this.stateEvent) );
@@ -195,6 +269,7 @@ class AuctionButton {
 	}
 }
 
+// AuctionButton is extended with Common class
 class AuctionButtonCombiner extends AuctionButton {
 	constructor( id, titleText, inputName, sendData, children ) {
 		super(id, titleText, inputName, sendData);
@@ -261,5 +336,18 @@ class AuctionButtonCombiner extends AuctionButton {
 			value.addStateEventListener( newListener, handler );
 		});
 		this.addStateEventListener( newListener, handler );
+	}
+
+	addTaskForAll( t, an, aa ) {
+		this.children.forEach( function( child ) {
+			child.addTask(  t, an, aa );
+		});
+		this.addTask( t, an, aa );
+	}
+
+	execAllTasksAll() {
+		this.children.forEach( function( child ) {
+			child.execAllTasks();
+		})
 	}
 }

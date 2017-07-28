@@ -7,6 +7,17 @@
 	<!-- styles -->
 	<link rel="stylesheet" type="text/css" href="css/auctionButton.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<style type="text/css">
+		.drowWrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 50px;
+			background-color: #666;
+			color: #e2e2e2;
+			font-family: Arial;
+		}
+	</style>
 
 	<!-- scripts -->
 	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
@@ -19,12 +30,23 @@
 			aucnet = new AuctionButton('aucnet-auction', 'aucnet', 'aucnet', 'aucnet'),
 			buttonCombiner = new AuctionButtonCombiner('all-auction', 'all', 'all', 'all', [ bds, aucnet ]);
 
+		var 
+			args = ['state', 'sendData'];
+			drawSomething = function( args, aargs ) {
+			let str = "";
+
+			if ( args.state )
+				console.log( args.state, args.sendData );
+			else console.log( args.state );
+		}
+
 		jQuery(document).ready( function() {
 			let container = document.getElementsByClassName('container')[0];
 
-			bds.insertIntoEnd(container);
-			aucnet.insertIntoEnd(container);
-			buttonCombiner.insertIntoEnd(container);
+			buttonCombiner.addTaskForAll( drawSomething, args);
+
+			buttonCombiner.insertIntoEndAll(container);
+
 		});
 	</script>
 
