@@ -210,11 +210,11 @@ var
 
 			el = (el instanceof jQuery) ? el : jQuery(el.currentTarget),
 
-			key = type + '-' + el.attr('data-value'),
+			key = type + '-' + el.attr('data-value').replace(' ', ''),
 
 			template = '\
 				<div class="params__property" id="' + key + '">\
-					<p class="property__text"> ' + el.attr('data-value') + ' </p>\
+					<p class="property__text"> ' + el.text() + ' </p>\
 					<div class="property__close">\
 						<?xml version="1.0" encoding="iso-8859-1"?>\
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 371.23 371.23" style="enable-background:new 0 0 371.23 371.23;" xml:space="preserve" width="14px" height="14px">\
