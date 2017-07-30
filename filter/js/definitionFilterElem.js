@@ -89,9 +89,19 @@ jQuery(document).ready( function($) {
 		['id|type', 'inputMax|max', 'inputMin|min'], 
 		{ type: 'rangeSliser' });
 
+	// search
+	jQuery('.filter__search-send').eq(0).click( function(event) {
+		let el = jQuery('.filter__search-value').first();
+		add_option( el.val(), 'search' );
+	})
+
 	document.getElementById('to-default-filter').addEventListener('click', function(event) {
 		selectsCombiner.toDefaultAll( true );
 		auctionCombiner.makeAllInactive( true );		
-		auctionCombiner.makeInactive( );
+		auctionCombiner.makeInactive();
+		sCombiner.setValueForAll( -999, 9999999 );
+
+		jQuery('.filter__search-value').first().val('');
+		clear_options();
 	})
 });

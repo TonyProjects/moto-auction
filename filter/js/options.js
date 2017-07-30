@@ -3,6 +3,24 @@
 *		jQuery
 *******************************************************************************/
 
+	function add_option( text, type ) {
+		var 
+			options = jQuery(".filter-content__options").eq(0),
+			close = '<img class="m-option__close-img" src="img/svg/cancel.svg" />',
+			option = options.children('#' + type);
+
+		if ( !option.length ) {
+			options.append('\
+				<div class="m-option" id="' + type + '"> \
+					<div class="m-option__angle"></div> \
+					<div class="m-option__value"> <p>' + text + '</p></div> \
+					<div class="m-option__close"> ' + close + ' </div> \
+				</div> \
+			');
+		}
+		else option.remove();
+	}
+
 	// For auctions buttons
 	function add_buttonOption( obj, a ) {
 		var 

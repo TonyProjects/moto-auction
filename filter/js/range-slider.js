@@ -137,22 +137,12 @@ class SliderRangeWrapper extends Common {
 		else return false;
 	}
 
-	// addListenerForEvent( newListener, callback ) {
-	// 	if ( (newListener instanceof HTMLElement) 
-	// 	&&	 (typeof callback === 'function') ) {
-	// 		this.listeners.push( newListener );
-	// 		newListener.addEventListener( this.event, callback );
-	// 	}
-	// }
-
-	/**********************************
-	*	@todo
-	*		
-	*/
-	// emitEventForListeners() {
-	// 	for (let i = 0; i < this.listeners.length; i++)
-	// 		this.listeners[i].dispatchEvent( new Event(this.event) );
-	// }
+	setValue( min, max){
+		min = (min < this.mnv) ? this.mnv : (min > this.mxv) ? this.mxv : min;
+		max = ( max < min ) ? min : (max > this.mxv) ? this.mxv : max;
+		this.inputMin.value = min;
+		this.inputMax.value = max;
+	}
 }
 
 class SliderRangeWrapperCombiner {
@@ -188,6 +178,12 @@ class SliderRangeWrapperCombiner {
 	addTaskForAll( t, an, aa ) {
 		this.children.forEach( function( child ) {
 			child.addTask(  t, an, aa );
+		});
+	}
+
+	setValueForAll( min, max) {
+		this.children.forEach( function( child ) {
+			child.setValue( min, max );
 		});
 	}
 }
