@@ -53,9 +53,12 @@ input[type="submit"].filter__search-send {
 	border-color: rgb( 204, 208, 212 );
 	border-style: solid;
 	background-color: rgb( 255, 255, 255 );
-	box-shadow: 1.176px 1.618px 18px 0px rgb( 196, 201, 206 );
 	width: 128px;
 	height: 25px;
+}
+.search-lot:hover,
+.search-lot:active {
+	box-shadow: 1.176px 1.618px 18px 0px rgb( 196, 201, 206 );
 }
 input[type="text"].search-lot__text {
 	width: 85px;
