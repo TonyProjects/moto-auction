@@ -56,8 +56,8 @@ jQuery(document).ready( function($) {
 
 		eventTarget = document.getElementById('filter'),
 		event = function(event) { 
-	 		event.target.dispatchEvent(new Event('submit') )
-		}
+	 		event.target.dispatchEvent(new Event('submit') );
+		};
 
 
 	// Selects

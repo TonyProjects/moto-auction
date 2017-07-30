@@ -88,7 +88,8 @@ class Select extends Common {
 			this.select.appendChild( this.itemsContainer );
 		}
 
-		index = !index ? this.countItems : index;
+		if ( !index )
+			index = this.countItems;
 
 		let 
 			self = this,
@@ -126,7 +127,7 @@ class Select extends Common {
 	*		remove all items of select
 	*/
 	removeItems() {
-		for (let i = 1; i < this.countItems; i++)
+		for (let i = 1; i < this.items.length; i++)
 		{
 			this.items[i].remove();
 		}
@@ -134,7 +135,7 @@ class Select extends Common {
 		while (this.items.length)
 			this.items.pop();
 
-		this.countItems = 0;
+		this.countItems = 1;
 	}
 
 	/**********************************

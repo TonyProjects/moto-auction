@@ -115,7 +115,7 @@ class Common {
 		if ( (newListener instanceof HTMLElement) 
 		&&	 (typeof callback === 'function') ) {
 			this.listeners.push( newListener );
-			newListener.addEventListener('changeSelectItem', callback);
+			newListener.addEventListener( this.event, callback );
 		}
 	}
 
