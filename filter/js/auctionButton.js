@@ -162,6 +162,7 @@ class AuctionButton extends Common {
 			this.button_sendData.setAttribute('value', this.sendData);
 			this.state = true;
 
+			this.execAllTasks();
 			if ( !silence )
 				this.emitEventForListeners();
 
@@ -181,6 +182,7 @@ class AuctionButton extends Common {
 			this.button_sendData.setAttribute('value', '');
 			this.state = false;
 
+			this.execAllTasks();
 			if ( !silence )
 				this.emitEventForListeners();
 
@@ -234,16 +236,16 @@ class AuctionButtonCombiner extends AuctionButton {
 		} else return false;
 	}
 
-	makeAllActive() {
-		if ( !this.stateAll ) {
+	makeAllActive( sa = false) {
+		if ( !this.stateAll || sa) {
 			for (let i = 0; i < this.children.length; i++)
 				this.children[i].makeActive(true);
 			this.stateAll = true;
 		}
 	}
 
-	makeAllInactive() {
-		if ( this.stateAll ) {
+	makeAllInactive( sa = false) {
+		if ( this.stateAll || sa ) {
 			for (let i = 0; i < this.children.length; i++)
 				this.children[i].makeInactive(true)
 			this.stateAll = false;
@@ -254,14 +256,14 @@ class AuctionButtonCombiner extends AuctionButton {
 		this.children.forEach( function(value, index, array) {
 			value.addListenerForEvent( newListener, handler );
 		});
-		this.addListenerForEvent( newListener, handler );
+		// this.addListenerForEvent( newListener, handler );
 	}
 
 	addTaskForAll( t, an, aa ) {
 		this.children.forEach( function( child ) {
 			child.addTask(  t, an, aa );
 		});
-		this.addTask( t, an, aa );
+		// this.addTask( t, an, aa );
 	}
 
 	execAllTasksAll() {

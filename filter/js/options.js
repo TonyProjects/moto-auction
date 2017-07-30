@@ -2,6 +2,8 @@
 *	@include
 *		jQuery
 *******************************************************************************/
+
+	// For auctions buttons
 	function add_buttonOption( obj, a ) {
 		var 
 			options = jQuery(".filter-content__options").eq(0),
@@ -25,6 +27,7 @@
 		else option.remove();
 	}
 
+	// For selects
 	function add_selectOption( obj, a ) {
 		var 
 			options = jQuery(".filter-content__options").eq(0),
@@ -46,18 +49,18 @@
 			option.click( function(event) {
 				event.currentTarget.remove();
 			});
-
 		} else
 			option.children('.m-option__value').eq(0).text(obj.item.innerText);
 	}
 
+	// For range sliders
 	function add_sliderOption( obj, a ) {
 		var 
 			options = jQuery(".filter-content__options").eq(0),
 			close = '<img class="m-option__close-img" src="img/svg/cancel.svg" />',
 			type = obj.type + '-' + a.type;
-			option = options.children('#' + type),
-			value = obj.min.value + ' - ' + obj.max.value;
+			value = obj.min.value + ' - ' + obj.max.value,
+			option = options.children('#' + type);
 
 		if ( !option.length ) {
 			options.append('\
@@ -70,7 +73,6 @@
 			option.click( function(event) {
 				event.currentTarget.remove();
 			});
-			
 		} else
 			option.children('.m-option__value').eq(0).text( value );
 	}

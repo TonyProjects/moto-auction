@@ -265,14 +265,15 @@ class Select extends Common {
 	*	@todo
 	*		change current item of select
 	*/
-	changeCurrentItem(item) {
+	changeCurrentItem(item, silence = false) {
 		if ( !(this.currentItem === item) )
 		{
 			this.currentItem = item;
 			this.input.setAttribute( 'value', item.getAttribute('data-value') );
 			this.itemsContainer.style.top = (item.getAttribute('data-index') * (-27)) + 'px';
 
-			if ( this.getCountListeners ){
+			this.execAllTasks();
+			if ( this.getCountListeners && !silence){
 				this.emitEventForListeners();
 			}
 		} else {
@@ -281,8 +282,8 @@ class Select extends Common {
 	}
 
 	//
-	toDefault() {
-		this.changeCurrentItem( this.items[ 0 ] );
+	toDefault( silence = false) {
+		this.changeCurrentItem( this.items[ 0 ], silence );
 	}
 } // Select
 
@@ -318,6 +319,12 @@ class SelectCombiner {
 	changeWidthAll( newWidth ) {
 		this.children.forEach( function( select ) {
 			select.changeWidth( newWidth );
+		});
+	}
+
+	toDefaultAll( silence = false ) {
+		this.children.forEach( function(child) {
+			child.toDefault( silence );
 		});
 	}
 }

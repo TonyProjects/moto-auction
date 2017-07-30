@@ -124,7 +124,6 @@ class Common {
 	*		
 	***************************************************************************/	
 	emitEventForListeners() {
-		this.execAllTasks();
 		for (let i = 0; i < this.listeners.length; i++)
 			this.listeners[i].dispatchEvent( new Event( this.event ) );
 	}

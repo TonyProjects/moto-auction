@@ -90,6 +90,7 @@ jQuery(document).ready( function($) {
 		{ type: 'rangeSliser' });
 
 	document.getElementById('to-default-filter').addEventListener('click', function(event) {
-		
+		selectsCombiner.toDefaultAll( true );
+		auctionCombiner.makeAllInactive( true );		
 	})
 });

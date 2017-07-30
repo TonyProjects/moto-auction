@@ -128,6 +128,7 @@ class SliderRangeWrapper extends Common {
 			this.sliderHandlers = jQuery(this.sliderNative).find('.ui-slider-handle');
 
 			this.sliderHandlers.mouseup( function(event) {
+				self.execAllTasks();
 				self.emitEventForListeners();
 			});
 
