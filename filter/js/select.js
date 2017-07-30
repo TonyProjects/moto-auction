@@ -1,6 +1,11 @@
-// Create 
+/**************************************
+*
+*	@include
+*		common.js
+*
+**************************************/
 
-class Select {
+class Select extends Common {
 
 	/**********************************
 	*	@param
@@ -10,6 +15,8 @@ class Select {
 	*			(sent: string, text: string)
 	*/
 	constructor(id, input, list, labelText = null) {
+		super( 'changeCurrentItem' );
+
 		// select
 		this.id = id;
 		this.select = document.createElement('div');
@@ -39,8 +46,10 @@ class Select {
 
 		// items lists
 		this.items = [];
-		this.addItems(list);
+		// default item
+		this.addItem( {sent: 0, text: 'all items'}, 0);
 		this.currentItem = this.items[0];
+		this.addItems(list);
 
 		// button
 		{
@@ -63,9 +72,6 @@ class Select {
 			this.select.appendChild(angleWrapper);
 			this.select.appendChild(inpt);
 		}
-
-		// default
-		this.listeners = [];
 	}
 
 	/**********************************
@@ -111,7 +117,7 @@ class Select {
 	addItems(newItems) {
 		if ( 'length' in newItems)
 			for (let index = 0; index < newItems.length; index++)
-				this.addItem( newItems[index], index);
+				this.addItem( newItems[index]);
 		else console.log(' invalid function argument');
 	}
 
@@ -120,7 +126,7 @@ class Select {
 	*		remove all items of select
 	*/
 	removeItems() {
-		for (let i = 0; i < this.countItems; i++)
+		for (let i = 1; i < this.countItems; i++)
 		{
 			this.items[i].remove();
 		}
@@ -266,86 +272,51 @@ class Select {
 			this.input.setAttribute( 'value', item.getAttribute('data-value') );
 			this.itemsContainer.style.top = (item.getAttribute('data-index') * (-27)) + 'px';
 
-			if ( this.isHaveListeners() )
-				this.emitSelectEvent();
+			if ( this.getCountListeners ){
+				this.emitEventForListeners();
+			}
 		} else {
 			this.itemsContainer.style.top = (this.currentItem.getAttribute('data-index') * (-27)) + 'px';
 		}
 	}
 
-
-
-	/**********************************
-	****************EDIT**************
-	**********************************/
-
-
-
-	/**********************************
-	*	@todo
-	*		
-	*/
-	isHaveListeners() {
-		return !!this.listeners.length;
+	//
+	toDefault() {
+		this.changeCurrentItem( this.items[ 0 ] );
 	}
-
-	/**********************************
-	*	@todo
-	*		
-	*	@param
-	*		newListener: HTMLElement
-			eventFor: string
-	*/
-	addSelectListener( newListener, callback ) {
-		if ( (newListener instanceof HTMLElement) 
-		&&	 (typeof callback === 'function') ) {
-			this.listeners.push( newListener );
-			newListener.addEventListener('changeSelectItem', callback);
-		}
-	}
-
-	/**********************************
-	*	@todo
-	*		
-	*/
-	emitSelectEvent( event ) {
-		let selectEvent = new Event('changeSelectItem');
-		for (let i = 0; i < this.listeners.length; i++)
-			this.listeners[i].dispatchEvent( selectEvent );
-	}
-
 } // Select
 
 class SelectCombiner {
-	constructor( selects ) {
-		if (selects.hasOwnProperty('length'))
-			this.selects = selects;
+	constructor( children ) {
+		if (children.hasOwnProperty('length'))
+			this.children = children;
 	}
 
+	addTaskForAll( t, an, aa ) {
+		this.children.forEach( function( select ) {
+			select.addTask( t, an, aa );
+		});
+	}
 	addListenerForAll( newListener, callback ) {
-		let self = this;
-		this.selects.forEach( function( select ) {
-			select.addSelectListener( newListener, callback );
+		this.children.forEach( function( select ) {
+			select.addListenerForEvent( newListener, callback );
 		});
 	}
 
 	insertIntoEndAll( parent ) {
-		let self = this;
-		this.selects.forEach( function( select ) {
+		this.children.forEach( function( select ) {
 			select.insertInto( parent );
 		});
 	}
 
 	insertIntoBeforeAll( parent, before ) {
-		let self = this;
-		this.selects.forEach( function( select ) {
+		this.children.forEach( function( select ) {
 			select.insertIntoBefore( parent, before );
 		});
 	}
 
 	changeWidthAll( newWidth ) {
-		let self = this;
-		this.selects.forEach( function( select ) {
+		this.children.forEach( function( select ) {
 			select.changeWidth( newWidth );
 		});
 	}

@@ -32,65 +32,48 @@
 
 	<!-- JS -->
 	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+
+	<!-- Common class -->
+	<script src="js/common.js"></script>
+	<!-- Select, SelectCombiner clases-->
 	<script type="text/javascript" src="js/select.js"></script>
+
 
 	<!-- insert of selects -->
 	<script type="text/javascript">
-			var 
-				s = new Select(
-					'new-select', 
-					{
-						name: 'new-select-input',
-						value: 'default'
-					}, 
-					[ 
-						{sent: 'one', text: 'first'}, 
-						{sent: 'two', text: 'second'}
-					],
-					'The select'
-				),
-				
-
-				sTwo = new Select(
-					'other-new-select',
-					{
-						name: 'other-new-select-input',
-						value: 'default'
-					},
-					[
-						{sent: 'otherOne', text: 'otherFirst'},
-						{sent: 'otherTwo', text: 'otherSecond'}
-					],
-					'The other select'
-				),
-				
-
-				sThree = new Select(
-					'sThree-new-select',
-					{
-						name: 'sThree-new-select-input',
-						value: 'default'
-					},
-					[
-						{sent: 'otherOne', text: 'otherFirst'},
-						{sent: 'otherTwo', text: 'otherSecond'}
-					],
-					'sThree select'
-				);
+		var 
+			s = new Select('new-select', 
+				{	name: 'new-select-input',
+					value: 'default'
+				}, 
+				[ 	{sent: 'one', text: 'first'}, 
+					{sent: 'two', text: 'second'}
+				],	'The select'
+			),
+			s2 = new Select('other-new-select',
+				{	name: 'other-new-select-input',
+					value: 'default'
+				},
+				[	{sent: 'otherOne', text: 'otherFirst'},
+					{sent: 'otherTwo', text: 'otherSecond'}
+				],	'The other select'
+			),
+			s3 = new Select('sThree-new-select',
+				{	name: 'sThree-new-select-input',
+					value: 'default'
+				},
+				[	{sent: 'otherOne', text: 'otherFirst'},
+					{sent: 'otherTwo', text: 'otherSecond'}
+				],	'sThree select'
+			)
+			sCombiner = new SelectCombiner( [s, s2, s3] );
 			
 		jQuery(document).ready( function($) {
 			var selectContainer = document.getElementsByClassName('container')[0];
 
-			s.insertInto( selectContainer );
-			s.changeWidth(150);
-
-			s.addSelectListener( selectContainer, function(event) { console.log(event.target.className)} );
-
-			sTwo.insertInto( selectContainer );
-			sTwo.changeWidth(150);
-
-			sThree.insertInto( selectContainer );
-			sThree.changeWidth(150);
+			sCombiner.changeWidthAll( 150 );
+			sCombiner.insertIntoEndAll( selectContainer );
+			sCombiner.addListenerForAll( selectContainer, function(event) { console.log(event.target.className)} );
 		});
 	</script>
 	</style>

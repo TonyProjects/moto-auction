@@ -1,7 +1,7 @@
 /*
 *	included: jquery-1.12.4.js, jquery-ui.min.js (jquery-ui.min.css)
 */
-class SliderRangeWrapper {
+class SliderRangeWrapper extends Common {
 
 	/***********************************
 	*	@param
@@ -10,6 +10,10 @@ class SliderRangeWrapper {
 	*
 	*/
 	constructor( sliderId, sliderParams ) {
+		super( 'changeRange' );
+
+		this.id = sliderId;
+
 		this.sliderNative = document.createElement('div');
 		this.sliderNative.id = sliderId;
 		this.sliderNative.className = 'slider';
@@ -40,8 +44,8 @@ class SliderRangeWrapper {
 		this.sliderNative.appendChild( this.inputMin );
 		this.sliderNative.appendChild( this.inputMax );
 
-		this.listeners = [];
-		this.event = 'moveHandle';
+		// this.listeners = [];
+		// this.event = 'moveHandle';
 	}
 
 	/****************************************
@@ -54,7 +58,6 @@ class SliderRangeWrapper {
 	****************************************/
 	createWrapper( wrapper ) {		
 		if ( typeof wrapper === 'object' ) {
-			console.log('wrapper is create');
 			this.wrapper = document.createElement( wrapper.type );
 			this.wrapper.className = wrapper.className;
 		}
@@ -125,7 +128,7 @@ class SliderRangeWrapper {
 			this.sliderHandlers = jQuery(this.sliderNative).find('.ui-slider-handle');
 
 			this.sliderHandlers.mouseup( function(event) {
-				self.emitSliderChangeValue();
+				self.emitEventForListeners();
 			});
 
 			return true;
@@ -133,51 +136,57 @@ class SliderRangeWrapper {
 		else return false;
 	}
 
-	addListener( newListener, callback ) {
-		if ( (newListener instanceof HTMLElement) 
-		&&	 (typeof callback === 'function') ) {
-			this.listeners.push( newListener );
-			newListener.addEventListener( this.event, callback );
-		}
-	}
+	// addListenerForEvent( newListener, callback ) {
+	// 	if ( (newListener instanceof HTMLElement) 
+	// 	&&	 (typeof callback === 'function') ) {
+	// 		this.listeners.push( newListener );
+	// 		newListener.addEventListener( this.event, callback );
+	// 	}
+	// }
 
 	/**********************************
 	*	@todo
 	*		
 	*/
-	emitSliderChangeValue() {
-		for (let i = 0; i < this.listeners.length; i++)
-			this.listeners[i].dispatchEvent( new Event(this.event) );
-	}
+	// emitEventForListeners() {
+	// 	for (let i = 0; i < this.listeners.length; i++)
+	// 		this.listeners[i].dispatchEvent( new Event(this.event) );
+	// }
 }
 
 class SliderRangeWrapperCombiner {
-	constructor( sliders ) {
-		if ( sliders.hasOwnProperty('length') )
-			this.sliders = sliders;
+	constructor( children ) {
+		if ( children.hasOwnProperty('length') )
+			this.children = children;
 	}
 
 	addListenersAll( newListener, callback ) {
-		this.sliders.forEach( function( slider ) {
-			slider.addListener( newListener, callback );
+		this.children.forEach( function( child ) {
+			child.addListenerForEvent( newListener, callback );
 		});
 	}
 
 	createSameWrappers ( wrapper ) {
-		this.sliders.forEach( function( slider ) {
-			slider.createWrapper( wrapper );
+		this.children.forEach( function( child ) {
+			child.createWrapper( wrapper );
 		});
 	}
 
 	createLabels( labels, className ) {
-		this.sliders.forEach( function( slider, id ) {
-			slider.createLabel( labels[ id ], className );
+		this.children.forEach( function( child, id ) {
+			child.createLabel( labels[ id ], className );
 		});
 	}
 
 	insertAllIntoEnd( parent ) {
-		this.sliders.forEach( function( slider ) {
-			slider.insertIntoEnd( parent );
+		this.children.forEach( function( child ) {
+			child.insertIntoEnd( parent );
+		});
+	}
+
+	addTaskForAll( t, an, aa ) {
+		this.children.forEach( function( child ) {
+			child.addTask(  t, an, aa );
 		});
 	}
 }

@@ -1,22 +1,81 @@
-	function add_option(content, type, del = false) {
-		var options = $(".filter-content__options");
-		var close = '<img class="m-option__close-img" src="img/svg/cancel.svg" />'
-		if (!del) 
-		{
+/*******************************************************************************
+*	@include
+*		jQuery
+*******************************************************************************/
+	function add_buttonOption( obj, a ) {
+		var 
+			options = jQuery(".filter-content__options").eq(0),
+			close = '<img class="m-option__close-img" src="img/svg/cancel.svg" />',
+			type = obj.type + '-' + a.type,
+			option = options.children('#' + type);
+
+		if ( obj.state) {
 			options.append('\
 				<div class="m-option" id="' + type + '"> \
 					<div class="m-option__angle"></div> \
-					<div class="m-option__value"> <p>' + content + '</p></div> \
+					<div class="m-option__value"> <p>' + obj.text + '</p></div> \
 					<div class="m-option__close"> ' + close + ' </div> \
 				</div> \
 			');
+			option.click( function(event) {
+				console.log(event);
+				event.currentTarget.remove();
+			});
 		}
-		else if (type === "*")
-			$(options).empty();
-		else
-			$(options).children('#' + type).remove();
+		else option.remove();
+	}
+
+	function add_selectOption( obj, a ) {
+		var 
+			options = jQuery(".filter-content__options").eq(0),
+			close = '<img class="m-option__close-img" src="img/svg/cancel.svg" />',
+			type = obj.type + '-' + a.typem
+			option = options.children('#' + type);
+
+		if ( !parseInt(obj.item.getAttribute('data-index')) )
+			option.remove()
+
+		else if ( !option.length ) {
+			options.append('\
+				<div class="m-option" id="' + type + '" data-current="' + obj.item.getAttribute('data-index') + '"> \
+					<div class="m-option__angle"></div> \
+					<div class="m-option__value"> <p>' + obj.item.innerText + '</p></div> \
+					<div class="m-option__close"> ' + close + ' </div> \
+				</div> \
+			');
+			option.click( function(event) {
+				event.currentTarget.remove();
+			});
+
+		} else
+			option.children('.m-option__value').eq(0).text(obj.item.innerText);
+	}
+
+	function add_sliderOption( obj, a ) {
+		var 
+			options = jQuery(".filter-content__options").eq(0),
+			close = '<img class="m-option__close-img" src="img/svg/cancel.svg" />',
+			type = obj.type + '-' + a.type;
+			option = options.children('#' + type),
+			value = obj.min.value + ' - ' + obj.max.value;
+
+		if ( !option.length ) {
+			options.append('\
+				<div class="m-option" id="' + type + '"> \
+					<div class="m-option__angle"></div> \
+					<div class="m-option__value"> <p>' + value + '</p></div> \
+					<div class="m-option__close"> ' + close + ' </div> \
+				</div> \
+			');
+			option.click( function(event) {
+				event.currentTarget.remove();
+			});
+			
+		} else
+			option.children('.m-option__value').eq(0).text( value );
 	}
 	
-jQuery(document).ready( function($) {
-
-});
+	function clear_options() {
+		var	options = jQuery(".filter-content__options");
+			options.empty();
+	}

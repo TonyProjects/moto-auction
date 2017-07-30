@@ -303,6 +303,9 @@ input[type="submit"].filter__search-send {
 	margin-bottom: 25px;
 
 }
+.m-option:hover {
+	opacity: 0.3;
+}
 .m-option__value,
 .m-option__close {
 	height: 26px;

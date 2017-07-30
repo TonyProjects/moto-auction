@@ -1,69 +1,9 @@
-class Common {
-	constructor() {
-		this.tasks = [];
-		this.taskCount = 0;
-	}
-
-	/****************************************
-	*	@param
-	*		t (task): function.
-	*		an (argumentsName): object of strings 
-	*			where each string is method of this (class instance)
-	*		aa (additionalArguments): object. look like this:
-	*			{ argumentName: argumentValue, ...}
-	*	@todo
-	*		add new task for executing
-	***********************************/
-	addTask( t, an, aa ) {
-		if ( typeof t === 'function' ) {	
-			this.tasks.push({ 
-				task: t,
-				arguments: an,
-				additional: aa 
-			});
-			this.taskCount++;
-		}
-	}
-	/***************************************
-	*	@param
-	*		i (index of task): number.
-	*	@todo
-	*		Execute task with number i
-	***************************************/
-	execTask( i ) {
-		return this.tasks[ i ].task( 
-			this.getPropertiesAsObj( this.tasks[ i ].arguments ),
-			this.tasks[ i ].additional
-		) || true;
-	}
-
-	/***************************************
-	*	@todo
-	*		execute all tasks in order
-	***************************************/	
-	execAllTasks() {
-		let i;
-		for (i = 0; i < this.taskCount; i++)
-			this.execTask( i );
-	}
-
-	/***************************************	
-	*	@param
-	*		p (propertiesName): string array.
-	*	@todo
-	*		transform this: [ propertyName, ... ]
-	*		to: { propertyName: propertyValue of current object, ...}	
-	***************************************/	
-	getPropertiesAsObj( p ) {
-		if ( p.hasOwnProperty('length') ) {
-			let i, args = {};
-			for (i = 0; i < p.length; i++)
-				if ( p[ i ] in this )
-					args[ p[i] ] = this[ p[i] ];
-			return args;
-		}
-	}
-}
+/**************************************
+*
+*	@include
+*		common.js
+*
+**************************************/
 
 class AuctionButton extends Common {
 	/**************************************************************************
@@ -85,7 +25,7 @@ class AuctionButton extends Common {
 	*		
 	***************************************************************************/
 	constructor(id, titleText, inputName, sendData) {
-		super();
+		super( 'changeButtonState' );
 
 		this.sendData = sendData;
 		// auctionButton
@@ -127,23 +67,26 @@ class AuctionButton extends Common {
 		// sendData --> button
 		this.button.appendChild(this.button_sendData);
 
+		this.id = this.button.id;
+		this.text = this.button_base_title.innerText;
+
 		// default
 		this.state = false;
 		this.isInserted = false;
-		this.isListen = false;
-		this.listeners = [];
-		this.stateEvent = 'changeButtonState';
+		// this.isListen = false;
+		// this.listeners = [];
+		// this.stateEvent = 'changeButtonState';
 	}
 
 	/**************************************************************************
 	*	@todo
 	*		Add listener for button
 	**************************************************************************/
-	createListener() {
+	toActive() {
 		if ( !this.isListen ){
 			let self = this;
 			this.button.addEventListener('click', function(event) {
-				if (!self.state)
+				if ( !self.state )
 					self.makeActive();
 				else self.makeInactive();
 			});
@@ -178,7 +121,7 @@ class AuctionButton extends Common {
 				this.parent = obj;
 				this.isInserted = true;
 
-				this.createListener();
+				this.toActive();
 				return true;
 
 			} else return false;
@@ -196,9 +139,7 @@ class AuctionButton extends Common {
 				obj.insertBefore( this.button, before);
 				this.parent = obj;
 				this.isInserted = true;
-
-				this.createListener();
-
+				this.toActive();
 				return true;
 			} else return false;
 		} else return false;
@@ -222,7 +163,7 @@ class AuctionButton extends Common {
 			this.state = true;
 
 			if ( !silence )
-				this.emitStateEvent();
+				this.emitEventForListeners();
 
 		}
 	}
@@ -241,31 +182,9 @@ class AuctionButton extends Common {
 			this.state = false;
 
 			if ( !silence )
-				this.emitStateEvent();
+				this.emitEventForListeners();
 
 		}
-	}
-
-	addStateEventListener( newListener, handler ) {
-		if ((newListener instanceof HTMLElement)
-		&&	(typeof handler === 'function')) {
-
-			this.listeners.push(newListener);
-			newListener.addEventListener( this.stateEvent, handler );
-			
-			return true;
-		} else return false;
-	}
-
-	emitStateEvent() {
-		// execution tasks
-		this.execAllTasks();
-
-		if (this.listeners.length) {
-			for (let i = 0; i < this.listeners.length; i++)
-				this.listeners[i].dispatchEvent( new Event(this.stateEvent) );
-			return true;
-		} else return false;
 	}
 }
 
@@ -280,12 +199,12 @@ class AuctionButtonCombiner extends AuctionButton {
 
 		// default
 		this.isInsertedAll = false;
-		this.isListenAll = false;
+		this.isActiveAll = false;
 		this.stateAll = false;
 		this.listeners = [];
 		this.stateAllEvent = 'changeStateAll';
 
-		this.listenAll();
+		this.toActiveAll();
 	}
 
 	insertIntoEndAll( obj ) {
@@ -299,8 +218,8 @@ class AuctionButtonCombiner extends AuctionButton {
 		} else return false;
 	}
 
-	listenAll() {
-		if ( !this.isListenAll )
+	toActiveAll() {
+		if ( !this.isActiveAll )
 		{	
 			let self = this;
 			this.button.addEventListener('click', function(event) {
@@ -310,7 +229,7 @@ class AuctionButtonCombiner extends AuctionButton {
 					self.makeAllInactive();
 				} 
 			});
-			this.isListenAll = true;
+			this.isActiveAll = true;
 			return true;
 		} else return false;
 	}
@@ -331,11 +250,11 @@ class AuctionButtonCombiner extends AuctionButton {
 		}
 	}
 
-	addStateAllEventListener( newListener, handler ) {
+	addListenerForEventALl( newListener, handler ) {
 		this.children.forEach( function(value, index, array) {
-			value.addStateEventListener( newListener, handler );
+			value.addListenerForEvent( newListener, handler );
 		});
-		this.addStateEventListener( newListener, handler );
+		this.addListenerForEvent( newListener, handler );
 	}
 
 	addTaskForAll( t, an, aa ) {

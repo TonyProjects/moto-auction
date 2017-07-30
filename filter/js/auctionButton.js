@@ -1,4 +1,11 @@
-class AuctionButton {
+/**************************************
+*
+*	@include
+*		common.js
+*
+**************************************/
+
+class AuctionButton extends Common {
 	/**************************************************************************
 	*	@param
 	*		id: 		string. Button id
@@ -18,6 +25,8 @@ class AuctionButton {
 	*		
 	***************************************************************************/
 	constructor(id, titleText, inputName, sendData) {
+		super( 'changeButtonState' );
+
 		this.sendData = sendData;
 		// auctionButton
 		this.button = document.createElement('div');
@@ -58,23 +67,26 @@ class AuctionButton {
 		// sendData --> button
 		this.button.appendChild(this.button_sendData);
 
+		this.id = this.button.id;
+		this.text = this.button_base_title.innerText;
+
 		// default
 		this.state = false;
 		this.isInserted = false;
-		this.isListen = false;
-		this.listeners = [];
-		this.stateEvent = 'changeButtonState';
+		// this.isListen = false;
+		// this.listeners = [];
+		// this.stateEvent = 'changeButtonState';
 	}
 
 	/**************************************************************************
 	*	@todo
-	*		Add the click event listener for button
+	*		Add listener for button
 	**************************************************************************/
-	createListener() {
+	toActive() {
 		if ( !this.isListen ){
 			let self = this;
 			this.button.addEventListener('click', function(event) {
-				if (!self.state)
+				if ( !self.state )
 					self.makeActive();
 				else self.makeInactive();
 			});
@@ -109,7 +121,7 @@ class AuctionButton {
 				this.parent = obj;
 				this.isInserted = true;
 
-				this.createListener();
+				this.toActive();
 				return true;
 
 			} else return false;
@@ -127,9 +139,7 @@ class AuctionButton {
 				obj.insertBefore( this.button, before);
 				this.parent = obj;
 				this.isInserted = true;
-
-				this.createListener();
-
+				this.toActive();
 				return true;
 			} else return false;
 		} else return false;
@@ -151,9 +161,10 @@ class AuctionButton {
 			this.button_angle.setAttribute('class', newAngleClases);
 			this.button_sendData.setAttribute('value', this.sendData);
 			this.state = true;
-		}
-		if ( !silence ) {
-			this.emitStateEvent();
+
+			if ( !silence )
+				this.emitEventForListeners();
+
 		}
 	}
 
@@ -169,33 +180,15 @@ class AuctionButton {
 			this.button_angle.setAttribute('class', newAngleClases);
 			this.button_sendData.setAttribute('value', '');
 			this.state = false;
+
+			if ( !silence )
+				this.emitEventForListeners();
+
 		}
-		if ( !silence ) {
-			this.emitStateEvent();
-		}
-	}
-
-	addStateEventListener( newListener, handler ) {
-		if ((newListener instanceof HTMLElement)
-		&&	(typeof handler === 'function')) {
-
-			this.listeners.push(newListener);
-
-			newListener.addEventListener( this.stateEvent, handler );
-
-			return true;
-		} else return false;
-	}
-
-	emitStateEvent() {
-		if (this.listeners.length) {
-			for (let i = 0; i < this.listeners.length; i++)
-				this.listeners[i].dispatchEvent( new Event(this.stateEvent) );
-			return true;
-		} else return false;
 	}
 }
 
+// AuctionButton is extended with Common class
 class AuctionButtonCombiner extends AuctionButton {
 	constructor( id, titleText, inputName, sendData, children ) {
 		super(id, titleText, inputName, sendData);
@@ -206,12 +199,12 @@ class AuctionButtonCombiner extends AuctionButton {
 
 		// default
 		this.isInsertedAll = false;
-		this.isListenAll = false;
+		this.isActiveAll = false;
 		this.stateAll = false;
 		this.listeners = [];
 		this.stateAllEvent = 'changeStateAll';
 
-		this.listenAll();
+		this.toActiveAll();
 	}
 
 	insertIntoEndAll( obj ) {
@@ -225,8 +218,8 @@ class AuctionButtonCombiner extends AuctionButton {
 		} else return false;
 	}
 
-	listenAll() {
-		if ( !this.isListenAll )
+	toActiveAll() {
+		if ( !this.isActiveAll )
 		{	
 			let self = this;
 			this.button.addEventListener('click', function(event) {
@@ -236,7 +229,7 @@ class AuctionButtonCombiner extends AuctionButton {
 					self.makeAllInactive();
 				} 
 			});
-			this.isListenAll = true;
+			this.isActiveAll = true;
 			return true;
 		} else return false;
 	}
@@ -257,10 +250,23 @@ class AuctionButtonCombiner extends AuctionButton {
 		}
 	}
 
-	addStateAllEventListener( newListener, handler ) {
+	addListenerForEventAll( newListener, handler ) {
 		this.children.forEach( function(value, index, array) {
-			value.addStateEventListener( newListener, handler );
+			value.addListenerForEvent( newListener, handler );
 		});
-		this.addStateEventListener( newListener, handler );
+		this.addListenerForEvent( newListener, handler );
+	}
+
+	addTaskForAll( t, an, aa ) {
+		this.children.forEach( function( child ) {
+			child.addTask(  t, an, aa );
+		});
+		this.addTask( t, an, aa );
+	}
+
+	execAllTasksAll() {
+		this.children.forEach( function( child ) {
+			child.execAllTasks();
+		})
 	}
 }

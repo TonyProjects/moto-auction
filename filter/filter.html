@@ -22,14 +22,18 @@
 
 	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	
 	<script type="text/javascript" src="js/options.js"></script>
 
+	<!-- common class -->
+	<script src="js/common.js"></script>
 	<!-- Select, SelectCombiner clases -->
 	<script type="text/javascript" src="js/select.js"></script>
 	<!-- AuctionButton, AuctionButtonCombiner clases -->
 	<script type="text/javascript" src="js/auctionButton.js"></script>
 	<!-- SliderRangeWrapper, SliderRangeWrapperCombiner classes -->
 	<script src="js/range-slider.js"></script>
+
 	<!-- Определение элементов фильтра -->
 	<script type="text/javascript" src="js/definitionFilterElem.js"></script>
 </head>
@@ -91,7 +95,7 @@
 			<div class="filter-content__tab"></div>
 			<div class="filter-content__body filter-content__segment">
 			<div class="filter-content-body__data filter-contetn-body__data--non-padding">
-				<p class="filter-content__options-remove">Сбросить все</p>
+				<p class="filter-content__options-remove" id="to-default-filter">Сбросить все</p>
 				<div class="filter-content__options"></div>
 			</div>
 			</div>
