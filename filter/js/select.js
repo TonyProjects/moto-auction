@@ -128,11 +128,9 @@ class Select extends Common {
 	*/
 	removeItems() {
 		for (let i = 1; i < this.items.length; i++)
-		{
 			this.items[i].remove();
-		}
 
-		while (this.items.length)
+		while (this.items.length !== 1)
 			this.items.pop();
 
 		this.countItems = 1;

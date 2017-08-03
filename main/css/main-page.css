@@ -1,0 +1,371 @@
+html {
+	position: relative;
+}
+
+#page-background-color {
+	background-color: #181818;
+
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: -999;
+}
+#page-background-texture {
+	background-image: url(../img/clean-textile.png);
+	opacity: 0.1;
+
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: -998;
+}
+#first-photo {
+	width: 100%; 
+	height: 800px; 
+	background-image: url(../img/first.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	opacity: 0.6;
+}
+#background-gradient {
+	width: 100%;
+/*	height: 2102px;
+	background: linear-gradient( to bottom, 
+		rgba(255,255,255,0) 0%,
+		rgba(255,255,255,0.1) 95%,
+		rgba(255,255,255, 0.15) 100%);
+*/}
+
+
+/* Section */
+.page-section {
+	margin: 30px 0 200px 0;
+	min-width: 1170px;
+}
+
+/* section modifiers */
+.page-section--logo {
+	margin-top: 60px;
+}
+.page-section--posts {
+}
+.section__title {
+	color: rgb( 215, 215, 215 );
+	font-family: "Muller";
+	font-size: 50px;
+	letter-spacing: 30px;
+	line-height: 1.505;
+	margin-bottom: 50px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.section__content {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.section__contetn--post {
+	min-height: 493px;
+}
+.section__content--video {
+
+}
+
+.section__slide {
+	cursor: pointer;
+	width: 34px;
+
+}
+.section__slide:hover {
+	background-color: rgb( 0, 0, 0 );
+	opacity: 0.388;
+}
+.section__slide--prev {
+	margin-right: 25px;
+	background: url(../img/back.svg) no-repeat center center;
+}
+.section__slide--next {
+	margin-left: 25px;
+	background: url(../img/next.svg) no-repeat center center;
+}
+.section__articles {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.section__article {
+}
+
+/* section article modifiers*/
+.section__article--post {
+	max-width: 300px;
+}
+.section__article--video {
+	max-width: 500px;
+	position: relative;
+}
+.section__article--review {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+
+
+/* Article */
+.article__figure {
+	background-color: rgb( 102, 99, 99 );
+	box-shadow: 0px 29px 29px 0px rgb( 0, 0, 0 );
+	cursor: pointer;
+}
+.article__figure--post {
+	margin-bottom: 50px;
+}
+.article__figure--video {
+	
+}
+.article__figure-img {
+	display: block;
+	width: 300px;
+	height: auto;
+}
+.article__video {
+	display: block;
+	height: 395px;
+	width: 500px;
+/*	-webkit-filter: blur(5px);
+     -moz-filter: blur(5px);
+       -o-filter: blur(5px);
+      -ms-filter: blur(5px);
+          filter: blur(5px);
+*/}
+.article__video-description {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	left: 0;
+	padding: 30px 75px 60px 100px;
+	position: absolute;
+	top: 0;
+	cursor: pointer
+}
+/*.article__video-description:active {
+	z-index: -999;
+}
+.article__video-description:hover {
+	z-index: -999;
+}*/
+.article__video-description-first {
+	color: rgb( 255, 255, 255 );
+	font-family: "MullerBold";
+	font-size: 18px;
+	line-height: 1.444;
+	margin-bottom: 30px;
+}
+.article__video-description-last {
+	color: rgb( 255, 255, 255 );
+	font-family: "Muller";
+	font-size: 14px;
+	height: 57px;
+	line-height: 1.5;
+	max-width: 292px;
+}
+.article__video-play {
+	display: block;
+	margin: 0 auto;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background: no-repeat center center;
+}
+.article__video-play:hover {
+
+}
+.article__post-title {
+	color: rgb( 215, 215, 215 );
+	font-family: "MullerBold";
+	font-size: 22px;
+	line-height: 0.955;
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 15px;
+}
+.article__post-description {
+	font-size: 14px;
+	font-family: "Muller";
+	color: rgb( 215, 215, 215 );
+	line-height: 1.5;
+	text-align: center;
+	margin-bottom: 50px;
+}
+.article__more {
+	color: rgb( 215, 215, 215 );
+	cursor: pointer;
+	display: block;
+	font-family: "MullerBold";
+	font-size: 16px;
+	line-height: 1.313;
+	text-align: center;
+	text-decoration: none;
+}
+.article__more:hover {
+	text-decoration: underline;
+}
+.article__more::after {
+	content: '...';
+}
+
+/* Rewiev */
+.article__photo {
+	min-width: 165px;
+	max-width: 165px;
+	min-height: 165px;
+	max-height: 165px;
+	border-radius: 50%;
+	background: no-repeat center center;
+	background-size: cover;
+	background-color: rgb( 255, 255, 255 );
+	box-shadow: 0px 29px 29px 0px rgb( 0, 0, 0 );
+}
+.article__review-content {
+	min-height: 165px;
+	padding-left: 80px;
+	box-sizing: border-box;
+}
+.article__review-description {
+	font-size: 14px;
+	font-family: "Muller";
+	color: rgb( 255, 255, 255 );
+	line-height: 1.786;
+	text-align: left;
+	min-height: 115px;
+	margin-bottom: 30px;
+}
+.article__review-author {
+	font-size: 18px;
+	font-family: "MullerBold";
+	color: rgb( 255, 255, 255 );
+	line-height: 1.444;
+}
+
+.logo {
+	align-items: center;
+	color: rgb( 215, 215, 215 );
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	line-height: 1.814;
+	text-align: center;
+}
+.logo__up {
+	letter-spacing: 10px;
+	-moz-transform: matrix( 7.29446460348753, 0, 0, 7.29446460348752, 0, 0);
+	-ms-transform: matrix( 7.29446460348753, 0, 0, 7.29446460348752, 0, 0);
+	-webkit-transform: matrix( 7.29446460348753, 0, 0, 7.29446460348752,0, 0);
+	color: rgb( 215, 215, 215 );
+	font-family: "MullerThin";
+	font-size: 10.28px;
+	margin-bottom: 55px;
+	padding-left: 5px;
+}
+.logo__down {
+	text-transform: uppercase;
+	letter-spacing: 10px;
+	-moz-transform: matrix( 9.29446460348753, 0, 0, 9.29446460348752, 0, 0);
+	-ms-transform: matrix( 9.29446460348753, 0, 0, 9.29446460348752, 0, 0);
+	-webkit-transform: matrix( 7.29446460348753, 0, 0, 9.29446460348752,0, 0);
+	color: rgb( 215, 215, 215 );
+	font-family: "Muller";
+	font-size: 10.28px;
+	margin-bottom: 80px;
+	padding-left: 5px;
+}
+.logo__separate {
+	background: -moz-linear-gradient( 90deg, 
+		rgba(0,0,128, 0.5) 0%,
+		rgba(0,0,255, 0.9) 33%,
+		rgba(255,0,0,0.9) 66%, 
+		rgba(128,0,0,0.5) 99%);
+	background: -ms-linear-gradient( 90deg, 
+		rgba(0,0,128, 0.5) 0%,
+		rgba(0,0,255, 0.9) 33%,
+		rgba(255,0,0,0.9) 66%, 
+		rgba(128,0,0,0.5) 99%);
+	background: -webkit-linear-gradient( 90deg, 
+		rgba(0,0,128, 0.5) 0%,
+		rgba(0,0,255, 0.9) 33%,
+		rgba(255,0,0,0.9) 66%, 
+		rgba(128,0,0,0.5) 99%);
+	background: linear-gradient( 90deg, 
+		rgba(0,0,128, 0.5) 0%,
+		rgba(0,0,255, 0.9) 33%,
+		rgba(255,0,0,0.9) 66%, 
+		rgba(128,0,0,0.5) 99%);
+
+	display: block;
+	height: 5px;
+	margin-bottom: 65px;
+	width: 578px;
+}
+
+.logo__comment {
+	font-size: 30px;
+	font-family: "MullerBold";
+	color: rgb( 215, 215, 215 );
+	text-align: center;
+	margin-bottom: 100px;
+	letter-spacing: 3px;
+}
+.section__content--logo {
+	min-width: 570px;
+	max-width: 570px;
+	margin: 0 auto;
+}
+#contact-us-form {
+	width: 100%;
+}
+
+.logo__contact-us {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+input[type=text].contact-us__input {
+	border: none;
+	border-bottom: 1px solid rgb(255, 255, 255);
+	box-sizing: border-box;
+	height: 40px;
+	width: 235px;
+
+	color: white;
+	font-family: "Muller";
+	font-size: 18px;
+	line-height: 0.944;
+	text-align: left;
+	text-indent: 15px;
+}
+
+input[type=submit].logo__contact-us-call {
+	border-color: rgb( 239, 25, 18 );
+	border-style: solid;
+	border-width: 3px;
+	box-sizing: border-box;
+	cursor: pointer;
+	height: 43px;
+	width: 100%;
+
+	color: rgb( 255, 255, 255 );
+	font-family: "MullerBold";
+	font-size: 16px;
+	line-height: 1.063;
+	text-align: center;
+}
