@@ -1,8 +1,10 @@
 html {
 	position: relative;
 }
-
-#page-background-color {
+#main-page {
+	position: relative;
+}
+.page-background-color {
 	background-color: #181818;
 
 	height: 100%;
@@ -12,9 +14,13 @@ html {
 	width: 100%;
 	z-index: -999;
 }
+.page-background-color--footer {
+	/*background-color: #181818;*/
+}
 #page-background-texture {
-	background-image: url(../img/clean-textile.png);
-	opacity: 0.1;
+	/*background-image: url(../img/clean-textile.png);*/
+	background-image: url(../img/texture.png);
+	opacity: 0.6;
 
 	height: 100%;
 	left: 0;
@@ -24,33 +30,69 @@ html {
 	z-index: -998;
 }
 #first-photo {
-	width: 100%; 
-	height: 800px; 
-	background-image: url(../img/first.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	opacity: 0.6;
-}
-#background-gradient {
 	width: 100%;
-/*	height: 2102px;
-	background: linear-gradient( to bottom, 
-		rgba(255,255,255,0) 0%,
-		rgba(255,255,255,0.1) 95%,
-		rgba(255,255,255, 0.15) 100%);
-*/}
+	height: auto;
+	opacity: 0.5;
+}
+#lines-photo {
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#review-gradient {
+	height: 300px; 
+	background: -moz-linear-gradient(to bottom, rgba(128,128,128, 0.01) 0%, rgba(255,255,255, 0.2) 100%); 
+	background: -ms-linear-gradient(to bottom, rgba(128,128,128, 0.01) 0%, rgba(255,255,255, 0.2) 100%); 
+	background: -webkit-linear-gradient(to bottom, rgba(128,128,128, 0.01) 0%, rgba(255,255,255, 0.2) 100%); 
+	background: linear-gradient(to bottom, rgba(128,128,128, 0.01) 0%, rgba(255,255,255, 0.2) 100%); 
+}
+.footer-image  {
+	width: 100%;
+	height: auto;
+	opacity: 0.5;
+	left: 0;
+	position: absolute;
+	z-index: -999;
+}
+.footer-image--top {
+	top: 0;
+}
+.footer-image--bottom {
+	bottom: 0;
+}
+.footer-image--full-visible {
+	opacity: 1;
+}
+
+
+
+
+
+
+
+
 
 
 /* Section */
 .page-section {
-	margin: 30px 0 200px 0;
+	padding: 170px 0 60px 0;
 	min-width: 1170px;
+	width: 1px;
 }
-
+.page-section--reviews {
+	padding-bottom: 70px;
+}
+.page-section--contacts {
+	padding-top: 130px;
+}
+.page-section--logo {
+	padding-top: 150px;
+}
 /* section modifiers */
 .page-section--logo {
-	margin-top: 60px;
+	/*margin-top: 60px;*/
 }
 .page-section--posts {
 }
@@ -58,9 +100,9 @@ html {
 	color: rgb( 215, 215, 215 );
 	font-family: "Muller";
 	font-size: 50px;
-	letter-spacing: 30px;
+	letter-spacing: 25px;
 	line-height: 1.505;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -124,16 +166,21 @@ html {
 	cursor: pointer;
 }
 .article__figure--post {
+	width: 300px;
+	height: 240px;
 	margin-bottom: 50px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 }
 .article__figure--video {
 	
 }
-.article__figure-img {
+/*.article__figure-img {
 	display: block;
 	width: 300px;
 	height: auto;
-}
+}*/
 .article__video {
 	display: block;
 	height: 395px;
@@ -277,7 +324,7 @@ html {
 }
 .logo__down {
 	text-transform: uppercase;
-	letter-spacing: 10px;
+	letter-spacing: 8px;
 	-moz-transform: matrix( 9.29446460348753, 0, 0, 9.29446460348752, 0, 0);
 	-ms-transform: matrix( 9.29446460348753, 0, 0, 9.29446460348752, 0, 0);
 	-webkit-transform: matrix( 7.29446460348753, 0, 0, 9.29446460348752,0, 0);
@@ -303,11 +350,7 @@ html {
 		rgba(0,0,255, 0.9) 33%,
 		rgba(255,0,0,0.9) 66%, 
 		rgba(128,0,0,0.5) 99%);
-	background: linear-gradient( 90deg, 
-		rgba(0,0,128, 0.5) 0%,
-		rgba(0,0,255, 0.9) 33%,
-		rgba(255,0,0,0.9) 66%, 
-		rgba(128,0,0,0.5) 99%);
+	background: linear-gradient( 90deg, rgba(0,0,128, 0.5) 0%, rgba(128,0,0, 0.5) 100%);
 
 	display: block;
 	height: 5px;
@@ -316,14 +359,15 @@ html {
 }
 
 .logo__comment {
-	font-size: 30px;
+	font-size: 25px;
 	font-family: "MullerBold";
 	color: rgb( 215, 215, 215 );
 	text-align: center;
 	margin-bottom: 100px;
 	letter-spacing: 3px;
 }
-.section__content--logo {
+.section__content--logo,
+.section__content--contacts {
 	min-width: 570px;
 	max-width: 570px;
 	margin: 0 auto;
@@ -339,6 +383,24 @@ html {
 	width: 100%;
 }
 
+textarea.logo__message {
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  height: 181px;
+  margin-bottom: 30px;
+  opacity: 0.871;
+  padding: 15px 30px;
+  width: 100%;
+
+  color: rgb(255, 255, 255);
+  font-family: "MullerLight";
+  font-size: 18px;
+  line-height: 0.944;
+  text-align: left;
+}
+
 input[type=text].contact-us__input {
 	border: none;
 	border-bottom: 1px solid rgb(255, 255, 255);
@@ -352,6 +414,7 @@ input[type=text].contact-us__input {
 	line-height: 0.944;
 	text-align: left;
 	text-indent: 15px;
+	/*margin-bottom: 30px;*/
 }
 
 input[type=submit].logo__contact-us-call {

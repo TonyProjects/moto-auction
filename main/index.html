@@ -11,152 +11,181 @@
 
 	<link rel="stylesheet" type="text/css" href="css/main-page.css">
 
-	<script src="js/e-tony-slider.js"></script>
+	<script src="js/jquery-1.12.4.js"></script>
+	<!-- <script src="js/e-tony-slider.js"></script> -->
 	<script type="text/javascript">
-		
+		jQuery(document).ready( function() {
+			jQuery('.section__article--video').mouseover( function(event) {
+				jQuery(event.currentTarget).find('.article__video-description')
+					.animate( { display: 'none'}, 1000 );
+			});
+		});
 	</script>
 
 </head>
-<body id="main-page">
-	<div id="page-background-color">
-		<div id="first-photo" style=""></div>
+<body>
+	<div class="page-background-color">
+		<!-- <div id="first-photo" style=""></div> -->
+		<img id="first-photo" src="img/main-background-1-style-2.png">
+		<img id="lines-photo" src="img/background-lines.png">
 		<div id="background-gradient"></div>
 	</div>
 	<div id="page-background-texture"></div>
+	<div id="main-page">		
 
-	<div class="container">
-		<header></header>
+		<div id="review-gradient" class="footer-image footer-image--bottom footer-image--full-visible"></div>
 
-		<section class="page-section page-section--logo">
-			<h1 class="logo">
-				<span class="logo__up">moto</span>
-				<span class="logo__separate"></span>
-				<span class="logo__down">shar</span>
-			</h1>
+		<div class="container">
+			<section class="page-section page-section--logo">
+				<h1 class="logo">
+					<span class="logo__up">moto</span>
+					<span class="logo__separate"></span>
+					<span class="logo__down">shar</span>
+				</h1>
 
-			<p class="logo__comment">Мотоциклы из Японии под заказ <span class="logo__comment-decore"></p>
+				<p class="logo__comment">Мотоциклы из Японии под заказ <span class="logo__comment-decore"></p>
 
-			<div class="section__content section__content--logo">
-				<form id="contact-us-form" action="">
-					<div class="logo__contact-us">
-						<input class="contact-us__input" type="text" name="contact-name" placeholder="Имя" required>
-						<input class="contact-us__input" type="text" name="contact-phone" placeholder="+7 (___) _______" required>
+				<div class="section__content section__content--logo">
+					<form id="contact-us-form" action="">
+						<div class="logo__contact-us">
+							<input class="contact-us__input" type="text" name="contact-name" placeholder="Имя" required>
+							<input class="contact-us__input" type="text" name="contact-phone" placeholder="+7  (_ _ _)  _ _ _  _ _  _ _" required>
+						</div>
+						<input class="logo__contact-us-call" type="submit" name="contact-call" value="Заказать звонок">
+					</form>
+				</div>
+			</section>
+
+			<section class="page-section page-section--posts">
+				<h1 class="section__title"> Статьи </h1>
+				<div class="section__content section__content--post">
+					<div class="section__slide section__slide--prev"></div>
+
+					<div class="section__articles">
+						<article class="section__article section__article--post">
+							<figure class="article__figure article__figure--post" style="background-image: url(img/main-posts.png);">
+								<!-- <img class="article__figure-img article__figure-img--post" src="img/main-posts.png"> -->
+							</figure>
+							<h2 class="article__post-title"> Супер мото скидки</h2>
+							<div class="article__post-description">You disposal strongly quitting his endeavor two settling him. Manners ham him hearted hundred expense. Get open game him what hour more part. Adapted as smiling of females oh me journey exposed concern. </div>
+							<a class="article__more" href="#"> Далее </a>
+						</article>
+
+						<article class="section__article section__article--post">
+							<figure class="article__figure article__figure--post" style="background-image: url(img/main-posts.png);">
+								<!-- <img class="article__figure-img article__figure-img--post" src="img/moto.jpg"> -->
+							</figure>
+							<h2 class="article__post-title"> Супер мото скидки</h2>
+							<div class="article__post-description">You disposal strongly quitting his endeavor two settling him. Manners ham him hearted hundred expense. Get open game him what hour more part. Adapted as smiling of females oh me journey exposed concern. </div>
+							<a class="article__more" href="#"> Далее </a>
+						</article>
+
+						<article class="section__article section__article--post">
+							<figure class="article__figure article__figure--post" style="background-image: url(img/main-posts.png);">
+								<!-- <img class="article__figure-img article__figure-img--post" src="img/moto.jpg"> -->
+							</figure>
+							<h2 class="article__post-title"> Супер мото скидки</h2>
+							<div class="article__post-description">You disposal strongly quitting his endeavor two settling him. Manners ham him hearted hundred expense. Get open game him what hour more part. Adapted as smiling of females oh me journey exposed concern. </div>
+							<a class="article__more" href="#"> Далее </a>
+						</article>				
 					</div>
-					<input class="logo__contact-us-call" type="submit" name="contact-call" value="Заказать звонок">
-				</form>
-			</div>
-		</section>
 
-		<section class="page-section page-section--posts">
-			<h1 class="section__title"> Статьи </h1>
-			<div class="section__content section__content--post">
-				<div class="section__slide section__slide--prev"></div>
-
-<!-- 				<div class="section__articles">
-					<article class="section__article section__article--post">
-						<figure class="article__figure article__figure--post">
-							<img class="article__figure-img article__figure-img--post" src="img/moto.jpg">
-						</figure>
-						<h2 class="article__post-title"> Супер мото скидки</h2>
-						<div class="article__post-description">You disposal strongly quitting his endeavor two settling him. Manners ham him hearted hundred expense. Get open game him what hour more part. Adapted as smiling of females oh me journey exposed concern. </div>
-						<a class="article__more" href="#"> Далее </a>
-					</article>
-
-					<article class="section__article section__article--post">
-						<figure class="article__figure article__figure--post">
-							<img class="article__figure-img article__figure-img--post" src="img/moto.jpg">
-						</figure>
-						<h2 class="article__post-title"> Супер мото скидки</h2>
-						<div class="article__post-description">You disposal strongly quitting his endeavor two settling him. Manners ham him hearted hundred expense. Get open game him what hour more part. Adapted as smiling of females oh me journey exposed concern. </div>
-						<a class="article__more" href="#"> Далее </a>
-					</article>
-
-					<article class="section__article section__article--post">
-						<figure class="article__figure article__figure--post">
-							<img class="article__figure-img article__figure-img--post" src="img/moto.jpg">
-						</figure>
-						<h2 class="article__post-title"> Супер мото скидки</h2>
-						<div class="article__post-description">You disposal strongly quitting his endeavor two settling him. Manners ham him hearted hundred expense. Get open game him what hour more part. Adapted as smiling of females oh me journey exposed concern. </div>
-						<a class="article__more" href="#"> Далее </a>
-					</article>				
-				</div> -->
-
-				<div class="section__slide section__slide--next"></div>
-			</div>
-		</section>
-
-		<section class="page-section page-section--videos">
-			<h1 class="section__title"> Видео </h1>
-			<div class="section__content">
-				<div class="section__slide section__slide--prev"></div>
-
-				<div class="section__articles">
-					<article class="section__article section__article--video">
-						<figure class="article__figure article__figure--video">
-							<video class="article__video" controls>
-								<source src="" type="">
-							</video>
-						</figure>
-						<div class="article__video-description">
-							<p class="article__video-description-first">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</p>	
-							<p class="article__video-description-last">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</p>
-							<span class="article__video-play" style="background-image: url(img/play-arrow.svg);"></span>
-						</div>
-					</article>
-
-					<article class="section__article section__article--video">
-						<figure class="article__figure article__figure--video">
-							<video class="article__video" controls>
-								<source src="Game.of.Thrones.S07E01.720p.WEB.rus.LostFilm.TV.mp4" type="video/mp4">
-							</video>
-						</figure>
-						<div class="article__video-description">
-							<p class="article__video-description-first">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</p>	
-							<p class="article__video-description-last">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</p>
-							<span class="article__video-play" style="background-image: url(img/play-arrow.svg);"></span>
-						</div>
-					</article>			
+					<div class="section__slide section__slide--next"></div>
 				</div>
+			</section>
 
-				<div class="section__slide section__slide--next"></div>
-			</div>
-		</section>
+			<section class="page-section page-section--videos">
+				<h1 class="section__title"> Видео </h1>
+				<div class="section__content">
+					<div class="section__slide section__slide--prev"></div>
 
-		<section class="page-section page-section--reviews" id="end-page-content">
-			<h1 class="section__title"> Отзывы </h1>
-			<div class="section__content section__content--reviews">
-				<div class="section__slide section__slide--prev"></div>
+					<div class="section__articles">
+						<article class="section__article section__article--video">
+							<figure class="article__figure article__figure--video">
+								<video class="article__video" controls>
+									<source src="" type="video/mp4">
+								</video>
+							</figure>
+							<div class="article__video-description">
+								<p class="article__video-description-first">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+								</p>	
+								<p class="article__video-description-last">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+								</p>
+								<span class="article__video-play" style="background-image: url(img/play-arrow.svg);"></span>
+							</div>
+						</article>
 
-				<div class="section__articles">
-					<article class="section__article section__article--review">
-						<figure class="article__photo" style="background-image: url(img/profile.svg);">
-						</figure>
-						<div class="article__review-content">
-							<div class="article__review-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>	
-							<p class="article__review-author">
-								Ian Curtis
-							</p>
-						</div>
-					</article>
+						<article class="section__article section__article--video">
+							<figure class="article__figure article__figure--video">
+								<video class="article__video" controls>
+									<source src="" type="video/mp4">
+								</video>
+							</figure>
+							<div class="article__video-description">
+								<p class="article__video-description-first">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+								</p>	
+								<p class="article__video-description-last">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+								</p>
+								<span class="article__video-play" style="background-image: url(img/play-arrow.svg);"></span>
+							</div>
+						</article>			
+					</div>
+
+					<div class="section__slide section__slide--next"></div>
 				</div>
+			</section>
 
-				<div class="section__slide section__slide--next"></div>
-			</div>
-		</section>
+			<section class="page-section page-section--reviews" id="end-page-content">
+				<h1 class="section__title"> Отзывы </h1>
+				<div class="section__content section__content--reviews">
+					<div class="section__slide section__slide--prev"></div>
+
+					<div class="section__articles">
+						<article class="section__article section__article--review">
+							<figure class="article__photo" style="background-image: url(img/profile.svg);">
+							</figure>
+							<div class="article__review-content">
+								<div class="article__review-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+								proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>	
+								<p class="article__review-author">
+									Ian Curtis
+								</p>
+							</div>
+						</article>
+					</div>
+
+					<div class="section__slide section__slide--next"></div>
+				</div>
+			</section>
+		</div>
 	</div>
 
+	<footer style="position: relative; overflow: hidden;">
+		<img class="footer-image footer-image--top" src="img/main-background-style-2.png" style="top: -426px"></img>
+		<img class="footer-image footer-image--bottom footer-image--full-visible" src="img/footer-lines.png">
+		<div class="container">
+			<div class="page-section page-section--contacts">
+				<h1 class="section__title"> Контакты </h1>
+				<div class="section__content section__content--logo">
+				<form id="contact-us-form" action="">
+					<textarea class="logo__message" placeholder="Введите сообщение"></textarea>
+					<div class="logo__contact-us">
+						<input class="contact-us__input" type="text" name="contact-name" placeholder="Имя" required>
+						<input class="contact-us__input" type="text" name="contact-phone" placeholder="+7 (_ _ _)  _ _ _  _ _  _ _" required>
+					</div>
+					<input class="logo__contact-us-call" type="submit" name="contact-call" value="Отправить">
+				</form>
+			</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
