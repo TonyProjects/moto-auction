@@ -1,0 +1,103 @@
+html {
+	position: relative;
+}
+#contact-page {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+}
+.contact-page__background {
+	background-color: rgba(1,9,17, 0.9);
+	height: inherit;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: inherit;
+}
+
+.container--contact {
+	position: relative;
+	z-index: 1000;
+	box-sizing: border-box;
+}
+.contact-page__close {
+	height: 80px;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.contact-page-close__ico {
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+}
+.contact-page__wrapper {
+	background-color: white;
+	box-sizing: border-box;
+	height: 430px;
+	padding: 10px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+}
+.contact-page__wrapper-section {
+	width: 50%;
+}
+
+/* contacts */
+.contact-page__wrapper-section--contacts {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: flex-start;
+	padding: 30px;
+	box-sizing: border-box;
+}
+.contact-page__section {
+	display: flex;
+	align-items: center;	
+}
+.contact-page-section__ico {
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 32px;
+	height: 32px;
+	padding: 0 30px;
+	margin-bottom: 5px;
+}
+.contact-page-section__text {
+	font-size: 18px;
+	font-family: "MullerLight";
+	color: rgb(57, 57, 57);
+	line-height: 0.944;
+	text-align: left;
+}
+.contact-page-section__text span {
+	display: block;
+	margin: 5px 0;
+}
+.contact-page-section__text--phone {
+	font-size: 25px;
+	font-family: "MullerBold";
+	color: rgb(61, 77, 99);
+	line-height: 0.68;
+	text-align: left;
+	-moz-transform: matrix( 1,0,0,0.99663349230638,0,0);
+	-webkit-transform: matrix( 1,0,0,0.99663349230638,0,0);
+	-ms-transform: matrix( 1,0,0,0.99663349230638,0,0);
+}
+
+
+/* map */
+.contact-page__wrapper-section--map {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
